@@ -397,6 +397,11 @@
       30%, 70%  { opacity: 0.9; }
     }
 
+    @keyframes logo-breathe {
+      0%, 100% { transform: translate(-50%,-50%) scale(1); filter: drop-shadow(0 0 40px rgba(0,212,255,0.3)) drop-shadow(0 0 80px rgba(123,47,255,0.2)); }
+      50%       { transform: translate(-50%,-50%) scale(1.04); filter: drop-shadow(0 0 60px rgba(0,212,255,0.5)) drop-shadow(0 0 100px rgba(123,47,255,0.35)); }
+    }
+
     /* Orbiting dots */
     .orbit {
       position: absolute;
@@ -972,29 +977,7 @@
   <div class="container">
     <div class="nav-inner">
       <a href="#hero" class="nav-logo">
-        <svg class="logo-mark" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <rect x="7" y="7" width="22" height="22" rx="4" transform="rotate(45 18 18)" fill="none" stroke="url(#lg1)" stroke-width="1.5"/>
-          <circle cx="18" cy="18" r="3" fill="url(#lg2)"/>
-          <circle cx="12" cy="12" r="1.5" fill="#00d4ff" opacity="0.8"/>
-          <circle cx="24" cy="12" r="1.5" fill="#7b2fff" opacity="0.8"/>
-          <circle cx="12" cy="24" r="1.5" fill="#7b2fff" opacity="0.8"/>
-          <circle cx="24" cy="24" r="1.5" fill="#ff00cc" opacity="0.8"/>
-          <line x1="12" y1="12" x2="18" y2="18" stroke="#00d4ff" stroke-width="0.8" opacity="0.5"/>
-          <line x1="24" y1="12" x2="18" y2="18" stroke="#7b2fff" stroke-width="0.8" opacity="0.5"/>
-          <line x1="12" y1="24" x2="18" y2="18" stroke="#7b2fff" stroke-width="0.8" opacity="0.5"/>
-          <line x1="24" y1="24" x2="18" y2="18" stroke="#ff00cc" stroke-width="0.8" opacity="0.5"/>
-          <defs>
-            <linearGradient id="lg1" x1="7" y1="7" x2="29" y2="29">
-              <stop offset="0%" stop-color="#00d4ff"/>
-              <stop offset="50%" stop-color="#7b2fff"/>
-              <stop offset="100%" stop-color="#ff00cc"/>
-            </linearGradient>
-            <linearGradient id="lg2" x1="15" y1="15" x2="21" y2="21">
-              <stop offset="0%" stop-color="#00d4ff"/>
-              <stop offset="100%" stop-color="#7b2fff"/>
-            </linearGradient>
-          </defs>
-        </svg>
+        <img src="logo.jpg" alt="SynPrysm" style="width:38px;height:38px;object-fit:cover;border-radius:8px;" />
         SynPrysm<span style="background:linear-gradient(135deg,#7b2fff,#ff00cc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">.io</span>
       </a>
 
@@ -1076,34 +1059,25 @@
       <div class="hero-visual">
         <div class="prism-container">
           <div class="prism-glow-ring"></div>
-
           <div class="orbit orbit-1"><div class="orbit-dot"></div></div>
           <div class="orbit orbit-2"><div class="orbit-dot"></div></div>
 
-          <div class="prism-diamond"></div>
-
-          <!-- Neural SVG inside diamond -->
-          <svg class="prism-network" viewBox="0 0 110 110" fill="none">
-            <circle cx="55" cy="55" r="5" fill="#00d4ff" opacity="0.9"/>
-            <circle cx="25" cy="30" r="3.5" fill="#00d4ff" opacity="0.7"/>
-            <circle cx="85" cy="30" r="3.5" fill="#7b2fff" opacity="0.7"/>
-            <circle cx="25" cy="80" r="3.5" fill="#7b2fff" opacity="0.7"/>
-            <circle cx="85" cy="80" r="3.5" fill="#ff00cc" opacity="0.7"/>
-            <circle cx="55" cy="18" r="2.5" fill="#00d4ff" opacity="0.5"/>
-            <circle cx="55" cy="92" r="2.5" fill="#ff00cc" opacity="0.5"/>
-            <line x1="55" y1="55" x2="25" y2="30" stroke="#00d4ff" stroke-width="0.8" opacity="0.4"/>
-            <line x1="55" y1="55" x2="85" y2="30" stroke="#7b2fff" stroke-width="0.8" opacity="0.4"/>
-            <line x1="55" y1="55" x2="25" y2="80" stroke="#7b2fff" stroke-width="0.8" opacity="0.4"/>
-            <line x1="55" y1="55" x2="85" y2="80" stroke="#ff00cc" stroke-width="0.8" opacity="0.4"/>
-            <line x1="55" y1="55" x2="55" y2="18" stroke="#00d4ff" stroke-width="0.8" opacity="0.3"/>
-            <line x1="55" y1="55" x2="55" y2="92" stroke="#ff00cc" stroke-width="0.8" opacity="0.3"/>
-            <line x1="25" y1="30" x2="85" y2="30" stroke="#ffffff" stroke-width="0.5" opacity="0.1"/>
-            <line x1="25" y1="80" x2="85" y2="80" stroke="#ffffff" stroke-width="0.5" opacity="0.1"/>
-          </svg>
-
-          <div class="beam beam-1"></div>
-          <div class="beam beam-2"></div>
-          <div class="beam beam-3"></div>
+          <!-- Real logo as hero centerpiece -->
+          <img
+            src="logo.jpg"
+            alt="SynPrysm Crystal Prism"
+            style="
+              position:absolute;
+              top:50%; left:50%;
+              transform:translate(-50%,-50%);
+              width:280px;
+              height:auto;
+              border-radius:16px;
+              z-index:2;
+              filter: drop-shadow(0 0 40px rgba(0,212,255,0.3)) drop-shadow(0 0 80px rgba(123,47,255,0.2));
+              animation: logo-breathe 5s ease-in-out infinite;
+            "
+          />
 
           <!-- Floating pills -->
           <div class="float-pill">🔐 AI Security</div>
@@ -1409,7 +1383,11 @@
       </div>
 
       <div class="contact-form fade-up" id="contact-form-wrapper">
-        <form id="contactForm" action="https://formspree.io/f/REPLACE_WITH_YOUR_FORMSPREE_ID" method="POST">
+        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_KEY" />
+          <input type="hidden" name="subject" value="✨ New SynPrysm Inquiry" />
+          <input type="hidden" name="from_name" value="SynPrysm Website" />
+          <input type="hidden" name="redirect" value="false" />
           <div class="form-row">
             <div class="form-group">
               <label for="firstName">First Name</label>
@@ -1458,6 +1436,12 @@
           </div>
 
           <div class="form-submit">
+            <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:20px;text-align:left;">
+              <input type="checkbox" id="consent" name="consent" required style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:var(--cyan);" />
+              <label for="consent" style="font-size:0.8rem;color:var(--gray-400);text-transform:none;letter-spacing:0;font-weight:400;cursor:pointer;">
+                I agree to the <a href="privacy.html" target="_blank" style="color:var(--cyan);">Privacy Policy</a> and <a href="terms.html" target="_blank" style="color:var(--cyan);">Terms of Service</a>. I understand that SynPrysm will use the information I provide to respond to my inquiry.
+              </label>
+            </div>
             <button type="submit" class="btn-primary">
               ✨ Let's Build Something Together →
             </button>
@@ -1481,13 +1465,18 @@
 <footer>
   <div class="container">
     <div class="footer-inner">
-      <div class="footer-logo">SynPrysm.io</div>
+      <div style="display:flex;align-items:center;gap:10px;">
+        <img src="logo.jpg" alt="SynPrysm" style="width:32px;height:32px;object-fit:cover;border-radius:6px;" />
+        <div class="footer-logo">SynPrysm.io</div>
+      </div>
 
       <ul class="footer-links">
         <li><a href="#about">About</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#why">Why Us</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="privacy.html">Privacy Policy</a></li>
+        <li><a href="terms.html">Terms of Service</a></li>
       </ul>
 
       <div class="footer-copy">
@@ -1593,25 +1582,27 @@
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
     const btn = form.querySelector('button[type="submit"]');
-    btn.textContent = 'Sending...';
+    const originalText = btn.innerHTML;
+    btn.innerHTML = 'Sending...';
     btn.disabled = true;
 
     try {
-      const res = await fetch(form.action, {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         body: new FormData(form),
         headers: { 'Accept': 'application/json' }
       });
+      const data = await res.json();
 
-      if (res.ok) {
+      if (data.success) {
         form.style.display = 'none';
         document.getElementById('formSuccess').style.display = 'block';
       } else {
-        btn.textContent = 'Something went wrong — try again';
+        btn.innerHTML = 'Something went wrong — please try again';
         btn.disabled = false;
       }
     } catch {
-      btn.textContent = 'Something went wrong — try again';
+      btn.innerHTML = 'Something went wrong — please try again';
       btn.disabled = false;
     }
   });
