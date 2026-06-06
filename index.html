@@ -322,8 +322,8 @@
 
     .prism-container {
       position: relative;
-      width: 360px;
-      height: 360px;
+      width: 420px;
+      height: 420px;
     }
 
     .prism-glow-ring {
@@ -434,21 +434,27 @@
     /* Floating service pills */
     .float-pill {
       position: absolute;
-      background: rgba(13,17,40,0.85);
-      border: 1px solid rgba(0,212,255,0.25);
+      background: rgba(13,17,40,0.88);
+      border: 1px solid rgba(0,212,255,0.3);
       backdrop-filter: blur(12px);
       border-radius: 100px;
-      padding: 8px 16px;
-      font-size: 0.75rem;
+      padding: 7px 14px;
+      font-size: 0.72rem;
       font-weight: 600;
       color: var(--cyan);
       white-space: nowrap;
       animation: float 6s ease-in-out infinite;
+      z-index: 10;
     }
-    .float-pill:nth-child(1) { top: 10%; right: -10px; animation-delay: 0s; }
-    .float-pill:nth-child(2) { top: 35%; left: -30px; animation-delay: 1.5s; }
-    .float-pill:nth-child(3) { bottom: 25%; right: -20px; animation-delay: 3s; }
-    .float-pill:nth-child(4) { bottom: 12%; left: -10px; animation-delay: 4.5s; }
+
+    /* 7 pills evenly distributed around the logo */
+    .float-pill:nth-child(1) { top: 2%;   left: 50%; transform: translateX(-50%); animation-delay: 0s;    border-color: rgba(0,212,255,0.35); }
+    .float-pill:nth-child(2) { top: 18%;  right: -5px;                            animation-delay: 0.8s;  border-color: rgba(123,47,255,0.35); color: #a06fff; }
+    .float-pill:nth-child(3) { top: 40%;  right: -10px;                           animation-delay: 1.6s;  border-color: rgba(0,212,255,0.35); }
+    .float-pill:nth-child(4) { bottom: 18%; right: -5px;                          animation-delay: 2.4s;  border-color: rgba(255,0,204,0.35); color: #ff66e0; }
+    .float-pill:nth-child(5) { bottom: 2%;  left: 50%; transform: translateX(-50%); animation-delay: 3.2s; border-color: rgba(123,47,255,0.35); color: #a06fff; }
+    .float-pill:nth-child(6) { top: 40%;  left: -10px;                            animation-delay: 4s;    border-color: rgba(0,212,255,0.35); }
+    .float-pill:nth-child(7) { top: 18%;  left: -5px;                             animation-delay: 4.8s;  border-color: rgba(255,0,204,0.35); color: #ff66e0; }
 
     @keyframes float {
       0%, 100% { transform: translateY(0px); }
@@ -936,7 +942,22 @@
 
     @media (max-width: 768px) {
       .hero-inner { grid-template-columns: 1fr; text-align: center; }
-      .hero-visual { display: none; }
+      .hero-visual {
+        display: flex;
+        margin: 40px auto 0;
+        width: 100%;
+        justify-content: center;
+      }
+      .prism-container {
+        width: 320px;
+        height: 320px;
+      }
+      .float-pill { font-size: 0.65rem; padding: 5px 10px; }
+      .float-pill:nth-child(2) { right: 0px; }
+      .float-pill:nth-child(3) { right: 0px; }
+      .float-pill:nth-child(4) { right: 0px; }
+      .float-pill:nth-child(6) { left: 0px; }
+      .float-pill:nth-child(7) { left: 0px; }
       .hero-sub { margin: 0 auto 40px; }
       .hero-actions { justify-content: center; }
       .hero-stats { justify-content: center; }
@@ -1079,11 +1100,14 @@
             "
           />
 
-          <!-- Floating pills -->
+          <!-- 7 floating service pills around the logo -->
           <div class="float-pill">🔐 AI Security</div>
           <div class="float-pill">🔗 AI Integration</div>
-          <div class="float-pill">🤖 AI Assistants</div>
           <div class="float-pill">📞 AI Cold Callers</div>
+          <div class="float-pill">📝 AI Note Takers</div>
+          <div class="float-pill">📊 AI CRM</div>
+          <div class="float-pill">🛠️ AI Tools</div>
+          <div class="float-pill">🤖 AI Assistants</div>
         </div>
       </div>
     </div>
