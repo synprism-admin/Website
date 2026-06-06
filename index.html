@@ -1,1620 +1,1621 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SynPrysm.io — AI Systems in Perfect Synthesis</title>
-  <meta name="description" content="SynPrysm bridges the gap between people and AI. We integrate, secure, and simplify AI for your life and business." />
-  <meta property="og:title" content="SynPrysm.io — AI Systems in Perfect Synthesis" />
-  <meta property="og:description" content="We bridge the gap and make AI more simple. Your AI partner for integration, security, and custom solutions." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://synprism.io" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
-  <style>
-    /* ── RESET & BASE ────────────────────────────────────────────── */
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --bg:        #080b18;
-      --bg2:       #0d1128;
-      --bg3:       #111830;
-      --cyan:      #00d4ff;
-      --cyan-dim:  #00a8cc;
-      --purple:    #7b2fff;
-      --magenta:   #ff00cc;
-      --white:     #ffffff;
-      --gray-100:  #e8eaf6;
-      --gray-400:  #8892b0;
-      --gray-600:  #4a5568;
-      --glow-cyan: 0 0 30px rgba(0,212,255,0.35);
-      --glow-pur:  0 0 30px rgba(123,47,255,0.35);
-      --radius:    16px;
-      --radius-sm: 10px;
-    }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background: var(--bg);
-      color: var(--white);
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-
-    /* ── SCROLLBAR ───────────────────────────────────────────────── */
-    ::-webkit-scrollbar { width: 6px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 3px; }
-
-    /* ── CANVAS BG ───────────────────────────────────────────────── */
-    #neural-canvas {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
-      opacity: 0.18;
-      pointer-events: none;
-    }
-
-    /* ── UTILITY ─────────────────────────────────────────────────── */
-    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
-    .tag {
-      display: inline-block;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      border: 1px solid rgba(0,212,255,0.35);
-      background: rgba(0,212,255,0.07);
-      padding: 5px 14px;
-      border-radius: 100px;
-      margin-bottom: 20px;
-    }
-    .gradient-text {
-      background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 50%, var(--magenta) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .section-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 700;
-      line-height: 1.15;
-      margin-bottom: 16px;
-    }
-    .section-sub {
-      font-size: 1.1rem;
-      color: var(--gray-400);
-      max-width: 640px;
-      line-height: 1.7;
-    }
-
-    /* ── NAV ─────────────────────────────────────────────────────── */
-    nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 100;
-      padding: 18px 0;
-      transition: background 0.3s, backdrop-filter 0.3s;
-    }
-    nav.scrolled {
-      background: rgba(8,11,24,0.85);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .nav-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      text-decoration: none;
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 1.35rem;
-      color: var(--white);
-    }
-    .nav-logo .logo-mark {
-      width: 36px; height: 36px;
-      position: relative;
-      flex-shrink: 0;
-    }
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 32px;
-      list-style: none;
-    }
-    .nav-links a {
-      color: var(--gray-400);
-      text-decoration: none;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--white); }
-    .nav-cta {
-      background: linear-gradient(135deg, var(--cyan), var(--purple));
-      color: var(--white) !important;
-      padding: 9px 22px;
-      border-radius: 8px;
-      font-weight: 600 !important;
-      font-size: 0.875rem !important;
-      transition: opacity 0.2s, transform 0.2s !important;
-    }
-    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      padding: 4px;
-    }
-    .hamburger span {
-      display: block;
-      width: 24px; height: 2px;
-      background: var(--white);
-      border-radius: 2px;
-      transition: 0.3s;
-    }
-
-    /* ── HERO ────────────────────────────────────────────────────── */
-    #hero {
-      position: relative;
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 140px 0 80px;
-      overflow: hidden;
-      z-index: 1;
-    }
-
-    /* Aurora beams */
-    .aurora-left, .aurora-right, .aurora-center {
-      position: absolute;
-      pointer-events: none;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.25;
-    }
-    .aurora-left {
-      width: 500px; height: 700px;
-      background: radial-gradient(ellipse, var(--cyan) 0%, transparent 70%);
-      top: -100px; left: -150px;
-      animation: drift 8s ease-in-out infinite alternate;
-    }
-    .aurora-right {
-      width: 500px; height: 700px;
-      background: radial-gradient(ellipse, var(--magenta) 0%, transparent 70%);
-      top: -50px; right: -150px;
-      animation: drift 10s ease-in-out infinite alternate-reverse;
-    }
-    .aurora-center {
-      width: 600px; height: 400px;
-      background: radial-gradient(ellipse, var(--purple) 0%, transparent 70%);
-      top: 30%; left: 50%;
-      transform: translateX(-50%);
-      opacity: 0.15;
-    }
-
-    @keyframes drift {
-      from { transform: translateY(0px) scale(1); }
-      to   { transform: translateY(40px) scale(1.05); }
-    }
-
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .hero-eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 24px;
-    }
-    .hero-eyebrow-dot {
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      background: var(--cyan);
-      box-shadow: 0 0 10px var(--cyan);
-      animation: pulse 2s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50%       { opacity: 0.6; transform: scale(0.8); }
-    }
-    .hero-eyebrow span {
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--cyan);
-    }
-
-    .hero-headline {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.6rem, 5.5vw, 4.5rem);
-      font-weight: 800;
-      line-height: 1.05;
-      margin-bottom: 24px;
-      letter-spacing: -0.02em;
-    }
-
-    .hero-sub {
-      font-size: 1.15rem;
-      color: var(--gray-400);
-      max-width: 520px;
-      line-height: 1.75;
-      margin-bottom: 40px;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 100%);
-      color: var(--white);
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.95rem;
-      padding: 14px 28px;
-      border-radius: var(--radius-sm);
-      border: none;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
-      box-shadow: 0 4px 24px rgba(0,212,255,0.25);
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 32px rgba(0,212,255,0.4);
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: transparent;
-      color: var(--white);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 0.95rem;
-      padding: 14px 28px;
-      border-radius: var(--radius-sm);
-      border: 1px solid rgba(255,255,255,0.15);
-      cursor: pointer;
-      transition: border-color 0.2s, background 0.2s, transform 0.2s;
-    }
-    .btn-secondary:hover {
-      border-color: rgba(0,212,255,0.5);
-      background: rgba(0,212,255,0.07);
-      transform: translateY(-2px);
-    }
-
-    /* Prism Hero Visual */
-    .hero-visual {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-
-    .prism-container {
-      position: relative;
-      width: 360px;
-      height: 360px;
-    }
-
-    .prism-glow-ring {
-      position: absolute;
-      inset: -40px;
-      border-radius: 50%;
-      background: conic-gradient(from 0deg, var(--cyan), var(--purple), var(--magenta), var(--cyan));
-      opacity: 0.12;
-      filter: blur(40px);
-      animation: spin 12s linear infinite;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    .prism-diamond {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%) rotate(45deg);
-      width: 180px; height: 180px;
-      background: linear-gradient(135deg,
-        rgba(0,212,255,0.15) 0%,
-        rgba(123,47,255,0.2) 50%,
-        rgba(255,0,204,0.15) 100%
-      );
-      border: 1px solid rgba(0,212,255,0.4);
-      border-radius: 12px;
-      backdrop-filter: blur(20px);
-      box-shadow:
-        0 0 60px rgba(0,212,255,0.2),
-        0 0 120px rgba(123,47,255,0.15),
-        inset 0 0 40px rgba(255,255,255,0.03);
-    }
-
-    .prism-network {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 110px; height: 110px;
-    }
-
-    /* Light beams */
-    .beam {
-      position: absolute;
-      top: 50%; left: 50%;
-      width: 3px;
-      border-radius: 2px;
-      transform-origin: top center;
-      filter: blur(2px);
-      opacity: 0;
-      animation: beam-flash 4s ease-in-out infinite;
-    }
-    .beam-1 {
-      height: 180px;
-      background: linear-gradient(to bottom, var(--cyan), transparent);
-      transform: translate(-50%, -50%) rotate(-35deg);
-      animation-delay: 0s;
-    }
-    .beam-2 {
-      height: 150px;
-      background: linear-gradient(to bottom, var(--magenta), transparent);
-      transform: translate(-50%, -50%) rotate(35deg);
-      animation-delay: 0.3s;
-    }
-    .beam-3 {
-      height: 120px;
-      background: linear-gradient(to bottom, var(--purple), transparent);
-      transform: translate(-50%, -50%) rotate(0deg);
-      animation-delay: 0.6s;
-    }
-    @keyframes beam-flash {
-      0%, 100% { opacity: 0; }
-      30%, 70%  { opacity: 0.9; }
-    }
-
-    @keyframes logo-breathe {
-      0%, 100% { filter: brightness(1) drop-shadow(0 0 20px rgba(0,212,255,0.2)); }
-      50%       { filter: brightness(1.1) drop-shadow(0 0 50px rgba(0,212,255,0.5)) drop-shadow(0 0 80px rgba(123,47,255,0.3)); }
-    }
-
-    /* Orbiting dots */
-    .orbit {
-      position: absolute;
-      top: 50%; left: 50%;
-      border-radius: 50%;
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-    .orbit-1 {
-      width: 240px; height: 240px;
-      margin: -120px 0 0 -120px;
-      animation: orbit-spin 10s linear infinite;
-    }
-    .orbit-2 {
-      width: 310px; height: 310px;
-      margin: -155px 0 0 -155px;
-      animation: orbit-spin 16s linear infinite reverse;
-    }
-    @keyframes orbit-spin { to { transform: rotate(360deg); } }
-
-    .orbit-dot {
-      position: absolute;
-      width: 8px; height: 8px;
-      border-radius: 50%;
-      top: -4px; left: 50%;
-      margin-left: -4px;
-    }
-    .orbit-1 .orbit-dot { background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
-    .orbit-2 .orbit-dot { background: var(--magenta); box-shadow: 0 0 10px var(--magenta); }
-
-    /* Floating service pills */
-    .float-pill {
-      position: absolute;
-      background: rgba(13,17,40,0.85);
-      border: 1px solid rgba(0,212,255,0.25);
-      backdrop-filter: blur(12px);
-      border-radius: 100px;
-      padding: 8px 16px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      color: var(--cyan);
-      white-space: nowrap;
-      animation: float 6s ease-in-out infinite;
-    }
-    .float-pill:nth-child(1) { top: 10%; right: -10px; animation-delay: 0s; }
-    .float-pill:nth-child(2) { top: 35%; left: -30px; animation-delay: 1.5s; }
-    .float-pill:nth-child(3) { bottom: 25%; right: -20px; animation-delay: 3s; }
-    .float-pill:nth-child(4) { bottom: 12%; left: -10px; animation-delay: 4.5s; }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50%       { transform: translateY(-12px); }
-    }
-
-    /* Hero stats */
-    .hero-stats {
-      display: flex;
-      gap: 40px;
-      margin-top: 48px;
-      padding-top: 40px;
-      border-top: 1px solid rgba(255,255,255,0.07);
-    }
-    .stat-item { }
-    .stat-number {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 2rem;
-      font-weight: 800;
-      background: linear-gradient(135deg, var(--cyan), var(--purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .stat-label { font-size: 0.8rem; color: var(--gray-400); font-weight: 500; margin-top: 2px; }
-
-    /* ── WHO WE ARE ───────────────────────────────────────────────── */
-    #about {
-      position: relative;
-      z-index: 1;
-      padding: 120px 0;
-    }
-
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .about-content .section-title { text-align: left; }
-    .about-content .section-sub { text-align: left; margin-bottom: 32px; }
-
-    .about-pillars {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-top: 32px;
-    }
-
-    .pillar {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-      padding: 20px;
-      background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: var(--radius-sm);
-      transition: border-color 0.3s, background 0.3s;
-    }
-    .pillar:hover {
-      border-color: rgba(0,212,255,0.3);
-      background: rgba(0,212,255,0.04);
-    }
-    .pillar-icon {
-      width: 44px; height: 44px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.3rem;
-      flex-shrink: 0;
-      background: rgba(0,212,255,0.1);
-      border: 1px solid rgba(0,212,255,0.2);
-    }
-    .pillar-text h4 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .pillar-text p { font-size: 0.85rem; color: var(--gray-400); line-height: 1.5; }
-
-    /* Visual side */
-    .about-visual {
-      position: relative;
-    }
-
-    .about-card-stack {
-      position: relative;
-      height: 420px;
-    }
-
-    .glass-card {
-      position: absolute;
-      background: rgba(13,17,40,0.6);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: var(--radius);
-      backdrop-filter: blur(16px);
-      padding: 28px;
-    }
-
-    .about-main-card {
-      inset: 0;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 20px;
-    }
-
-    .card-metric {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 16px 20px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 10px;
-    }
-    .metric-label { font-size: 0.85rem; color: var(--gray-400); }
-    .metric-value {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--cyan), var(--purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .metric-bar {
-      height: 4px;
-      border-radius: 2px;
-      margin-top: 8px;
-      background: rgba(255,255,255,0.06);
-      overflow: hidden;
-    }
-    .metric-fill {
-      height: 100%;
-      border-radius: 2px;
-      background: linear-gradient(90deg, var(--cyan), var(--purple));
-      animation: fill-in 2s ease-out forwards;
-      width: 0%;
-    }
-    @keyframes fill-in { to { width: var(--fill-width); } }
-
-    /* ── SERVICES ────────────────────────────────────────────────── */
-    #services {
-      position: relative;
-      z-index: 1;
-      padding: 120px 0;
-      background: linear-gradient(180deg, transparent 0%, rgba(13,17,40,0.5) 50%, transparent 100%);
-    }
-
-    .services-header {
-      text-align: center;
-      margin-bottom: 72px;
-    }
-    .services-header .section-sub { margin: 0 auto; text-align: center; }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .service-card {
-      position: relative;
-      background: rgba(13,17,40,0.7);
-      border: 1px solid rgba(255,255,255,0.07);
-      border-radius: var(--radius);
-      padding: 32px 24px;
-      cursor: default;
-      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
-      overflow: hidden;
-    }
-    .service-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(0,212,255,0.04) 0%, rgba(123,47,255,0.04) 100%);
-      opacity: 0;
-      transition: opacity 0.3s;
-      border-radius: var(--radius);
-    }
-    .service-card:hover {
-      border-color: rgba(0,212,255,0.4);
-      transform: translateY(-6px);
-      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(0,212,255,0.1);
-    }
-    .service-card:hover::before { opacity: 1; }
-
-    /* Wide card spans 2 cols */
-    .service-card.wide { grid-column: span 2; }
-
-    .service-icon {
-      width: 56px; height: 56px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      margin-bottom: 20px;
-      position: relative;
-      z-index: 1;
-    }
-    .icon-cyan    { background: rgba(0,212,255,0.1);  border: 1px solid rgba(0,212,255,0.25); }
-    .icon-purple  { background: rgba(123,47,255,0.1); border: 1px solid rgba(123,47,255,0.25); }
-    .icon-magenta { background: rgba(255,0,204,0.1);  border: 1px solid rgba(255,0,204,0.25); }
-    .icon-mixed   { background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(123,47,255,0.1)); border: 1px solid rgba(0,212,255,0.2); }
-
-    .service-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
-    }
-    .service-desc {
-      font-size: 0.875rem;
-      color: var(--gray-400);
-      line-height: 1.65;
-      position: relative;
-      z-index: 1;
-    }
-
-    .service-tag {
-      display: inline-block;
-      margin-top: 16px;
-      font-size: 0.7rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      position: relative;
-      z-index: 1;
-    }
-
-    /* ── WHY SYNPRYSM ────────────────────────────────────────────── */
-    #why {
-      position: relative;
-      z-index: 1;
-      padding: 120px 0;
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 80px;
-      align-items: center;
-    }
-
-    .why-features {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-top: 40px;
-    }
-
-    .feature-item {
-      padding: 24px;
-      background: rgba(255,255,255,0.025);
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: var(--radius-sm);
-      transition: 0.3s;
-    }
-    .feature-item:hover {
-      border-color: rgba(123,47,255,0.4);
-      background: rgba(123,47,255,0.04);
-    }
-    .feature-item .icon { font-size: 1.5rem; margin-bottom: 12px; }
-    .feature-item h4 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .feature-item p { font-size: 0.8rem; color: var(--gray-400); line-height: 1.5; }
-
-    /* Process visual */
-    .process-visual {
-      position: relative;
-    }
-
-    .process-steps {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-    }
-
-    .process-step {
-      display: flex;
-      gap: 24px;
-      align-items: flex-start;
-      position: relative;
-    }
-    .process-step:not(:last-child)::after {
-      content: '';
-      position: absolute;
-      left: 19px;
-      top: 48px;
-      bottom: -12px;
-      width: 2px;
-      background: linear-gradient(to bottom, rgba(0,212,255,0.4), rgba(123,47,255,0.2));
-    }
-
-    .step-num {
-      width: 40px; height: 40px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, var(--cyan), var(--purple));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 0.85rem;
-      flex-shrink: 0;
-      box-shadow: 0 0 20px rgba(0,212,255,0.3);
-    }
-
-    .step-content {
-      padding: 12px 0 36px;
-    }
-    .step-content h4 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 6px;
-    }
-    .step-content p { font-size: 0.875rem; color: var(--gray-400); line-height: 1.6; }
-
-    /* ── CONTACT ─────────────────────────────────────────────────── */
-    #contact {
-      position: relative;
-      z-index: 1;
-      padding: 120px 0 160px;
-    }
-
-    .contact-wrapper {
-      max-width: 760px;
-      margin: 0 auto;
-    }
-
-    .contact-header { text-align: center; margin-bottom: 56px; }
-    .contact-header .section-sub { margin: 0 auto; text-align: center; }
-
-    .contact-form {
-      background: rgba(13,17,40,0.7);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 20px;
-      padding: 48px;
-      backdrop-filter: blur(16px);
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-bottom: 20px;
-    }
-    .form-group { display: flex; flex-direction: column; gap: 8px; }
-    .form-group.full { grid-column: span 2; }
-
-    label {
-      font-size: 0.8rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      color: var(--gray-400);
-    }
-
-    input, textarea, select {
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: var(--radius-sm);
-      color: var(--white);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.95rem;
-      padding: 14px 18px;
-      outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
-      width: 100%;
-    }
-    input::placeholder, textarea::placeholder { color: var(--gray-600); }
-    input:focus, textarea:focus, select:focus {
-      border-color: var(--cyan);
-      box-shadow: 0 0 0 3px rgba(0,212,255,0.12);
-    }
-    select option { background: var(--bg2); }
-    textarea { resize: vertical; min-height: 130px; }
-
-    .form-submit {
-      text-align: center;
-      margin-top: 32px;
-    }
-    .form-submit .btn-primary {
-      width: 100%;
-      justify-content: center;
-      font-size: 1rem;
-      padding: 16px;
-    }
-
-    .form-footer {
-      text-align: center;
-      margin-top: 20px;
-      font-size: 0.8rem;
-      color: var(--gray-600);
-    }
-
-    /* ── FOOTER ──────────────────────────────────────────────────── */
-    footer {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      padding: 48px 0 32px;
-    }
-
-    .footer-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 24px;
-    }
-
-    .footer-logo {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 700;
-      font-size: 1.2rem;
-      background: linear-gradient(135deg, var(--cyan), var(--purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 28px;
-      list-style: none;
-    }
-    .footer-links a {
-      color: var(--gray-400);
-      text-decoration: none;
-      font-size: 0.875rem;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: var(--white); }
-
-    .footer-copy {
-      font-size: 0.8rem;
-      color: var(--gray-600);
-    }
-
-    /* ── DIVIDER ─────────────────────────────────────────────────── */
-    .section-divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(0,212,255,0.2), rgba(123,47,255,0.2), transparent);
-      margin: 0 auto;
-      max-width: 800px;
-    }
-
-    /* ── SUCCESS MESSAGE ─────────────────────────────────────────── */
-    .form-success {
-      display: none;
-      text-align: center;
-      padding: 40px;
-    }
-    .form-success .success-icon { font-size: 3rem; margin-bottom: 16px; }
-    .form-success h3 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-      background: linear-gradient(135deg, var(--cyan), var(--purple));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    .form-success p { color: var(--gray-400); }
-
-    /* ── RESPONSIVE ──────────────────────────────────────────────── */
-    @media (max-width: 1024px) {
-      .services-grid { grid-template-columns: repeat(2, 1fr); }
-      .service-card.wide { grid-column: span 1; }
-    }
-
-    @media (max-width: 768px) {
-      .hero-inner { grid-template-columns: 1fr; text-align: center; }
-      .hero-visual { display: none; }
-      .hero-sub { margin: 0 auto 40px; }
-      .hero-actions { justify-content: center; }
-      .hero-stats { justify-content: center; }
-      .about-grid { grid-template-columns: 1fr; gap: 48px; }
-      .about-visual { display: none; }
-      .why-grid { grid-template-columns: 1fr; gap: 48px; }
-      .why-features { grid-template-columns: 1fr; }
-      .services-grid { grid-template-columns: 1fr; }
-      .service-card.wide { grid-column: span 1; }
-      .contact-form { padding: 28px; }
-      .form-row { grid-template-columns: 1fr; }
-      .form-group.full { grid-column: span 1; }
-      .nav-links { display: none; }
-      .hamburger { display: flex; }
-      .footer-inner { flex-direction: column; text-align: center; }
-      .footer-links { flex-wrap: wrap; justify-content: center; }
-    }
-
-    /* ── ANIMATIONS ──────────────────────────────────────────────── */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(30px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .fade-up.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  </style>
-</head>
-<body>
-
-<!-- Neural Network Canvas Background -->
-<canvas id="neural-canvas"></canvas>
-
-<!-- ── NAV ─────────────────────────────────────────────────────────── -->
-<nav id="navbar">
-  <div class="container">
-    <div class="nav-inner">
-      <a href="#hero" class="nav-logo">
-        <img src="logo.jpg" alt="SynPrysm" style="width:38px;height:38px;object-fit:cover;border-radius:4px;mix-blend-mode:screen;" />
-        SynPrysm<span style="background:linear-gradient(135deg,#7b2fff,#ff00cc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">.io</span>
-      </a>
-
-      <ul class="nav-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#why">Why Us</a></li>
-        <li><a href="#contact" class="nav-cta">Get Started →</a></li>
-      </ul>
-
-      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-  </div>
-</nav>
-
-<!-- Mobile Menu (hidden by default) -->
-<div id="mobile-menu" style="display:none;position:fixed;top:70px;left:0;right:0;z-index:99;background:rgba(8,11,24,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.07);padding:24px;">
-  <ul style="list-style:none;display:flex;flex-direction:column;gap:20px;text-align:center;">
-    <li><a href="#about" onclick="toggleMenu()" style="color:#8892b0;text-decoration:none;font-size:1rem;font-weight:500;">About</a></li>
-    <li><a href="#services" onclick="toggleMenu()" style="color:#8892b0;text-decoration:none;font-size:1rem;font-weight:500;">Services</a></li>
-    <li><a href="#why" onclick="toggleMenu()" style="color:#8892b0;text-decoration:none;font-size:1rem;font-weight:500;">Why Us</a></li>
-    <li><a href="#contact" onclick="toggleMenu()" style="display:inline-block;background:linear-gradient(135deg,#00d4ff,#7b2fff);color:#fff;text-decoration:none;padding:12px 28px;border-radius:8px;font-weight:700;">Get Started →</a></li>
-  </ul>
-</div>
-
-<!-- ── HERO ────────────────────────────────────────────────────────── -->
-<section id="hero">
-  <div class="aurora-left"></div>
-  <div class="aurora-right"></div>
-  <div class="aurora-center"></div>
-
-  <div class="container">
-    <div class="hero-inner">
-      <!-- Left: Copy -->
-      <div class="hero-copy">
-        <div class="hero-eyebrow">
-          <div class="hero-eyebrow-dot"></div>
-          <span>AI Integration &amp; Consulting</span>
-        </div>
-
-        <h1 class="hero-headline">
-          AI Systems<br />
-          <span class="gradient-text">in Perfect<br />Synthesis</span>
-        </h1>
-
-        <p class="hero-sub">
-          We bridge the gap between people and AI — synthesizing powerful solutions for your life, 
-          your business, and everything in between. No complexity. No confusion. Just clarity.
-        </p>
-
-        <div class="hero-actions">
-          <a href="#contact" class="btn-primary">
-            Start Your Journey →
-          </a>
-          <a href="#services" class="btn-secondary">
-            Explore Services
-          </a>
-        </div>
-
-        <div class="hero-stats">
-          <div class="stat-item">
-            <div class="stat-number">7+</div>
-            <div class="stat-label">AI Service Lines</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">∞</div>
-            <div class="stat-label">Custom Solutions</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">1</div>
-            <div class="stat-label">Lens. One Partner.</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right: Prism Visual -->
-      <div class="hero-visual">
-        <div class="prism-container">
-          <div class="prism-glow-ring"></div>
-          <div class="orbit orbit-1"><div class="orbit-dot"></div></div>
-          <div class="orbit orbit-2"><div class="orbit-dot"></div></div>
-
-          <!-- Real logo as hero centerpiece -->
-          <img
-            src="logo.jpg"
-            alt="SynPrysm Crystal Prism"
-            style="
-              position:absolute;
-              top:50%; left:50%;
-              transform:translate(-50%,-50%);
-              width:300px;
-              height:auto;
-              border-radius:0;
-              z-index:2;
-              mix-blend-mode: screen;
-              animation: logo-breathe 5s ease-in-out infinite;
-            "
-          />
-
-          <!-- Floating pills -->
-          <div class="float-pill">🔐 AI Security</div>
-          <div class="float-pill">🔗 AI Integration</div>
-          <div class="float-pill">🤖 AI Assistants</div>
-          <div class="float-pill">📞 AI Cold Callers</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── WHO WE ARE ──────────────────────────────────────────────────── -->
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="about-content fade-up">
-        <div class="tag">Who We Are</div>
-        <h2 class="section-title">
-          Your AI Partner.<br />
-          <span class="gradient-text">Not Just a Vendor.</span>
-        </h2>
-        <p class="section-sub">
-          SynPrysm is a technical team of AI specialists dedicated to making artificial intelligence 
-          accessible, practical, and powerful for everyone — from individuals to enterprises. 
-          We synthesize the right tools, strategies, and solutions for your unique world.
-        </p>
-        <p class="section-sub" style="margin-top:16px;">
-          Whether you're looking to automate your business, secure your AI stack, or simply 
-          figure out where to start — we're the lens that brings it all into focus.
-        </p>
-
-        <div class="about-pillars">
-          <div class="pillar">
-            <div class="pillar-icon">🔬</div>
-            <div class="pillar-text">
-              <h4>Synthesize</h4>
-              <p>We combine the right AI tools and strategies into a cohesive solution tailored to you.</p>
-            </div>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">💡</div>
-            <div class="pillar-text">
-              <h4>Clarify</h4>
-              <p>We cut through the noise. No jargon, no confusion — just clear outcomes and real results.</p>
-            </div>
-          </div>
-          <div class="pillar">
-            <div class="pillar-icon">🔄</div>
-            <div class="pillar-text">
-              <h4>Synchronize</h4>
-              <p>We keep your AI systems working together in perfect harmony, now and as you grow.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="about-visual fade-up">
-        <div class="about-card-stack">
-          <div class="glass-card about-main-card">
-            <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;margin-bottom:16px;color:var(--gray-100);">
-              AI Readiness Score
-            </div>
-
-            <div class="card-metric">
-              <div>
-                <div class="metric-label">Integration Depth</div>
-                <div class="metric-bar"><div class="metric-fill" style="--fill-width:88%;"></div></div>
-              </div>
-              <div class="metric-value">88%</div>
-            </div>
-
-            <div class="card-metric">
-              <div>
-                <div class="metric-label">Security Posture</div>
-                <div class="metric-bar"><div class="metric-fill" style="--fill-width:95%;animation-delay:0.3s;"></div></div>
-              </div>
-              <div class="metric-value">95%</div>
-            </div>
-
-            <div class="card-metric">
-              <div>
-                <div class="metric-label">Automation Coverage</div>
-                <div class="metric-bar"><div class="metric-fill" style="--fill-width:73%;animation-delay:0.6s;"></div></div>
-              </div>
-              <div class="metric-value">73%</div>
-            </div>
-
-            <div class="card-metric">
-              <div>
-                <div class="metric-label">Tool Optimization</div>
-                <div class="metric-bar"><div class="metric-fill" style="--fill-width:91%;animation-delay:0.9s;"></div></div>
-              </div>
-              <div class="metric-value">91%</div>
-            </div>
-
-            <div style="margin-top:8px;padding:16px 20px;background:linear-gradient(135deg,rgba(0,212,255,0.08),rgba(123,47,255,0.08));border:1px solid rgba(0,212,255,0.2);border-radius:10px;text-align:center;">
-              <div style="font-size:0.75rem;color:var(--gray-400);margin-bottom:4px;">Overall AI Synthesis</div>
-              <div style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">A+</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ── SERVICES ────────────────────────────────────────────────────── -->
-<section id="services">
-  <div class="container">
-    <div class="services-header fade-up">
-      <div class="tag">What We Do</div>
-      <h2 class="section-title">
-        Every AI Need.<br />
-        <span class="gradient-text">One Unified Partner.</span>
-      </h2>
-      <p class="section-sub">
-        From securing your AI stack to building custom tools from scratch — we cover the full spectrum. 
-        If AI can do it, we'll make it work for you.
-      </p>
-    </div>
-
-    <div class="services-grid">
-
-      <div class="service-card fade-up">
-        <div class="service-icon icon-cyan">🔐</div>
-        <div class="service-name">AI Security</div>
-        <div class="service-desc">Protect your AI pipelines, data, and infrastructure. We audit, harden, and monitor your AI systems so you can move fast without fear.</div>
-        <div class="service-tag">→ Protect</div>
-      </div>
-
-      <div class="service-card fade-up">
-        <div class="service-icon icon-purple">🔗</div>
-        <div class="service-name">AI Integration</div>
-        <div class="service-desc">Connect AI to your existing tools, workflows, and platforms. We design seamless bridges so your systems work smarter, together.</div>
-        <div class="service-tag">→ Connect</div>
-      </div>
-
-      <div class="service-card fade-up">
-        <div class="service-icon icon-magenta">📞</div>
-        <div class="service-name">AI Cold Callers</div>
-        <div class="service-desc">Deploy intelligent AI voice agents that prospect, qualify leads, and book meetings — around the clock, without the burnout.</div>
-        <div class="service-tag">→ Automate</div>
-      </div>
-
-      <div class="service-card fade-up">
-        <div class="service-icon icon-cyan">📝</div>
-        <div class="service-name">AI Note Takers</div>
-        <div class="service-desc">Never miss a word. Our AI note-taking solutions capture, summarize, and organize your meetings, calls, and conversations automatically.</div>
-        <div class="service-tag">→ Capture</div>
-      </div>
-
-      <div class="service-card fade-up">
-        <div class="service-icon icon-purple">📊</div>
-        <div class="service-name">AI CRM</div>
-        <div class="service-desc">Transform your customer relationships with AI-powered CRM systems that predict needs, automate follow-ups, and close more deals.</div>
-        <div class="service-tag">→ Grow</div>
-      </div>
-
-      <div class="service-card fade-up">
-        <div class="service-icon icon-mixed">🛠️</div>
-        <div class="service-name">AI Tools</div>
-        <div class="service-desc">We surface, configure, and deploy the best AI tools on the market for your specific use case — saving you months of research and trial.</div>
-        <div class="service-tag">→ Equip</div>
-      </div>
-
-      <div class="service-card wide fade-up" style="background:linear-gradient(135deg,rgba(0,212,255,0.06),rgba(123,47,255,0.08));border-color:rgba(0,212,255,0.2);">
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;">
-          <div class="service-icon icon-mixed" style="width:64px;height:64px;font-size:1.8rem;flex-shrink:0;">🤖</div>
-          <div>
-            <div class="service-name" style="font-size:1.25rem;">AI Professional Assistants</div>
-            <div class="service-desc" style="font-size:0.9rem;">Deploy a 24/7 AI assistant tailored to your role, industry, and workflow. From executive support to customer service — smart, fast, and always on.</div>
-            <div class="service-tag">→ Empower Your Team</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="service-card wide fade-up" style="background:linear-gradient(135deg,rgba(123,47,255,0.06),rgba(255,0,204,0.06));border-color:rgba(123,47,255,0.2);">
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;">
-          <div class="service-icon icon-magenta" style="width:64px;height:64px;font-size:1.8rem;flex-shrink:0;">✨</div>
-          <div>
-            <div class="service-name" style="font-size:1.25rem;">Bespoke AI Solutions</div>
-            <div class="service-desc" style="font-size:0.9rem;">Don't see what you need? Good — that means your problem is unique. We design and build custom AI solutions from the ground up, spec'd precisely to your requirements.</div>
-            <div class="service-tag">→ Build Something New</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ── WHY SYNPRYSM ────────────────────────────────────────────────── -->
-<section id="why">
-  <div class="container">
-    <div class="why-grid">
-      <div class="fade-up">
-        <div class="tag">Why SynPrysm</div>
-        <h2 class="section-title">
-          We Make AI<br />
-          <span class="gradient-text">Make Sense.</span>
-        </h2>
-        <p class="section-sub">
-          The AI landscape is overwhelming. New tools, new risks, new possibilities — every single week. 
-          You don't have time to figure it all out. We do. That's our job, so you can focus on yours.
-        </p>
-
-        <div class="why-features">
-          <div class="feature-item">
-            <div class="icon">🎯</div>
-            <h4>Right Tool, Right Fit</h4>
-            <p>We find what actually works for your specific situation — not just what's trendy.</p>
-          </div>
-          <div class="feature-item">
-            <div class="icon">⚡</div>
-            <h4>Fast Deployment</h4>
-            <p>From discovery to live implementation — we move at the speed of AI.</p>
-          </div>
-          <div class="feature-item">
-            <div class="icon">🧩</div>
-            <h4>Seamless Integration</h4>
-            <p>Everything fits together. No siloed tools, no broken workflows.</p>
-          </div>
-          <div class="feature-item">
-            <div class="icon">🛡️</div>
-            <h4>Secure by Design</h4>
-            <p>Security isn't an afterthought — it's baked into every solution we deliver.</p>
-          </div>
-          <div class="feature-item">
-            <div class="icon">📈</div>
-            <h4>Built to Scale</h4>
-            <p>Solutions that grow with you, not ones you'll outgrow in six months.</p>
-          </div>
-          <div class="feature-item">
-            <div class="icon">🤝</div>
-            <h4>True Partnership</h4>
-            <p>We're in it with you long-term — advisors, builders, and advocates in one.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="process-visual fade-up">
-        <div style="margin-bottom:32px;">
-          <div class="tag">How It Works</div>
-          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;">From conversation<br />to transformation.</h3>
-        </div>
-
-        <div class="process-steps">
-          <div class="process-step">
-            <div class="step-num">01</div>
-            <div class="step-content">
-              <h4>Discover</h4>
-              <p>We start with a conversation — learning your goals, challenges, and what AI could unlock for you. No pressure, just clarity.</p>
-            </div>
-          </div>
-          <div class="process-step">
-            <div class="step-num">02</div>
-            <div class="step-content">
-              <h4>Synthesize</h4>
-              <p>We map the right AI strategy and stack for your world — selecting tools, designing integrations, and building a plan that fits.</p>
-            </div>
-          </div>
-          <div class="process-step">
-            <div class="step-num">03</div>
-            <div class="step-content">
-              <h4>Deploy</h4>
-              <p>We implement, configure, and launch — handling the technical heavy lifting so you don't have to.</p>
-            </div>
-          </div>
-          <div class="process-step">
-            <div class="step-num" style="background:linear-gradient(135deg,var(--purple),var(--magenta));">04</div>
-            <div class="step-content">
-              <h4>Evolve</h4>
-              <p>AI never stands still, and neither do we. We stay by your side to optimize, expand, and keep you ahead.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ── CONTACT ─────────────────────────────────────────────────────── -->
-<section id="contact">
-  <div class="container">
-    <div class="contact-wrapper">
-      <div class="contact-header fade-up">
-        <div class="tag">Get Started</div>
-        <h2 class="section-title">
-          One Lens.<br />
-          <span class="gradient-text">Infinite Possibility.</span>
-        </h2>
-        <p class="section-sub">
-          Tell us about your goals and we'll show you exactly how AI can get you there. 
-          No jargon, no hard sell — just a real conversation with people who know their stuff.
-        </p>
-      </div>
-
-      <div class="contact-form fade-up" id="contact-form-wrapper">
-        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
-          <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_KEY" />
-          <input type="hidden" name="subject" value="✨ New SynPrysm Inquiry" />
-          <input type="hidden" name="from_name" value="SynPrysm Website" />
-          <input type="hidden" name="redirect" value="false" />
-          <div class="form-row">
-            <div class="form-group">
-              <label for="firstName">First Name</label>
-              <input type="text" id="firstName" name="firstName" placeholder="Alex" required />
-            </div>
-            <div class="form-group">
-              <label for="lastName">Last Name</label>
-              <input type="text" id="lastName" name="lastName" placeholder="Johnson" required />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group">
-              <label for="email">Email Address</label>
-              <input type="email" id="email" name="email" placeholder="alex@company.com" required />
-            </div>
-            <div class="form-group">
-              <label for="company">Company / Organization</label>
-              <input type="text" id="company" name="company" placeholder="Acme Inc. (or Personal)" />
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group full">
-              <label for="service">I'm Interested In</label>
-              <select id="service" name="service">
-                <option value="">— Select a service —</option>
-                <option value="ai-security">AI Security</option>
-                <option value="ai-integration">AI Integration</option>
-                <option value="ai-cold-callers">AI Cold Callers</option>
-                <option value="ai-note-takers">AI Note Takers</option>
-                <option value="ai-crm">AI CRM</option>
-                <option value="ai-tools">AI Tools</option>
-                <option value="ai-assistants">AI Professional Assistants</option>
-                <option value="custom">Custom / Bespoke Solution</option>
-                <option value="not-sure">Not Sure Yet — Let's Talk</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="form-row">
-            <div class="form-group full">
-              <label for="message">Tell Us About Your Goals</label>
-              <textarea id="message" name="message" placeholder="What are you trying to achieve? What's your biggest AI challenge or opportunity right now?" required></textarea>
-            </div>
-          </div>
-
-          <div class="form-submit">
-            <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:20px;text-align:left;">
-              <input type="checkbox" id="consent" name="consent" required style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:var(--cyan);" />
-              <label for="consent" style="font-size:0.8rem;color:var(--gray-400);text-transform:none;letter-spacing:0;font-weight:400;cursor:pointer;">
-                I agree to the <a href="privacy.html" target="_blank" style="color:var(--cyan);">Privacy Policy</a> and <a href="terms.html" target="_blank" style="color:var(--cyan);">Terms of Service</a>. I understand that SynPrysm will use the information I provide to respond to my inquiry.
-              </label>
-            </div>
-            <button type="submit" class="btn-primary">
-              ✨ Let's Build Something Together →
-            </button>
-          </div>
-          <div class="form-footer">
-            We typically respond within 24 hours. No spam, ever.
-          </div>
-        </form>
-
-        <div class="form-success" id="formSuccess">
-          <div class="success-icon">🎉</div>
-          <h3>Message Received!</h3>
-          <p>Thanks for reaching out. We'll be in touch within 24 hours to set up a conversation. Get ready to see what AI can do for you.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ── FOOTER ──────────────────────────────────────────────────────── -->
-<footer>
-  <div class="container">
-    <div class="footer-inner">
-      <div style="display:flex;align-items:center;gap:10px;">
-        <img src="logo.jpg" alt="SynPrysm" style="width:32px;height:32px;object-fit:cover;border-radius:4px;mix-blend-mode:screen;" />
-        <div class="footer-logo">SynPrysm.io</div>
-      </div>
-
-      <ul class="footer-links">
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#why">Why Us</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="terms.html">Terms of Service</a></li>
-      </ul>
-
-      <div class="footer-copy">
-        © 2025 SynPrysm. All rights reserved. · <span style="background:linear-gradient(135deg,#00d4ff,#7b2fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">One lens. Infinite synchronization.</span>
-      </div>
-    </div>
-  </div>
-</footer>
-
-<!-- ── SCRIPTS ─────────────────────────────────────────────────────── -->
-<script>
-  // ── Neural Canvas ──────────────────────────────────────────────
-  const canvas = document.getElementById('neural-canvas');
-  const ctx = canvas.getContext('2d');
-  let nodes = [];
-  const NODE_COUNT = 60;
-  const MAX_DIST = 160;
-
-  function resize() {
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  for (let i = 0; i < NODE_COUNT; i++) {
-    nodes.push({
-      x: Math.random() * window.innerWidth,
-      y: Math.random() * window.innerHeight,
-      vx: (Math.random() - 0.5) * 0.4,
-      vy: (Math.random() - 0.5) * 0.4,
-    });
-  }
-
-  function drawNeural() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Update positions
-    nodes.forEach(n => {
-      n.x += n.vx;
-      n.y += n.vy;
-      if (n.x < 0 || n.x > canvas.width)  n.vx *= -1;
-      if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
-    });
-
-    // Draw connections
-    for (let i = 0; i < nodes.length; i++) {
-      for (let j = i + 1; j < nodes.length; j++) {
-        const dx = nodes[i].x - nodes[j].x;
-        const dy = nodes[i].y - nodes[j].y;
-        const dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < MAX_DIST) {
-          const alpha = (1 - dist / MAX_DIST) * 0.5;
-          ctx.beginPath();
-          ctx.moveTo(nodes[i].x, nodes[i].y);
-          ctx.lineTo(nodes[j].x, nodes[j].y);
-          ctx.strokeStyle = `rgba(0, 212, 255, ${alpha})`;
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
-      }
-    }
-
-    // Draw nodes
-    nodes.forEach(n => {
-      ctx.beginPath();
-      ctx.arc(n.x, n.y, 1.5, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(0, 212, 255, 0.6)';
-      ctx.fill();
-    });
-
-    requestAnimationFrame(drawNeural);
-  }
-  drawNeural();
-
-  // ── Navbar scroll ──────────────────────────────────────────────
-  const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) navbar.classList.add('scrolled');
-    else navbar.classList.remove('scrolled');
-  });
-
-  // ── Mobile menu ────────────────────────────────────────────────
-  function toggleMenu() {
-    const m = document.getElementById('mobile-menu');
-    m.style.display = m.style.display === 'none' ? 'block' : 'none';
-  }
-
-  // ── Fade-up observer ───────────────────────────────────────────
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
-
-  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
-
-  // ── Contact form ───────────────────────────────────────────────
-  const form = document.getElementById('contactForm');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
-    const originalText = btn.innerHTML;
-    btn.innerHTML = 'Sending...';
-    btn.disabled = true;
-
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-      });
-      const data = await res.json();
-
-      if (data.success) {
-        form.style.display = 'none';
-        document.getElementById('formSuccess').style.display = 'block';
-      } else {
-        btn.innerHTML = 'Something went wrong — please try again';
-        btn.disabled = false;
-      }
-    } catch {
-      btn.innerHTML = 'Something went wrong — please try again';
-      btn.disabled = false;
-    }
-  });
-
-  // ── Smooth scroll for anchor links ─────────────────────────────
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', e => {
-      e.preventDefault();
-      const target = document.querySelector(a.getAttribute('href'));
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    });
-  });
-</script>
-</body>
-</html>
+1|<!DOCTYPE html>
+2|<html lang="en">
+3|<head>
+4|  <meta charset="UTF-8" />
+5|  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+6|  <title>Synprism.io — AI Systems in Perfect Synthesis</title>
+7|  <meta name="description" content="Synprism bridges the gap between people and AI. We integrate, secure, and simplify AI for your life and business." />
+8|  <meta property="og:title" content="Synprism.io — AI Systems in Perfect Synthesis" />
+9|  <meta property="og:description" content="We bridge the gap and make AI more simple. Your AI partner for integration, security, and custom solutions." />
+10|  <meta property="og:type" content="website" />
+11|  <meta property="og:url" content="https://synprism.io" />
+12|
+13|  <link rel="preconnect" href="https://fonts.googleapis.com" />
+14|  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+15|  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+16|
+17|  <style>
+18|    /* ── RESET & BASE ────────────────────────────────────────────── */
+19|    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+20|
+21|    :root {
+22|      --bg:        #080b18;
+23|      --bg2:       #0d1128;
+24|      --bg3:       #111830;
+25|      --cyan:      #00d4ff;
+26|      --cyan-dim:  #00a8cc;
+27|      --purple:    #7b2fff;
+28|      --magenta:   #ff00cc;
+29|      --white:     #ffffff;
+30|      --gray-100:  #e8eaf6;
+31|      --gray-400:  #8892b0;
+32|      --gray-600:  #4a5568;
+33|      --glow-cyan: 0 0 30px rgba(0,212,255,0.35);
+34|      --glow-pur:  0 0 30px rgba(123,47,255,0.35);
+35|      --radius:    16px;
+36|      --radius-sm: 10px;
+37|    }
+38|
+39|    html { scroll-behavior: smooth; }
+40|
+41|    body {
+42|      font-family: 'Inter', sans-serif;
+43|      background: var(--bg);
+44|      color: var(--white);
+45|      overflow-x: hidden;
+46|      line-height: 1.6;
+47|    }
+48|
+49|    /* ── SCROLLBAR ───────────────────────────────────────────────── */
+50|    ::-webkit-scrollbar { width: 6px; }
+51|    ::-webkit-scrollbar-track { background: var(--bg); }
+52|    ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 3px; }
+53|
+54|    /* ── CANVAS BG ───────────────────────────────────────────────── */
+55|    #neural-canvas {
+56|      position: fixed;
+57|      top: 0; left: 0;
+58|      width: 100%; height: 100%;
+59|      z-index: 0;
+60|      opacity: 0.18;
+61|      pointer-events: none;
+62|    }
+63|
+64|    /* ── UTILITY ─────────────────────────────────────────────────── */
+65|    .container { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+66|    .tag {
+67|      display: inline-block;
+68|      font-size: 0.7rem;
+69|      font-weight: 700;
+70|      letter-spacing: 0.15em;
+71|      text-transform: uppercase;
+72|      color: var(--cyan);
+73|      border: 1px solid rgba(0,212,255,0.35);
+74|      background: rgba(0,212,255,0.07);
+75|      padding: 5px 14px;
+76|      border-radius: 100px;
+77|      margin-bottom: 20px;
+78|    }
+79|    .gradient-text {
+80|      background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 50%, var(--magenta) 100%);
+81|      -webkit-background-clip: text;
+82|      -webkit-text-fill-color: transparent;
+83|      background-clip: text;
+84|    }
+85|    .section-title {
+86|      font-family: 'Space Grotesk', sans-serif;
+87|      font-size: clamp(2rem, 4vw, 3rem);
+88|      font-weight: 700;
+89|      line-height: 1.15;
+90|      margin-bottom: 16px;
+91|    }
+92|    .section-sub {
+93|      font-size: 1.1rem;
+94|      color: var(--gray-400);
+95|      max-width: 640px;
+96|      line-height: 1.7;
+97|    }
+98|
+99|    /* ── NAV ─────────────────────────────────────────────────────── */
+100|    nav {
+101|      position: fixed;
+102|      top: 0; left: 0; right: 0;
+103|      z-index: 100;
+104|      padding: 18px 0;
+105|      transition: background 0.3s, backdrop-filter 0.3s;
+106|    }
+107|    nav.scrolled {
+108|      background: rgba(8,11,24,0.85);
+109|      backdrop-filter: blur(20px);
+110|      border-bottom: 1px solid rgba(255,255,255,0.06);
+111|    }
+112|    .nav-inner {
+113|      display: flex;
+114|      align-items: center;
+115|      justify-content: space-between;
+116|    }
+117|    .nav-logo {
+118|      display: flex;
+119|      align-items: center;
+120|      gap: 10px;
+121|      text-decoration: none;
+122|      font-family: 'Space Grotesk', sans-serif;
+123|      font-weight: 700;
+124|      font-size: 1.35rem;
+125|      color: var(--white);
+126|    }
+127|    .nav-logo .logo-mark {
+128|      width: 36px; height: 36px;
+129|      position: relative;
+130|      flex-shrink: 0;
+131|    }
+132|    .nav-links {
+133|      display: flex;
+134|      align-items: center;
+135|      gap: 32px;
+136|      list-style: none;
+137|    }
+138|    .nav-links a {
+139|      color: var(--gray-400);
+140|      text-decoration: none;
+141|      font-size: 0.9rem;
+142|      font-weight: 500;
+143|      transition: color 0.2s;
+144|    }
+145|    .nav-links a:hover { color: var(--white); }
+146|    .nav-cta {
+147|      background: linear-gradient(135deg, var(--cyan), var(--purple));
+148|      color: var(--white) !important;
+149|      padding: 9px 22px;
+150|      border-radius: 8px;
+151|      font-weight: 600 !important;
+152|      font-size: 0.875rem !important;
+153|      transition: opacity 0.2s, transform 0.2s !important;
+154|    }
+155|    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+156|
+157|    .hamburger {
+158|      display: none;
+159|      flex-direction: column;
+160|      gap: 5px;
+161|      cursor: pointer;
+162|      padding: 4px;
+163|    }
+164|    .hamburger span {
+165|      display: block;
+166|      width: 24px; height: 2px;
+167|      background: var(--white);
+168|      border-radius: 2px;
+169|      transition: 0.3s;
+170|    }
+171|
+172|    /* ── HERO ────────────────────────────────────────────────────── */
+173|    #hero {
+174|      position: relative;
+175|      min-height: 100vh;
+176|      display: flex;
+177|      align-items: center;
+178|      padding: 140px 0 80px;
+179|      overflow: hidden;
+180|      z-index: 1;
+181|    }
+182|
+183|    /* Aurora beams */
+184|    .aurora-left, .aurora-right, .aurora-center {
+185|      position: absolute;
+186|      pointer-events: none;
+187|      border-radius: 50%;
+188|      filter: blur(80px);
+189|      opacity: 0.25;
+190|    }
+191|    .aurora-left {
+192|      width: 500px; height: 700px;
+193|      background: radial-gradient(ellipse, var(--cyan) 0%, transparent 70%);
+194|      top: -100px; left: -150px;
+195|      animation: drift 8s ease-in-out infinite alternate;
+196|    }
+197|    .aurora-right {
+198|      width: 500px; height: 700px;
+199|      background: radial-gradient(ellipse, var(--magenta) 0%, transparent 70%);
+200|      top: -50px; right: -150px;
+201|      animation: drift 10s ease-in-out infinite alternate-reverse;
+202|    }
+203|    .aurora-center {
+204|      width: 600px; height: 400px;
+205|      background: radial-gradient(ellipse, var(--purple) 0%, transparent 70%);
+206|      top: 30%; left: 50%;
+207|      transform: translateX(-50%);
+208|      opacity: 0.15;
+209|    }
+210|
+211|    @keyframes drift {
+212|      from { transform: translateY(0px) scale(1); }
+213|      to   { transform: translateY(40px) scale(1.05); }
+214|    }
+215|
+216|    .hero-inner {
+217|      position: relative;
+218|      z-index: 2;
+219|      display: grid;
+220|      grid-template-columns: 1fr 1fr;
+221|      gap: 60px;
+222|      align-items: center;
+223|    }
+224|
+225|    .hero-eyebrow {
+226|      display: flex;
+227|      align-items: center;
+228|      gap: 10px;
+229|      margin-bottom: 24px;
+230|    }
+231|    .hero-eyebrow-dot {
+232|      width: 8px; height: 8px;
+233|      border-radius: 50%;
+234|      background: var(--cyan);
+235|      box-shadow: 0 0 10px var(--cyan);
+236|      animation: pulse 2s ease-in-out infinite;
+237|    }
+238|    @keyframes pulse {
+239|      0%, 100% { opacity: 1; transform: scale(1); }
+240|      50%       { opacity: 0.6; transform: scale(0.8); }
+241|    }
+242|    .hero-eyebrow span {
+243|      font-size: 0.8rem;
+244|      font-weight: 600;
+245|      letter-spacing: 0.1em;
+246|      text-transform: uppercase;
+247|      color: var(--cyan);
+248|    }
+249|
+250|    .hero-headline {
+251|      font-family: 'Space Grotesk', sans-serif;
+252|      font-size: clamp(2.6rem, 5.5vw, 4.5rem);
+253|      font-weight: 800;
+254|      line-height: 1.05;
+255|      margin-bottom: 24px;
+256|      letter-spacing: -0.02em;
+257|    }
+258|
+259|    .hero-sub {
+260|      font-size: 1.15rem;
+261|      color: var(--gray-400);
+262|      max-width: 520px;
+263|      line-height: 1.75;
+264|      margin-bottom: 40px;
+265|    }
+266|
+267|    .hero-actions {
+268|      display: flex;
+269|      gap: 16px;
+270|      flex-wrap: wrap;
+271|    }
+272|
+273|    .btn-primary {
+274|      display: inline-flex;
+275|      align-items: center;
+276|      gap: 8px;
+277|      background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 100%);
+278|      color: var(--white);
+279|      text-decoration: none;
+280|      font-weight: 700;
+281|      font-size: 0.95rem;
+282|      padding: 14px 28px;
+283|      border-radius: var(--radius-sm);
+284|      border: none;
+285|      cursor: pointer;
+286|      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+287|      box-shadow: 0 4px 24px rgba(0,212,255,0.25);
+288|    }
+289|    .btn-primary:hover {
+290|      transform: translateY(-2px);
+291|      box-shadow: 0 8px 32px rgba(0,212,255,0.4);
+292|    }
+293|
+294|    .btn-secondary {
+295|      display: inline-flex;
+296|      align-items: center;
+297|      gap: 8px;
+298|      background: transparent;
+299|      color: var(--white);
+300|      text-decoration: none;
+301|      font-weight: 600;
+302|      font-size: 0.95rem;
+303|      padding: 14px 28px;
+304|      border-radius: var(--radius-sm);
+305|      border: 1px solid rgba(255,255,255,0.15);
+306|      cursor: pointer;
+307|      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+308|    }
+309|    .btn-secondary:hover {
+310|      border-color: rgba(0,212,255,0.5);
+311|      background: rgba(0,212,255,0.07);
+312|      transform: translateY(-2px);
+313|    }
+314|
+315|    /* Prism Hero Visual */
+316|    .hero-visual {
+317|      display: flex;
+318|      align-items: center;
+319|      justify-content: center;
+320|      position: relative;
+321|    }
+322|
+323|    .prism-container {
+324|      position: relative;
+325|      width: 360px;
+326|      height: 360px;
+327|    }
+328|
+329|    .prism-glow-ring {
+330|      position: absolute;
+331|      inset: -40px;
+332|      border-radius: 50%;
+333|      background: conic-gradient(from 0deg, var(--cyan), var(--purple), var(--magenta), var(--cyan));
+334|      opacity: 0.12;
+335|      filter: blur(40px);
+336|      animation: spin 12s linear infinite;
+337|    }
+338|    @keyframes spin { to { transform: rotate(360deg); } }
+339|
+340|    .prism-diamond {
+341|      position: absolute;
+342|      top: 50%; left: 50%;
+343|      transform: translate(-50%, -50%) rotate(45deg);
+344|      width: 180px; height: 180px;
+345|      background: linear-gradient(135deg,
+346|        rgba(0,212,255,0.15) 0%,
+347|        rgba(123,47,255,0.2) 50%,
+348|        rgba(255,0,204,0.15) 100%
+349|      );
+350|      border: 1px solid rgba(0,212,255,0.4);
+351|      border-radius: 12px;
+352|      backdrop-filter: blur(20px);
+353|      box-shadow:
+354|        0 0 60px rgba(0,212,255,0.2),
+355|        0 0 120px rgba(123,47,255,0.15),
+356|        inset 0 0 40px rgba(255,255,255,0.03);
+357|    }
+358|
+359|    .prism-network {
+360|      position: absolute;
+361|      top: 50%; left: 50%;
+362|      transform: translate(-50%, -50%);
+363|      width: 110px; height: 110px;
+364|    }
+365|
+366|    /* Light beams */
+367|    .beam {
+368|      position: absolute;
+369|      top: 50%; left: 50%;
+370|      width: 3px;
+371|      border-radius: 2px;
+372|      transform-origin: top center;
+373|      filter: blur(2px);
+374|      opacity: 0;
+375|      animation: beam-flash 4s ease-in-out infinite;
+376|    }
+377|    .beam-1 {
+378|      height: 180px;
+379|      background: linear-gradient(to bottom, var(--cyan), transparent);
+380|      transform: translate(-50%, -50%) rotate(-35deg);
+381|      animation-delay: 0s;
+382|    }
+383|    .beam-2 {
+384|      height: 150px;
+385|      background: linear-gradient(to bottom, var(--magenta), transparent);
+386|      transform: translate(-50%, -50%) rotate(35deg);
+387|      animation-delay: 0.3s;
+388|    }
+389|    .beam-3 {
+390|      height: 120px;
+391|      background: linear-gradient(to bottom, var(--purple), transparent);
+392|      transform: translate(-50%, -50%) rotate(0deg);
+393|      animation-delay: 0.6s;
+394|    }
+395|    @keyframes beam-flash {
+396|      0%, 100% { opacity: 0; }
+397|      30%, 70%  { opacity: 0.9; }
+398|    }
+399|
+400|    @keyframes logo-breathe {
+401|      0%, 100% { filter: brightness(1) drop-shadow(0 0 20px rgba(0,212,255,0.2)); }
+402|      50%       { filter: brightness(1.1) drop-shadow(0 0 50px rgba(0,212,255,0.5)) drop-shadow(0 0 80px rgba(123,47,255,0.3)); }
+403|    }
+404|
+405|    /* Orbiting dots */
+406|    .orbit {
+407|      position: absolute;
+408|      top: 50%; left: 50%;
+409|      border-radius: 50%;
+410|      border: 1px solid rgba(255,255,255,0.06);
+411|    }
+412|    .orbit-1 {
+413|      width: 240px; height: 240px;
+414|      margin: -120px 0 0 -120px;
+415|      animation: orbit-spin 10s linear infinite;
+416|    }
+417|    .orbit-2 {
+418|      width: 310px; height: 310px;
+419|      margin: -155px 0 0 -155px;
+420|      animation: orbit-spin 16s linear infinite reverse;
+421|    }
+422|    @keyframes orbit-spin { to { transform: rotate(360deg); } }
+423|
+424|    .orbit-dot {
+425|      position: absolute;
+426|      width: 8px; height: 8px;
+427|      border-radius: 50%;
+428|      top: -4px; left: 50%;
+429|      margin-left: -4px;
+430|    }
+431|    .orbit-1 .orbit-dot { background: var(--cyan); box-shadow: 0 0 10px var(--cyan); }
+432|    .orbit-2 .orbit-dot { background: var(--magenta); box-shadow: 0 0 10px var(--magenta); }
+433|
+434|    /* Floating service pills */
+435|    .float-pill {
+436|      position: absolute;
+437|      background: rgba(13,17,40,0.85);
+438|      border: 1px solid rgba(0,212,255,0.25);
+439|      backdrop-filter: blur(12px);
+440|      border-radius: 100px;
+441|      padding: 8px 16px;
+442|      font-size: 0.75rem;
+443|      font-weight: 600;
+444|      color: var(--cyan);
+445|      white-space: nowrap;
+446|      animation: float 6s ease-in-out infinite;
+447|    }
+448|    .float-pill:nth-child(1) { top: 10%; right: -10px; animation-delay: 0s; }
+449|    .float-pill:nth-child(2) { top: 35%; left: -30px; animation-delay: 1.5s; }
+450|    .float-pill:nth-child(3) { bottom: 25%; right: -20px; animation-delay: 3s; }
+451|    .float-pill:nth-child(4) { bottom: 12%; left: -10px; animation-delay: 4.5s; }
+452|
+453|    @keyframes float {
+454|      0%, 100% { transform: translateY(0px); }
+455|      50%       { transform: translateY(-12px); }
+456|    }
+457|
+458|    /* Hero stats */
+459|    .hero-stats {
+460|      display: flex;
+461|      gap: 40px;
+462|      margin-top: 48px;
+463|      padding-top: 40px;
+464|      border-top: 1px solid rgba(255,255,255,0.07);
+465|    }
+466|    .stat-item { }
+467|    .stat-number {
+468|      font-family: 'Space Grotesk', sans-serif;
+469|      font-size: 2rem;
+470|      font-weight: 800;
+471|      background: linear-gradient(135deg, var(--cyan), var(--purple));
+472|      -webkit-background-clip: text;
+473|      -webkit-text-fill-color: transparent;
+474|      background-clip: text;
+475|    }
+476|    .stat-label { font-size: 0.8rem; color: var(--gray-400); font-weight: 500; margin-top: 2px; }
+477|
+478|    /* ── WHO WE ARE ───────────────────────────────────────────────── */
+479|    #about {
+480|      position: relative;
+481|      z-index: 1;
+482|      padding: 120px 0;
+483|    }
+484|
+485|    .about-grid {
+486|      display: grid;
+487|      grid-template-columns: 1fr 1fr;
+488|      gap: 80px;
+489|      align-items: center;
+490|    }
+491|
+492|    .about-content .section-title { text-align: left; }
+493|    .about-content .section-sub { text-align: left; margin-bottom: 32px; }
+494|
+495|    .about-pillars {
+496|      display: flex;
+497|      flex-direction: column;
+498|      gap: 16px;
+499|      margin-top: 32px;
+500|    }
+501|
+502|    .pillar {
+503|      display: flex;
+504|      align-items: flex-start;
+505|      gap: 16px;
+506|      padding: 20px;
+507|      background: rgba(255,255,255,0.025);
+508|      border: 1px solid rgba(255,255,255,0.06);
+509|      border-radius: var(--radius-sm);
+510|      transition: border-color 0.3s, background 0.3s;
+511|    }
+512|    .pillar:hover {
+513|      border-color: rgba(0,212,255,0.3);
+514|      background: rgba(0,212,255,0.04);
+515|    }
+516|    .pillar-icon {
+517|      width: 44px; height: 44px;
+518|      border-radius: 10px;
+519|      display: flex;
+520|      align-items: center;
+521|      justify-content: center;
+522|      font-size: 1.3rem;
+523|      flex-shrink: 0;
+524|      background: rgba(0,212,255,0.1);
+525|      border: 1px solid rgba(0,212,255,0.2);
+526|    }
+527|    .pillar-text h4 {
+528|      font-family: 'Space Grotesk', sans-serif;
+529|      font-size: 0.95rem;
+530|      font-weight: 700;
+531|      margin-bottom: 4px;
+532|    }
+533|    .pillar-text p { font-size: 0.85rem; color: var(--gray-400); line-height: 1.5; }
+534|
+535|    /* Visual side */
+536|    .about-visual {
+537|      position: relative;
+538|    }
+539|
+540|    .about-card-stack {
+541|      position: relative;
+542|      height: 420px;
+543|    }
+544|
+545|    .glass-card {
+546|      position: absolute;
+547|      background: rgba(13,17,40,0.6);
+548|      border: 1px solid rgba(255,255,255,0.08);
+549|      border-radius: var(--radius);
+550|      backdrop-filter: blur(16px);
+551|      padding: 28px;
+552|    }
+553|
+554|    .about-main-card {
+555|      inset: 0;
+556|      display: flex;
+557|      flex-direction: column;
+558|      justify-content: center;
+559|      gap: 20px;
+560|    }
+561|
+562|    .card-metric {
+563|      display: flex;
+564|      align-items: center;
+565|      justify-content: space-between;
+566|      padding: 16px 20px;
+567|      background: rgba(255,255,255,0.03);
+568|      border: 1px solid rgba(255,255,255,0.06);
+569|      border-radius: 10px;
+570|    }
+571|    .metric-label { font-size: 0.85rem; color: var(--gray-400); }
+572|    .metric-value {
+573|      font-family: 'Space Grotesk', sans-serif;
+574|      font-size: 1.1rem;
+575|      font-weight: 700;
+576|      background: linear-gradient(135deg, var(--cyan), var(--purple));
+577|      -webkit-background-clip: text;
+578|      -webkit-text-fill-color: transparent;
+579|      background-clip: text;
+580|    }
+581|    .metric-bar {
+582|      height: 4px;
+583|      border-radius: 2px;
+584|      margin-top: 8px;
+585|      background: rgba(255,255,255,0.06);
+586|      overflow: hidden;
+587|    }
+588|    .metric-fill {
+589|      height: 100%;
+590|      border-radius: 2px;
+591|      background: linear-gradient(90deg, var(--cyan), var(--purple));
+592|      animation: fill-in 2s ease-out forwards;
+593|      width: 0%;
+594|    }
+595|    @keyframes fill-in { to { width: var(--fill-width); } }
+596|
+597|    /* ── SERVICES ────────────────────────────────────────────────── */
+598|    #services {
+599|      position: relative;
+600|      z-index: 1;
+601|      padding: 120px 0;
+602|      background: linear-gradient(180deg, transparent 0%, rgba(13,17,40,0.5) 50%, transparent 100%);
+603|    }
+604|
+605|    .services-header {
+606|      text-align: center;
+607|      margin-bottom: 72px;
+608|    }
+609|    .services-header .section-sub { margin: 0 auto; text-align: center; }
+610|
+611|    .services-grid {
+612|      display: grid;
+613|      grid-template-columns: repeat(4, 1fr);
+614|      gap: 20px;
+615|    }
+616|
+617|    .service-card {
+618|      position: relative;
+619|      background: rgba(13,17,40,0.7);
+620|      border: 1px solid rgba(255,255,255,0.07);
+621|      border-radius: var(--radius);
+622|      padding: 32px 24px;
+623|      cursor: default;
+624|      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+625|      overflow: hidden;
+626|    }
+627|    .service-card::before {
+628|      content: '';
+629|      position: absolute;
+630|      inset: 0;
+631|      background: linear-gradient(135deg, rgba(0,212,255,0.04) 0%, rgba(123,47,255,0.04) 100%);
+632|      opacity: 0;
+633|      transition: opacity 0.3s;
+634|      border-radius: var(--radius);
+635|    }
+636|    .service-card:hover {
+637|      border-color: rgba(0,212,255,0.4);
+638|      transform: translateY(-6px);
+639|      box-shadow: 0 20px 60px rgba(0,0,0,0.4), 0 0 30px rgba(0,212,255,0.1);
+640|    }
+641|    .service-card:hover::before { opacity: 1; }
+642|
+643|    /* Wide card spans 2 cols */
+644|    .service-card.wide { grid-column: span 2; }
+645|
+646|    .service-icon {
+647|      width: 56px; height: 56px;
+648|      border-radius: 14px;
+649|      display: flex;
+650|      align-items: center;
+651|      justify-content: center;
+652|      font-size: 1.6rem;
+653|      margin-bottom: 20px;
+654|      position: relative;
+655|      z-index: 1;
+656|    }
+657|    .icon-cyan    { background: rgba(0,212,255,0.1);  border: 1px solid rgba(0,212,255,0.25); }
+658|    .icon-purple  { background: rgba(123,47,255,0.1); border: 1px solid rgba(123,47,255,0.25); }
+659|    .icon-magenta { background: rgba(255,0,204,0.1);  border: 1px solid rgba(255,0,204,0.25); }
+660|    .icon-mixed   { background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(123,47,255,0.1)); border: 1px solid rgba(0,212,255,0.2); }
+661|
+662|    .service-name {
+663|      font-family: 'Space Grotesk', sans-serif;
+664|      font-size: 1.1rem;
+665|      font-weight: 700;
+666|      margin-bottom: 10px;
+667|      position: relative;
+668|      z-index: 1;
+669|    }
+670|    .service-desc {
+671|      font-size: 0.875rem;
+672|      color: var(--gray-400);
+673|      line-height: 1.65;
+674|      position: relative;
+675|      z-index: 1;
+676|    }
+677|
+678|    .service-tag {
+679|      display: inline-block;
+680|      margin-top: 16px;
+681|      font-size: 0.7rem;
+682|      font-weight: 700;
+683|      letter-spacing: 0.1em;
+684|      text-transform: uppercase;
+685|      color: var(--cyan);
+686|      position: relative;
+687|      z-index: 1;
+688|    }
+689|
+690|    /* ── WHY SYNPRISM ────────────────────────────────────────────── */
+691|    #why {
+692|      position: relative;
+693|      z-index: 1;
+694|      padding: 120px 0;
+695|    }
+696|
+697|    .why-grid {
+698|      display: grid;
+699|      grid-template-columns: 1fr 1.2fr;
+700|      gap: 80px;
+701|      align-items: center;
+702|    }
+703|
+704|    .why-features {
+705|      display: grid;
+706|      grid-template-columns: 1fr 1fr;
+707|      gap: 20px;
+708|      margin-top: 40px;
+709|    }
+710|
+711|    .feature-item {
+712|      padding: 24px;
+713|      background: rgba(255,255,255,0.025);
+714|      border: 1px solid rgba(255,255,255,0.06);
+715|      border-radius: var(--radius-sm);
+716|      transition: 0.3s;
+717|    }
+718|    .feature-item:hover {
+719|      border-color: rgba(123,47,255,0.4);
+720|      background: rgba(123,47,255,0.04);
+721|    }
+722|    .feature-item .icon { font-size: 1.5rem; margin-bottom: 12px; }
+723|    .feature-item h4 {
+724|      font-family: 'Space Grotesk', sans-serif;
+725|      font-size: 0.95rem;
+726|      font-weight: 700;
+727|      margin-bottom: 6px;
+728|    }
+729|    .feature-item p { font-size: 0.8rem; color: var(--gray-400); line-height: 1.5; }
+730|
+731|    /* Process visual */
+732|    .process-visual {
+733|      position: relative;
+734|    }
+735|
+736|    .process-steps {
+737|      display: flex;
+738|      flex-direction: column;
+739|      gap: 0;
+740|    }
+741|
+742|    .process-step {
+743|      display: flex;
+744|      gap: 24px;
+745|      align-items: flex-start;
+746|      position: relative;
+747|    }
+748|    .process-step:not(:last-child)::after {
+749|      content: '';
+750|      position: absolute;
+751|      left: 19px;
+752|      top: 48px;
+753|      bottom: -12px;
+754|      width: 2px;
+755|      background: linear-gradient(to bottom, rgba(0,212,255,0.4), rgba(123,47,255,0.2));
+756|    }
+757|
+758|    .step-num {
+759|      width: 40px; height: 40px;
+760|      border-radius: 50%;
+761|      background: linear-gradient(135deg, var(--cyan), var(--purple));
+762|      display: flex;
+763|      align-items: center;
+764|      justify-content: center;
+765|      font-weight: 800;
+766|      font-size: 0.85rem;
+767|      flex-shrink: 0;
+768|      box-shadow: 0 0 20px rgba(0,212,255,0.3);
+769|    }
+770|
+771|    .step-content {
+772|      padding: 12px 0 36px;
+773|    }
+774|    .step-content h4 {
+775|      font-family: 'Space Grotesk', sans-serif;
+776|      font-size: 1rem;
+777|      font-weight: 700;
+778|      margin-bottom: 6px;
+779|    }
+780|    .step-content p { font-size: 0.875rem; color: var(--gray-400); line-height: 1.6; }
+781|
+782|    /* ── CONTACT ─────────────────────────────────────────────────── */
+783|    #contact {
+784|      position: relative;
+785|      z-index: 1;
+786|      padding: 120px 0 160px;
+787|    }
+788|
+789|    .contact-wrapper {
+790|      max-width: 760px;
+791|      margin: 0 auto;
+792|    }
+793|
+794|    .contact-header { text-align: center; margin-bottom: 56px; }
+795|    .contact-header .section-sub { margin: 0 auto; text-align: center; }
+796|
+797|    .contact-form {
+798|      background: rgba(13,17,40,0.7);
+799|      border: 1px solid rgba(255,255,255,0.08);
+800|      border-radius: 20px;
+801|      padding: 48px;
+802|      backdrop-filter: blur(16px);
+803|    }
+804|
+805|    .form-row {
+806|      display: grid;
+807|      grid-template-columns: 1fr 1fr;
+808|      gap: 20px;
+809|      margin-bottom: 20px;
+810|    }
+811|    .form-group { display: flex; flex-direction: column; gap: 8px; }
+812|    .form-group.full { grid-column: span 2; }
+813|
+814|    label {
+815|      font-size: 0.8rem;
+816|      font-weight: 600;
+817|      letter-spacing: 0.05em;
+818|      text-transform: uppercase;
+819|      color: var(--gray-400);
+820|    }
+821|
+822|    input, textarea, select {
+823|      background: rgba(255,255,255,0.04);
+824|      border: 1px solid rgba(255,255,255,0.1);
+825|      border-radius: var(--radius-sm);
+826|      color: var(--white);
+827|      font-family: 'Inter', sans-serif;
+828|      font-size: 0.95rem;
+829|      padding: 14px 18px;
+830|      outline: none;
+831|      transition: border-color 0.2s, box-shadow 0.2s;
+832|      width: 100%;
+833|    }
+834|    input::placeholder, textarea::placeholder { color: var(--gray-600); }
+835|    input:focus, textarea:focus, select:focus {
+836|      border-color: var(--cyan);
+837|      box-shadow: 0 0 0 3px rgba(0,212,255,0.12);
+838|    }
+839|    select option { background: var(--bg2); }
+840|    textarea { resize: vertical; min-height: 130px; }
+841|
+842|    .form-submit {
+843|      text-align: center;
+844|      margin-top: 32px;
+845|    }
+846|    .form-submit .btn-primary {
+847|      width: 100%;
+848|      justify-content: center;
+849|      font-size: 1rem;
+850|      padding: 16px;
+851|    }
+852|
+853|    .form-footer {
+854|      text-align: center;
+855|      margin-top: 20px;
+856|      font-size: 0.8rem;
+857|      color: var(--gray-600);
+858|    }
+859|
+860|    /* ── FOOTER ──────────────────────────────────────────────────── */
+861|    footer {
+862|      position: relative;
+863|      z-index: 1;
+864|      border-top: 1px solid rgba(255,255,255,0.06);
+865|      padding: 48px 0 32px;
+866|    }
+867|
+868|    .footer-inner {
+869|      display: flex;
+870|      align-items: center;
+871|      justify-content: space-between;
+872|      flex-wrap: wrap;
+873|      gap: 24px;
+874|    }
+875|
+876|    .footer-logo {
+877|      font-family: 'Space Grotesk', sans-serif;
+878|      font-weight: 700;
+879|      font-size: 1.2rem;
+880|      background: linear-gradient(135deg, var(--cyan), var(--purple));
+881|      -webkit-background-clip: text;
+882|      -webkit-text-fill-color: transparent;
+883|      background-clip: text;
+884|    }
+885|
+886|    .footer-links {
+887|      display: flex;
+888|      gap: 28px;
+889|      list-style: none;
+890|    }
+891|    .footer-links a {
+892|      color: var(--gray-400);
+893|      text-decoration: none;
+894|      font-size: 0.875rem;
+895|      transition: color 0.2s;
+896|    }
+897|    .footer-links a:hover { color: var(--white); }
+898|
+899|    .footer-copy {
+900|      font-size: 0.8rem;
+901|      color: var(--gray-600);
+902|    }
+903|
+904|    /* ── DIVIDER ─────────────────────────────────────────────────── */
+905|    .section-divider {
+906|      height: 1px;
+907|      background: linear-gradient(90deg, transparent, rgba(0,212,255,0.2), rgba(123,47,255,0.2), transparent);
+908|      margin: 0 auto;
+909|      max-width: 800px;
+910|    }
+911|
+912|    /* ── SUCCESS MESSAGE ─────────────────────────────────────────── */
+913|    .form-success {
+914|      display: none;
+915|      text-align: center;
+916|      padding: 40px;
+917|    }
+918|    .form-success .success-icon { font-size: 3rem; margin-bottom: 16px; }
+919|    .form-success h3 {
+920|      font-family: 'Space Grotesk', sans-serif;
+921|      font-size: 1.5rem;
+922|      font-weight: 700;
+923|      margin-bottom: 8px;
+924|      background: linear-gradient(135deg, var(--cyan), var(--purple));
+925|      -webkit-background-clip: text;
+926|      -webkit-text-fill-color: transparent;
+927|      background-clip: text;
+928|    }
+929|    .form-success p { color: var(--gray-400); }
+930|
+931|    /* ── RESPONSIVE ──────────────────────────────────────────────── */
+932|    @media (max-width: 1024px) {
+933|      .services-grid { grid-template-columns: repeat(2, 1fr); }
+934|      .service-card.wide { grid-column: span 1; }
+935|    }
+936|
+937|    @media (max-width: 768px) {
+938|      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+939|      .hero-visual { display: none; }
+940|      .hero-sub { margin: 0 auto 40px; }
+941|      .hero-actions { justify-content: center; }
+942|      .hero-stats { justify-content: center; }
+943|      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+944|      .about-visual { display: none; }
+945|      .why-grid { grid-template-columns: 1fr; gap: 48px; }
+946|      .why-features { grid-template-columns: 1fr; }
+947|      .services-grid { grid-template-columns: 1fr; }
+948|      .service-card.wide { grid-column: span 1; }
+949|      .contact-form { padding: 28px; }
+950|      .form-row { grid-template-columns: 1fr; }
+951|      .form-group.full { grid-column: span 1; }
+952|      .nav-links { display: none; }
+953|      .hamburger { display: flex; }
+954|      .footer-inner { flex-direction: column; text-align: center; }
+955|      .footer-links { flex-wrap: wrap; justify-content: center; }
+956|    }
+957|
+958|    /* ── ANIMATIONS ──────────────────────────────────────────────── */
+959|    .fade-up {
+960|      opacity: 0;
+961|      transform: translateY(30px);
+962|      transition: opacity 0.6s ease, transform 0.6s ease;
+963|    }
+964|    .fade-up.visible {
+965|      opacity: 1;
+966|      transform: translateY(0);
+967|    }
+968|  </style>
+969|</head>
+970|<body>
+971|
+972|<!-- Neural Network Canvas Background -->
+973|<canvas id="neural-canvas"></canvas>
+974|
+975|<!-- ── NAV ─────────────────────────────────────────────────────────── -->
+976|<nav id="navbar">
+977|  <div class="container">
+978|    <div class="nav-inner">
+979|      <a href="#hero" class="nav-logo">
+980|        <img src="logo.jpg" alt="Synprism" style="width:38px;height:38px;object-fit:cover;border-radius:4px;mix-blend-mode:screen;" />
+981|        Synprism<span style="background:linear-gradient(135deg,#7b2fff,#ff00cc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">.io</span>
+982|      </a>
+983|
+984|      <ul class="nav-links">
+985|        <li><a href="#about">About</a></li>
+986|        <li><a href="#services">Services</a></li>
+987|        <li><a href="#why">Why Us</a></li>
+988|        <li><a href="#contact" class="nav-cta">Get Started →</a></li>
+989|      </ul>
+990|
+991|      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+992|        <span></span><span></span><span></span>
+993|      </div>
+994|    </div>
+995|  </div>
+996|</nav>
+997|
+998|<!-- Mobile Menu (hidden by default) -->
+999|<div id="mobile-menu" style="display:none;position:fixed;top:70px;left:0;right:0;z-index:99;background:rgba(8,11,24,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.07);padding:24px;">
+1000|  <ul style="list-style:none;display:flex;flex-direction:column;gap:20px;text-align:center;">
+1001|    <li><a href="#about" onclick="toggleMenu()" style="color:#8892b0;text-decoration:none;font-size:1rem;font-weight:500;">About</a></li>
+1002|    <li><a href="#services" onclick="toggleMenu()" style="color:#8892b0;text-decoration:none;font-size:1rem;font-weight:500;">Services</a></li>
+1003|    <li><a href="#why" onclick="toggleMenu()" style="color:#8892b0;text-decoration:none;font-size:1rem;font-weight:500;">Why Us</a></li>
+1004|    <li><a href="#contact" onclick="toggleMenu()" style="display:inline-block;background:linear-gradient(135deg,#00d4ff,#7b2fff);color:#fff;text-decoration:none;padding:12px 28px;border-radius:8px;font-weight:700;">Get Started →</a></li>
+1005|  </ul>
+1006|</div>
+1007|
+1008|<!-- ── HERO ────────────────────────────────────────────────────────── -->
+1009|<section id="hero">
+1010|  <div class="aurora-left"></div>
+1011|  <div class="aurora-right"></div>
+1012|  <div class="aurora-center"></div>
+1013|
+1014|  <div class="container">
+1015|    <div class="hero-inner">
+1016|      <!-- Left: Copy -->
+1017|      <div class="hero-copy">
+1018|        <div class="hero-eyebrow">
+1019|          <div class="hero-eyebrow-dot"></div>
+1020|          <span>AI Integration &amp; Consulting</span>
+1021|        </div>
+1022|
+1023|        <h1 class="hero-headline">
+1024|          AI Systems<br />
+1025|          <span class="gradient-text">in Perfect<br />Synthesis</span>
+1026|        </h1>
+1027|
+1028|        <p class="hero-sub">
+1029|          We bridge the gap between people and AI — synthesizing powerful solutions for your life, 
+1030|          your business, and everything in between. No complexity. No confusion. Just clarity.
+1031|        </p>
+1032|
+1033|        <div class="hero-actions">
+1034|          <a href="#contact" class="btn-primary">
+1035|            Start Your Journey →
+1036|          </a>
+1037|          <a href="#services" class="btn-secondary">
+1038|            Explore Services
+1039|          </a>
+1040|        </div>
+1041|
+1042|        <div class="hero-stats">
+1043|          <div class="stat-item">
+1044|            <div class="stat-number">7+</div>
+1045|            <div class="stat-label">AI Service Lines</div>
+1046|          </div>
+1047|          <div class="stat-item">
+1048|            <div class="stat-number">∞</div>
+1049|            <div class="stat-label">Custom Solutions</div>
+1050|          </div>
+1051|          <div class="stat-item">
+1052|            <div class="stat-number">1</div>
+1053|            <div class="stat-label">Lens. One Partner.</div>
+1054|          </div>
+1055|        </div>
+1056|      </div>
+1057|
+1058|      <!-- Right: Prism Visual -->
+1059|      <div class="hero-visual">
+1060|        <div class="prism-container">
+1061|          <div class="prism-glow-ring"></div>
+1062|          <div class="orbit orbit-1"><div class="orbit-dot"></div></div>
+1063|          <div class="orbit orbit-2"><div class="orbit-dot"></div></div>
+1064|
+1065|          <!-- Real logo as hero centerpiece -->
+1066|          <img
+1067|            src="logo.jpg"
+1068|            alt="Synprism Crystal Prism"
+1069|            style="
+1070|              position:absolute;
+1071|              top:50%; left:50%;
+1072|              transform:translate(-50%,-50%);
+1073|              width:300px;
+1074|              height:auto;
+1075|              border-radius:0;
+1076|              z-index:2;
+1077|              mix-blend-mode: screen;
+1078|              animation: logo-breathe 5s ease-in-out infinite;
+1079|            "
+1080|          />
+1081|
+1082|          <!-- Floating pills -->
+1083|          <div class="float-pill">🔐 AI Security</div>
+1084|          <div class="float-pill">🔗 AI Integration</div>
+1085|          <div class="float-pill">🤖 AI Assistants</div>
+1086|          <div class="float-pill">📞 AI Cold Callers</div>
+1087|        </div>
+1088|      </div>
+1089|    </div>
+1090|  </div>
+1091|</section>
+1092|
+1093|<!-- ── WHO WE ARE ──────────────────────────────────────────────────── -->
+1094|<section id="about">
+1095|  <div class="container">
+1096|    <div class="about-grid">
+1097|      <div class="about-content fade-up">
+1098|        <div class="tag">Who We Are</div>
+1099|        <h2 class="section-title">
+1100|          Your AI Partner.<br />
+1101|          <span class="gradient-text">Not Just a Vendor.</span>
+1102|        </h2>
+1103|        <p class="section-sub">
+1104|          Synprism is a technical team of AI specialists dedicated to making artificial intelligence 
+1105|          accessible, practical, and powerful for everyone — from individuals to enterprises. 
+1106|          We synthesize the right tools, strategies, and solutions for your unique world.
+1107|        </p>
+1108|        <p class="section-sub" style="margin-top:16px;">
+1109|          Whether you're looking to automate your business, secure your AI stack, or simply 
+1110|          figure out where to start — we're the lens that brings it all into focus.
+1111|        </p>
+1112|
+1113|        <div class="about-pillars">
+1114|          <div class="pillar">
+1115|            <div class="pillar-icon">🔬</div>
+1116|            <div class="pillar-text">
+1117|              <h4>Synthesize</h4>
+1118|              <p>We combine the right AI tools and strategies into a cohesive solution tailored to you.</p>
+1119|            </div>
+1120|          </div>
+1121|          <div class="pillar">
+1122|            <div class="pillar-icon">💡</div>
+1123|            <div class="pillar-text">
+1124|              <h4>Clarify</h4>
+1125|              <p>We cut through the noise. No jargon, no confusion — just clear outcomes and real results.</p>
+1126|            </div>
+1127|          </div>
+1128|          <div class="pillar">
+1129|            <div class="pillar-icon">🔄</div>
+1130|            <div class="pillar-text">
+1131|              <h4>Synchronize</h4>
+1132|              <p>We keep your AI systems working together in perfect harmony, now and as you grow.</p>
+1133|            </div>
+1134|          </div>
+1135|        </div>
+1136|      </div>
+1137|
+1138|      <div class="about-visual fade-up">
+1139|        <div class="about-card-stack">
+1140|          <div class="glass-card about-main-card">
+1141|            <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;margin-bottom:16px;color:var(--gray-100);">
+1142|              AI Readiness Score
+1143|            </div>
+1144|
+1145|            <div class="card-metric">
+1146|              <div>
+1147|                <div class="metric-label">Integration Depth</div>
+1148|                <div class="metric-bar"><div class="metric-fill" style="--fill-width:88%;"></div></div>
+1149|              </div>
+1150|              <div class="metric-value">88%</div>
+1151|            </div>
+1152|
+1153|            <div class="card-metric">
+1154|              <div>
+1155|                <div class="metric-label">Security Posture</div>
+1156|                <div class="metric-bar"><div class="metric-fill" style="--fill-width:95%;animation-delay:0.3s;"></div></div>
+1157|              </div>
+1158|              <div class="metric-value">95%</div>
+1159|            </div>
+1160|
+1161|            <div class="card-metric">
+1162|              <div>
+1163|                <div class="metric-label">Automation Coverage</div>
+1164|                <div class="metric-bar"><div class="metric-fill" style="--fill-width:73%;animation-delay:0.6s;"></div></div>
+1165|              </div>
+1166|              <div class="metric-value">73%</div>
+1167|            </div>
+1168|
+1169|            <div class="card-metric">
+1170|              <div>
+1171|                <div class="metric-label">Tool Optimization</div>
+1172|                <div class="metric-bar"><div class="metric-fill" style="--fill-width:91%;animation-delay:0.9s;"></div></div>
+1173|              </div>
+1174|              <div class="metric-value">91%</div>
+1175|            </div>
+1176|
+1177|            <div style="margin-top:8px;padding:16px 20px;background:linear-gradient(135deg,rgba(0,212,255,0.08),rgba(123,47,255,0.08));border:1px solid rgba(0,212,255,0.2);border-radius:10px;text-align:center;">
+1178|              <div style="font-size:0.75rem;color:var(--gray-400);margin-bottom:4px;">Overall AI Synthesis</div>
+1179|              <div style="font-family:'Space Grotesk',sans-serif;font-size:2rem;font-weight:800;background:linear-gradient(135deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">A+</div>
+1180|            </div>
+1181|          </div>
+1182|        </div>
+1183|      </div>
+1184|    </div>
+1185|  </div>
+1186|</section>
+1187|
+1188|<div class="section-divider"></div>
+1189|
+1190|<!-- ── SERVICES ────────────────────────────────────────────────────── -->
+1191|<section id="services">
+1192|  <div class="container">
+1193|    <div class="services-header fade-up">
+1194|      <div class="tag">What We Do</div>
+1195|      <h2 class="section-title">
+1196|        Every AI Need.<br />
+1197|        <span class="gradient-text">One Unified Partner.</span>
+1198|      </h2>
+1199|      <p class="section-sub">
+1200|        From securing your AI stack to building custom tools from scratch — we cover the full spectrum. 
+1201|        If AI can do it, we'll make it work for you.
+1202|      </p>
+1203|    </div>
+1204|
+1205|    <div class="services-grid">
+1206|
+1207|      <div class="service-card fade-up">
+1208|        <div class="service-icon icon-cyan">🔐</div>
+1209|        <div class="service-name">AI Security</div>
+1210|        <div class="service-desc">Protect your AI pipelines, data, and infrastructure. We audit, harden, and monitor your AI systems so you can move fast without fear.</div>
+1211|        <div class="service-tag">→ Protect</div>
+1212|      </div>
+1213|
+1214|      <div class="service-card fade-up">
+1215|        <div class="service-icon icon-purple">🔗</div>
+1216|        <div class="service-name">AI Integration</div>
+1217|        <div class="service-desc">Connect AI to your existing tools, workflows, and platforms. We design seamless bridges so your systems work smarter, together.</div>
+1218|        <div class="service-tag">→ Connect</div>
+1219|      </div>
+1220|
+1221|      <div class="service-card fade-up">
+1222|        <div class="service-icon icon-magenta">📞</div>
+1223|        <div class="service-name">AI Cold Callers</div>
+1224|        <div class="service-desc">Deploy intelligent AI voice agents that prospect, qualify leads, and book meetings — around the clock, without the burnout.</div>
+1225|        <div class="service-tag">→ Automate</div>
+1226|      </div>
+1227|
+1228|      <div class="service-card fade-up">
+1229|        <div class="service-icon icon-cyan">📝</div>
+1230|        <div class="service-name">AI Note Takers</div>
+1231|        <div class="service-desc">Never miss a word. Our AI note-taking solutions capture, summarize, and organize your meetings, calls, and conversations automatically.</div>
+1232|        <div class="service-tag">→ Capture</div>
+1233|      </div>
+1234|
+1235|      <div class="service-card fade-up">
+1236|        <div class="service-icon icon-purple">📊</div>
+1237|        <div class="service-name">AI CRM</div>
+1238|        <div class="service-desc">Transform your customer relationships with AI-powered CRM systems that predict needs, automate follow-ups, and close more deals.</div>
+1239|        <div class="service-tag">→ Grow</div>
+1240|      </div>
+1241|
+1242|      <div class="service-card fade-up">
+1243|        <div class="service-icon icon-mixed">🛠️</div>
+1244|        <div class="service-name">AI Tools</div>
+1245|        <div class="service-desc">We surface, configure, and deploy the best AI tools on the market for your specific use case — saving you months of research and trial.</div>
+1246|        <div class="service-tag">→ Equip</div>
+1247|      </div>
+1248|
+1249|      <div class="service-card wide fade-up" style="background:linear-gradient(135deg,rgba(0,212,255,0.06),rgba(123,47,255,0.08));border-color:rgba(0,212,255,0.2);">
+1250|        <div style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;">
+1251|          <div class="service-icon icon-mixed" style="width:64px;height:64px;font-size:1.8rem;flex-shrink:0;">🤖</div>
+1252|          <div>
+1253|            <div class="service-name" style="font-size:1.25rem;">AI Professional Assistants</div>
+1254|            <div class="service-desc" style="font-size:0.9rem;">Deploy a 24/7 AI assistant tailored to your role, industry, and workflow. From executive support to customer service — smart, fast, and always on.</div>
+1255|            <div class="service-tag">→ Empower Your Team</div>
+1256|          </div>
+1257|        </div>
+1258|      </div>
+1259|
+1260|      <div class="service-card wide fade-up" style="background:linear-gradient(135deg,rgba(123,47,255,0.06),rgba(255,0,204,0.06));border-color:rgba(123,47,255,0.2);">
+1261|        <div style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;">
+1262|          <div class="service-icon icon-magenta" style="width:64px;height:64px;font-size:1.8rem;flex-shrink:0;">✨</div>
+1263|          <div>
+1264|            <div class="service-name" style="font-size:1.25rem;">Bespoke AI Solutions</div>
+1265|            <div class="service-desc" style="font-size:0.9rem;">Don't see what you need? Good — that means your problem is unique. We design and build custom AI solutions from the ground up, spec'd precisely to your requirements.</div>
+1266|            <div class="service-tag">→ Build Something New</div>
+1267|          </div>
+1268|        </div>
+1269|      </div>
+1270|
+1271|    </div>
+1272|  </div>
+1273|</section>
+1274|
+1275|<div class="section-divider"></div>
+1276|
+1277|<!-- ── WHY SYNPRISM ────────────────────────────────────────────────── -->
+1278|<section id="why">
+1279|  <div class="container">
+1280|    <div class="why-grid">
+1281|      <div class="fade-up">
+1282|        <div class="tag">Why Synprism</div>
+1283|        <h2 class="section-title">
+1284|          We Make AI<br />
+1285|          <span class="gradient-text">Make Sense.</span>
+1286|        </h2>
+1287|        <p class="section-sub">
+1288|          The AI landscape is overwhelming. New tools, new risks, new possibilities — every single week. 
+1289|          You don't have time to figure it all out. We do. That's our job, so you can focus on yours.
+1290|        </p>
+1291|
+1292|        <div class="why-features">
+1293|          <div class="feature-item">
+1294|            <div class="icon">🎯</div>
+1295|            <h4>Right Tool, Right Fit</h4>
+1296|            <p>We find what actually works for your specific situation — not just what's trendy.</p>
+1297|          </div>
+1298|          <div class="feature-item">
+1299|            <div class="icon">⚡</div>
+1300|            <h4>Fast Deployment</h4>
+1301|            <p>From discovery to live implementation — we move at the speed of AI.</p>
+1302|          </div>
+1303|          <div class="feature-item">
+1304|            <div class="icon">🧩</div>
+1305|            <h4>Seamless Integration</h4>
+1306|            <p>Everything fits together. No siloed tools, no broken workflows.</p>
+1307|          </div>
+1308|          <div class="feature-item">
+1309|            <div class="icon">🛡️</div>
+1310|            <h4>Secure by Design</h4>
+1311|            <p>Security isn't an afterthought — it's baked into every solution we deliver.</p>
+1312|          </div>
+1313|          <div class="feature-item">
+1314|            <div class="icon">📈</div>
+1315|            <h4>Built to Scale</h4>
+1316|            <p>Solutions that grow with you, not ones you'll outgrow in six months.</p>
+1317|          </div>
+1318|          <div class="feature-item">
+1319|            <div class="icon">🤝</div>
+1320|            <h4>True Partnership</h4>
+1321|            <p>We're in it with you long-term — advisors, builders, and advocates in one.</p>
+1322|          </div>
+1323|        </div>
+1324|      </div>
+1325|
+1326|      <div class="process-visual fade-up">
+1327|        <div style="margin-bottom:32px;">
+1328|          <div class="tag">How It Works</div>
+1329|          <h3 style="font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;">From conversation<br />to transformation.</h3>
+1330|        </div>
+1331|
+1332|        <div class="process-steps">
+1333|          <div class="process-step">
+1334|            <div class="step-num">01</div>
+1335|            <div class="step-content">
+1336|              <h4>Discover</h4>
+1337|              <p>We start with a conversation — learning your goals, challenges, and what AI could unlock for you. No pressure, just clarity.</p>
+1338|            </div>
+1339|          </div>
+1340|          <div class="process-step">
+1341|            <div class="step-num">02</div>
+1342|            <div class="step-content">
+1343|              <h4>Synthesize</h4>
+1344|              <p>We map the right AI strategy and stack for your world — selecting tools, designing integrations, and building a plan that fits.</p>
+1345|            </div>
+1346|          </div>
+1347|          <div class="process-step">
+1348|            <div class="step-num">03</div>
+1349|            <div class="step-content">
+1350|              <h4>Deploy</h4>
+1351|              <p>We implement, configure, and launch — handling the technical heavy lifting so you don't have to.</p>
+1352|            </div>
+1353|          </div>
+1354|          <div class="process-step">
+1355|            <div class="step-num" style="background:linear-gradient(135deg,var(--purple),var(--magenta));">04</div>
+1356|            <div class="step-content">
+1357|              <h4>Evolve</h4>
+1358|              <p>AI never stands still, and neither do we. We stay by your side to optimize, expand, and keep you ahead.</p>
+1359|            </div>
+1360|          </div>
+1361|        </div>
+1362|      </div>
+1363|    </div>
+1364|  </div>
+1365|</section>
+1366|
+1367|<div class="section-divider"></div>
+1368|
+1369|<!-- ── CONTACT ─────────────────────────────────────────────────────── -->
+1370|<section id="contact">
+1371|  <div class="container">
+1372|    <div class="contact-wrapper">
+1373|      <div class="contact-header fade-up">
+1374|        <div class="tag">Get Started</div>
+1375|        <h2 class="section-title">
+1376|          One Lens.<br />
+1377|          <span class="gradient-text">Infinite Possibility.</span>
+1378|        </h2>
+1379|        <p class="section-sub">
+1380|          Tell us about your goals and we'll show you exactly how AI can get you there. 
+1381|          No jargon, no hard sell — just a real conversation with people who know their stuff.
+1382|        </p>
+1383|      </div>
+1384|
+1385|      <div class="contact-form fade-up" id="contact-form-wrapper">
+1386|        <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+1387|          <input type="hidden" name="access_key" value="REPLACE_WITH_WEB3FORMS_KEY" />
+1388|          <input type="hidden" name="subject" value="✨ New Synprism Inquiry" />
+1389|          <input type="hidden" name="from_name" value="Synprism Website" />
+1390|          <input type="hidden" name="redirect" value="false" />
+1391|          <div class="form-row">
+1392|            <div class="form-group">
+1393|              <label for="firstName">First Name</label>
+1394|              <input type="text" id="firstName" name="firstName" placeholder="Alex" required />
+1395|            </div>
+1396|            <div class="form-group">
+1397|              <label for="lastName">Last Name</label>
+1398|              <input type="text" id="lastName" name="lastName" placeholder="Johnson" required />
+1399|            </div>
+1400|          </div>
+1401|
+1402|          <div class="form-row">
+1403|            <div class="form-group">
+1404|              <label for="email">Email Address</label>
+1405|              <input type="email" id="email" name="email" placeholder="alex@company.com" required />
+1406|            </div>
+1407|            <div class="form-group">
+1408|              <label for="company">Company / Organization</label>
+1409|              <input type="text" id="company" name="company" placeholder="Acme Inc. (or Personal)" />
+1410|            </div>
+1411|          </div>
+1412|
+1413|          <div class="form-row">
+1414|            <div class="form-group full">
+1415|              <label for="service">I'm Interested In</label>
+1416|              <select id="service" name="service">
+1417|                <option value="">— Select a service —</option>
+1418|                <option value="ai-security">AI Security</option>
+1419|                <option value="ai-integration">AI Integration</option>
+1420|                <option value="ai-cold-callers">AI Cold Callers</option>
+1421|                <option value="ai-note-takers">AI Note Takers</option>
+1422|                <option value="ai-crm">AI CRM</option>
+1423|                <option value="ai-tools">AI Tools</option>
+1424|                <option value="ai-assistants">AI Professional Assistants</option>
+1425|                <option value="custom">Custom / Bespoke Solution</option>
+1426|                <option value="not-sure">Not Sure Yet — Let's Talk</option>
+1427|              </select>
+1428|            </div>
+1429|          </div>
+1430|
+1431|          <div class="form-row">
+1432|            <div class="form-group full">
+1433|              <label for="message">Tell Us About Your Goals</label>
+1434|              <textarea id="message" name="message" placeholder="What are you trying to achieve? What's your biggest AI challenge or opportunity right now?" required></textarea>
+1435|            </div>
+1436|          </div>
+1437|
+1438|          <div class="form-submit">
+1439|            <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:20px;text-align:left;">
+1440|              <input type="checkbox" id="consent" name="consent" required style="width:18px;height:18px;flex-shrink:0;margin-top:2px;accent-color:var(--cyan);" />
+1441|              <label for="consent" style="font-size:0.8rem;color:var(--gray-400);text-transform:none;letter-spacing:0;font-weight:400;cursor:pointer;">
+1442|                I agree to the <a href="privacy.html" target="_blank" style="color:var(--cyan);">Privacy Policy</a> and <a href="terms.html" target="_blank" style="color:var(--cyan);">Terms of Service</a>. I understand that Synprism will use the information I provide to respond to my inquiry.
+1443|              </label>
+1444|            </div>
+1445|            <button type="submit" class="btn-primary">
+1446|              ✨ Let's Build Something Together →
+1447|            </button>
+1448|          </div>
+1449|          <div class="form-footer">
+1450|            We typically respond within 24 hours. No spam, ever.
+1451|          </div>
+1452|        </form>
+1453|
+1454|        <div class="form-success" id="formSuccess">
+1455|          <div class="success-icon">🎉</div>
+1456|          <h3>Message Received!</h3>
+1457|          <p>Thanks for reaching out. We'll be in touch within 24 hours to set up a conversation. Get ready to see what AI can do for you.</p>
+1458|        </div>
+1459|      </div>
+1460|    </div>
+1461|  </div>
+1462|</section>
+1463|
+1464|<!-- ── FOOTER ──────────────────────────────────────────────────────── -->
+1465|<footer>
+1466|  <div class="container">
+1467|    <div class="footer-inner">
+1468|      <div style="display:flex;align-items:center;gap:10px;">
+1469|        <img src="logo.jpg" alt="Synprism" style="width:32px;height:32px;object-fit:cover;border-radius:4px;mix-blend-mode:screen;" />
+1470|        <div class="footer-logo">Synprism.io</div>
+1471|      </div>
+1472|
+1473|      <ul class="footer-links">
+1474|        <li><a href="#about">About</a></li>
+1475|        <li><a href="#services">Services</a></li>
+1476|        <li><a href="#why">Why Us</a></li>
+1477|        <li><a href="#contact">Contact</a></li>
+1478|        <li><a href="privacy.html">Privacy Policy</a></li>
+1479|        <li><a href="terms.html">Terms of Service</a></li>
+1480|      </ul>
+1481|
+1482|      <div class="footer-copy">
+1483|        © 2025 Synprism. All rights reserved. · <span style="background:linear-gradient(135deg,#00d4ff,#7b2fff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">One lens. Infinite synchronization.</span>
+1484|      </div>
+1485|    </div>
+1486|  </div>
+1487|</footer>
+1488|
+1489|<!-- ── SCRIPTS ─────────────────────────────────────────────────────── -->
+1490|<script>
+1491|  // ── Neural Canvas ──────────────────────────────────────────────
+1492|  const canvas = document.getElementById('neural-canvas');
+1493|  const ctx = canvas.getContext('2d');
+1494|  let nodes = [];
+1495|  const NODE_COUNT = 60;
+1496|  const MAX_DIST = 160;
+1497|
+1498|  function resize() {
+1499|    canvas.width  = window.innerWidth;
+1500|    canvas.height = window.innerHeight;
+1501|  }
+1502|  resize();
+1503|  window.addEventListener('resize', resize);
+1504|
+1505|  for (let i = 0; i < NODE_COUNT; i++) {
+1506|    nodes.push({
+1507|      x: Math.random() * window.innerWidth,
+1508|      y: Math.random() * window.innerHeight,
+1509|      vx: (Math.random() - 0.5) * 0.4,
+1510|      vy: (Math.random() - 0.5) * 0.4,
+1511|    });
+1512|  }
+1513|
+1514|  function drawNeural() {
+1515|    ctx.clearRect(0, 0, canvas.width, canvas.height);
+1516|
+1517|    // Update positions
+1518|    nodes.forEach(n => {
+1519|      n.x += n.vx;
+1520|      n.y += n.vy;
+1521|      if (n.x < 0 || n.x > canvas.width)  n.vx *= -1;
+1522|      if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+1523|    });
+1524|
+1525|    // Draw connections
+1526|    for (let i = 0; i < nodes.length; i++) {
+1527|      for (let j = i + 1; j < nodes.length; j++) {
+1528|        const dx = nodes[i].x - nodes[j].x;
+1529|        const dy = nodes[i].y - nodes[j].y;
+1530|        const dist = Math.sqrt(dx*dx + dy*dy);
+1531|        if (dist < MAX_DIST) {
+1532|          const alpha = (1 - dist / MAX_DIST) * 0.5;
+1533|          ctx.beginPath();
+1534|          ctx.moveTo(nodes[i].x, nodes[i].y);
+1535|          ctx.lineTo(nodes[j].x, nodes[j].y);
+1536|          ctx.strokeStyle = `rgba(0, 212, 255, ${alpha})`;
+1537|          ctx.lineWidth = 0.5;
+1538|          ctx.stroke();
+1539|        }
+1540|      }
+1541|    }
+1542|
+1543|    // Draw nodes
+1544|    nodes.forEach(n => {
+1545|      ctx.beginPath();
+1546|      ctx.arc(n.x, n.y, 1.5, 0, Math.PI * 2);
+1547|      ctx.fillStyle = 'rgba(0, 212, 255, 0.6)';
+1548|      ctx.fill();
+1549|    });
+1550|
+1551|    requestAnimationFrame(drawNeural);
+1552|  }
+1553|  drawNeural();
+1554|
+1555|  // ── Navbar scroll ──────────────────────────────────────────────
+1556|  const navbar = document.getElementById('navbar');
+1557|  window.addEventListener('scroll', () => {
+1558|    if (window.scrollY > 40) navbar.classList.add('scrolled');
+1559|    else navbar.classList.remove('scrolled');
+1560|  });
+1561|
+1562|  // ── Mobile menu ────────────────────────────────────────────────
+1563|  function toggleMenu() {
+1564|    const m = document.getElementById('mobile-menu');
+1565|    m.style.display = m.style.display === 'none' ? 'block' : 'none';
+1566|  }
+1567|
+1568|  // ── Fade-up observer ───────────────────────────────────────────
+1569|  const observer = new IntersectionObserver((entries) => {
+1570|    entries.forEach(e => {
+1571|      if (e.isIntersecting) {
+1572|        e.target.classList.add('visible');
+1573|        observer.unobserve(e.target);
+1574|      }
+1575|    });
+1576|  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+1577|
+1578|  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+1579|
+1580|  // ── Contact form ───────────────────────────────────────────────
+1581|  const form = document.getElementById('contactForm');
+1582|  form.addEventListener('submit', async (e) => {
+1583|    e.preventDefault();
+1584|    const btn = form.querySelector('button[type="submit"]');
+1585|    const originalText = btn.innerHTML;
+1586|    btn.innerHTML = 'Sending...';
+1587|    btn.disabled = true;
+1588|
+1589|    try {
+1590|      const res = await fetch('https://api.web3forms.com/submit', {
+1591|        method: 'POST',
+1592|        body: new FormData(form),
+1593|        headers: { 'Accept': 'application/json' }
+1594|      });
+1595|      const data = await res.json();
+1596|
+1597|      if (data.success) {
+1598|        form.style.display = 'none';
+1599|        document.getElementById('formSuccess').style.display = 'block';
+1600|      } else {
+1601|        btn.innerHTML = 'Something went wrong — please try again';
+1602|        btn.disabled = false;
+1603|      }
+1604|    } catch {
+1605|      btn.innerHTML = 'Something went wrong — please try again';
+1606|      btn.disabled = false;
+1607|    }
+1608|  });
+1609|
+1610|  // ── Smooth scroll for anchor links ─────────────────────────────
+1611|  document.querySelectorAll('a[href^="#"]').forEach(a => {
+1612|    a.addEventListener('click', e => {
+1613|      e.preventDefault();
+1614|      const target = document.querySelector(a.getAttribute('href'));
+1615|      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+1616|    });
+1617|  });
+1618|</script>
+1619|</body>
+1620|</html>
+1621|
