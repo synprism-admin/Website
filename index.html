@@ -4,14 +4,102 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Synprism.io — AI Systems in Perfect Synthesis</title>
-  <meta name="description" content="Synprism bridges the gap between people and AI. We integrate, secure, and simplify AI for your life and business." />
-  <meta property="og:title" content="Synprism.io — AI Systems in Perfect Synthesis" />
-  <meta property="og:description" content="We bridge the gap and make AI more simple. Your AI partner for integration, security, and custom solutions." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://synprism.io" />
+  <meta name="description" content="Synprism bridges the gap between people and AI. We integrate, secure, and simplify AI for your life and business — from AI security and CRM to custom AI solutions." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Synprism" />
+  <meta name="theme-color" content="#080b18" />
+  <link rel="canonical" href="https://synprism.io/" />
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Synprism.io — AI Systems in Perfect Synthesis" />
+  <meta property="og:description" content="We bridge the gap and make AI more simple. Your AI partner for integration, security, cold callers, CRM, note takers, and custom AI solutions." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://synprism.io/" />
+  <meta property="og:image" content="https://synprism.io/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Synprism" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Synprism.io — AI Systems in Perfect Synthesis" />
+  <meta name="twitter:description" content="We bridge the gap and make AI more simple. AI integration, security, CRM, cold callers & custom solutions." />
+  <meta name="twitter:image" content="https://synprism.io/og-image.jpg" />
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://synprism.io/#organization",
+        "name": "Synprism",
+        "url": "https://synprism.io",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://synprism.io/logo.jpg"
+        },
+        "description": "Synprism is an AI integration and consulting firm that bridges the gap between people and AI — synthesizing powerful solutions for life, business, and everything in between.",
+        "address": {
+          "@type": "PostalAddress",
+          "addressRegion": "TN",
+          "addressCountry": "US"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "email": "info@synprism.io",
+          "contactType": "customer service"
+        },
+        "sameAs": []
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://synprism.io/#website",
+        "url": "https://synprism.io",
+        "name": "Synprism",
+        "publisher": { "@id": "https://synprism.io/#organization" }
+      },
+      {
+        "@type": "WebPage",
+        "@id": "https://synprism.io/#webpage",
+        "url": "https://synprism.io",
+        "name": "Synprism.io — AI Systems in Perfect Synthesis",
+        "description": "Synprism bridges the gap between people and AI with integration, security, and custom AI solutions.",
+        "isPartOf": { "@id": "https://synprism.io/#website" },
+        "about": { "@id": "https://synprism.io/#organization" }
+      },
+      {
+        "@type": "ItemList",
+        "name": "Synprism AI Services",
+        "itemListElement": [
+          { "@type": "Service", "position": 1, "name": "AI Security",               "provider": { "@id": "https://synprism.io/#organization" } },
+          { "@type": "Service", "position": 2, "name": "AI Integration",            "provider": { "@id": "https://synprism.io/#organization" } },
+          { "@type": "Service", "position": 3, "name": "AI Cold Callers",           "provider": { "@id": "https://synprism.io/#organization" } },
+          { "@type": "Service", "position": 4, "name": "AI Note Takers",            "provider": { "@id": "https://synprism.io/#organization" } },
+          { "@type": "Service", "position": 5, "name": "AI CRM",                    "provider": { "@id": "https://synprism.io/#organization" } },
+          { "@type": "Service", "position": 6, "name": "AI Tools",                  "provider": { "@id": "https://synprism.io/#organization" } },
+          { "@type": "Service", "position": 7, "name": "AI Professional Assistants","provider": { "@id": "https://synprism.io/#organization" } }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <!-- Resource hints -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+  <link rel="preload" as="image" href="logo-mark.jpg" fetchpriority="high" />
+  <link rel="preload" as="image" href="logo.jpg" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
@@ -1232,42 +1320,42 @@
 
       <div class="service-card fade-up">
         <div class="service-icon icon-cyan">🔐</div>
-        <div class="service-name">AI Security</div>
+        <h3 class="service-name">AI Security</h3>
         <div class="service-desc">Protect your AI pipelines, data, and infrastructure. We audit, harden, and monitor your AI systems so you can move fast without fear.</div>
         <div class="service-tag">→ Protect</div>
       </div>
 
       <div class="service-card fade-up">
         <div class="service-icon icon-purple">🔗</div>
-        <div class="service-name">AI Integration</div>
+        <h3 class="service-name">AI Integration</h3>
         <div class="service-desc">Connect AI to your existing tools, workflows, and platforms. We design seamless bridges so your systems work smarter, together.</div>
         <div class="service-tag">→ Connect</div>
       </div>
 
       <div class="service-card fade-up">
         <div class="service-icon icon-magenta">📞</div>
-        <div class="service-name">AI Cold Callers</div>
+        <h3 class="service-name">AI Cold Callers</h3>
         <div class="service-desc">Deploy intelligent AI voice agents that prospect, qualify leads, and book meetings — around the clock, without the burnout.</div>
         <div class="service-tag">→ Automate</div>
       </div>
 
       <div class="service-card fade-up">
         <div class="service-icon icon-cyan">📝</div>
-        <div class="service-name">AI Note Takers</div>
+        <h3 class="service-name">AI Note Takers</h3>
         <div class="service-desc">Never miss a word. Our AI note-taking solutions capture, summarize, and organize your meetings, calls, and conversations automatically.</div>
         <div class="service-tag">→ Capture</div>
       </div>
 
       <div class="service-card fade-up">
         <div class="service-icon icon-purple">📊</div>
-        <div class="service-name">AI CRM</div>
+        <h3 class="service-name">AI CRM</h3>
         <div class="service-desc">Transform your customer relationships with AI-powered CRM systems that predict needs, automate follow-ups, and close more deals.</div>
         <div class="service-tag">→ Grow</div>
       </div>
 
       <div class="service-card fade-up">
         <div class="service-icon icon-mixed">🛠️</div>
-        <div class="service-name">AI Tools</div>
+        <h3 class="service-name">AI Tools</h3>
         <div class="service-desc">We surface, configure, and deploy the best AI tools on the market for your specific use case — saving you months of research and trial.</div>
         <div class="service-tag">→ Equip</div>
       </div>
@@ -1276,7 +1364,7 @@
         <div style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;">
           <div class="service-icon icon-mixed" style="width:64px;height:64px;font-size:1.8rem;flex-shrink:0;">🤖</div>
           <div>
-            <div class="service-name" style="font-size:1.25rem;">AI Professional Assistants</div>
+            <h3 class="service-name" style="font-size:1.25rem;">AI Professional Assistants</h3>
             <div class="service-desc" style="font-size:0.9rem;">Deploy a 24/7 AI assistant tailored to your role, industry, and workflow. From executive support to customer service — smart, fast, and always on.</div>
             <div class="service-tag">→ Empower Your Team</div>
           </div>
@@ -1287,7 +1375,7 @@
         <div style="display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;">
           <div class="service-icon icon-magenta" style="width:64px;height:64px;font-size:1.8rem;flex-shrink:0;">✨</div>
           <div>
-            <div class="service-name" style="font-size:1.25rem;">Bespoke AI Solutions</div>
+            <h3 class="service-name" style="font-size:1.25rem;">Bespoke AI Solutions</h3>
             <div class="service-desc" style="font-size:0.9rem;">Don't see what you need? Good — that means your problem is unique. We design and build custom AI solutions from the ground up, spec'd precisely to your requirements.</div>
             <div class="service-tag">→ Build Something New</div>
           </div>
