@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analytics Dashboard — Synprism</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="author" content="Synprism" />
+  <meta name="theme-color" content="#080b18" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── RESET & VARIABLES ────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:       #080b18;
+      --bg2:      #0d1128;
+      --bg3:      #111830;
+      --cyan:     #00d4ff;
+      --purple:   #7b2fff;
+      --magenta:  #ff00cc;
+      --white:    #fff;
+      --gray-400: #8892b0;
+      --radius:   16px;
+      --green:    #00e676;
+      --red:      #ff4444;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── NAV ────────────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 0;
+      background: rgba(8,11,24,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: var(--white);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--gray-400);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      color: var(--white) !important;
+      padding: 9px 22px;
+      border-radius: 8px;
+      font-weight: 600 !important;
+      font-size: 0.875rem !important;
+      transition: opacity 0.2s, transform 0.2s !important;
+    }
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* Mobile nav */
+    .nav-mobile {
+      display: none;
+      flex-direction: column;
+      gap: 0;
+      background: var(--bg2);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 12px 24px 20px;
+      list-style: none;
+    }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a {
+      color: var(--gray-400);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      transition: color 0.2s;
+    }
+    .nav-mobile a:hover { color: var(--white); }
+    .nav-mobile .nav-cta {
+      margin-top: 12px;
+      text-align: center;
+      padding: 12px;
+      border-radius: 8px;
+      border: none;
+    }
+
+    /* ── PAGE LAYOUT ───────────────────────────────────────────────── */
+    .page-wrap {
+      padding-top: 90px;
+      padding-bottom: 80px;
+    }
+
+    /* ── HEADER SECTION ────────────────────────────────────────────── */
+    .analytics-header {
+      text-align: center;
+      padding: 60px 0 48px;
+    }
+    .tag-pill {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(123,47,255,0.15));
+      border: 1px solid rgba(0,212,255,0.3);
+      color: var(--cyan);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .analytics-header h1 {
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, var(--white) 40%, var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .analytics-header .subtitle {
+      color: var(--gray-400);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin: 0 auto 36px;
+    }
+
+    /* ── CONTROLS ──────────────────────────────────────────────────── */
+    .controls-card {
+      background: var(--bg2);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      max-width: 780px;
+      margin: 0 auto 48px;
+    }
+
+    /* Token input notice */
+    .token-notice {
+      background: rgba(0,212,255,0.07);
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: 10px;
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      font-size: 0.83rem;
+      color: var(--gray-400);
+      line-height: 1.6;
+    }
+    .token-notice strong { color: var(--cyan); }
+
+    .controls-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr auto;
+      gap: 16px;
+      align-items: end;
+    }
+
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .form-group label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--gray-400);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .form-group select,
+    .form-group input[type="month"],
+    .form-group input[type="text"],
+    .form-group input[type="password"] {
+      background: var(--bg3);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 10px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      padding: 11px 16px;
+      outline: none;
+      transition: border-color 0.2s;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-group select:focus,
+    .form-group input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(0,212,255,0.12);
+    }
+    /* Custom select arrow */
+    .select-wrap { position: relative; }
+    .select-wrap::after {
+      content: '▾';
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--gray-400);
+      pointer-events: none;
+      font-size: 0.85rem;
+    }
+    .select-wrap select { padding-right: 36px; width: 100%; }
+
+    .btn-load {
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      border: none;
+      border-radius: 10px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 11px 28px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: opacity 0.2s, transform 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .btn-load:hover { opacity: 0.88; transform: translateY(-1px); }
+    .btn-load:active { transform: translateY(0); }
+
+    /* ── STATUS BANNER ─────────────────────────────────────────────── */
+    #status-banner {
+      display: none;
+      max-width: 780px;
+      margin: -32px auto 36px;
+      padding: 13px 20px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 500;
+    }
+    #status-banner.demo {
+      display: block;
+      background: rgba(255,196,0,0.1);
+      border: 1px solid rgba(255,196,0,0.3);
+      color: #ffc400;
+    }
+    #status-banner.live {
+      display: block;
+      background: rgba(0,230,118,0.1);
+      border: 1px solid rgba(0,230,118,0.3);
+      color: var(--green);
+    }
+    #status-banner.error {
+      display: block;
+      background: rgba(255,68,68,0.1);
+      border: 1px solid rgba(255,68,68,0.3);
+      color: var(--red);
+    }
+
+    /* ── REPORT AREA ───────────────────────────────────────────────── */
+    #report-area {
+      display: none;
+    }
+    #report-area.visible { display: block; }
+
+    /* Section title */
+    .section-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 14px;
+    }
+
+    /* ── OVERVIEW CARDS ────────────────────────────────────────────── */
+    .overview-cards {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+    .stat-card {
+      background: var(--bg2);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      padding: 24px 22px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, rgba(0,212,255,0.04), rgba(123,47,255,0.04));
+      pointer-events: none;
+    }
+    .stat-card:hover { transform: translateY(-2px); border-color: rgba(0,212,255,0.2); }
+    .stat-card .card-icon {
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+    }
+    .stat-card .card-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+    .stat-card .card-value {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .stat-card .card-sub {
+      font-size: 0.78rem;
+      color: var(--gray-400);
+    }
+    .card-value.cyan { color: var(--cyan); }
+    .card-value.purple { color: var(--purple); }
+    .card-value.green { color: var(--green); }
+    .card-value.red { color: var(--red); }
+    .card-value.magenta { color: var(--magenta); }
+
+    /* ── CHART SECTION ─────────────────────────────────────────────── */
+    .chart-section {
+      background: var(--bg2);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      padding: 28px 28px 20px;
+      margin-bottom: 36px;
+    }
+    .chart-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .chart-sub {
+      font-size: 0.78rem;
+      color: var(--gray-400);
+      margin-bottom: 20px;
+    }
+    #bar-chart-svg {
+      width: 100%;
+      height: 180px;
+      display: block;
+    }
+    .chart-x-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+      padding: 0 2px;
+    }
+    .chart-x-labels span {
+      font-size: 0.65rem;
+      color: var(--gray-400);
+    }
+
+    /* ── TWO-COL TABLES ────────────────────────────────────────────── */
+    .tables-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+    .table-card {
+      background: var(--bg2);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+    .table-card-header {
+      padding: 20px 22px 14px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .table-card-header .chart-title { margin-bottom: 2px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    thead th {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 10px 22px;
+      text-align: left;
+      background: var(--bg3);
+    }
+    thead th:not(:first-child) { text-align: right; }
+    tbody tr {
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      transition: background 0.15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,0.03); }
+    tbody td {
+      padding: 11px 22px;
+      font-size: 0.85rem;
+      color: var(--white);
+    }
+    tbody td:not(:first-child) { text-align: right; color: var(--gray-400); }
+    tbody td.path-cell {
+      font-family: 'Space Grotesk', monospace;
+      font-size: 0.82rem;
+      color: var(--cyan);
+      max-width: 220px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    /* ── DEVICES + COUNTRIES ───────────────────────────────────────── */
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 36px;
+    }
+    .info-card {
+      background: var(--bg2);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      padding: 24px 24px 20px;
+    }
+
+    /* Devices pills */
+    .devices-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .device-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--bg3);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 100px;
+      padding: 8px 18px 8px 14px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .device-pill .pill-icon { font-size: 1.1rem; }
+    .device-pill .pill-pct {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--cyan);
+    }
+    .device-pill .pill-label { color: var(--gray-400); font-weight: 500; font-size: 0.8rem; }
+
+    /* Countries bars */
+    .country-bars { margin-top: 18px; display: flex; flex-direction: column; gap: 12px; }
+    .country-row { display: flex; flex-direction: column; gap: 5px; }
+    .country-row-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .country-name { font-size: 0.85rem; font-weight: 500; }
+    .country-count { font-size: 0.82rem; color: var(--gray-400); }
+    .country-bar-track {
+      height: 6px;
+      background: var(--bg3);
+      border-radius: 100px;
+      overflow: hidden;
+    }
+    .country-bar-fill {
+      height: 100%;
+      border-radius: 100px;
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      transition: width 0.8s cubic-bezier(0.23,1,0.32,1);
+    }
+
+    /* ── EXPORT SECTION ────────────────────────────────────────────── */
+    .export-section {
+      background: var(--bg2);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .export-info .export-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .export-info .export-sub {
+      font-size: 0.82rem;
+      color: var(--gray-400);
+    }
+    .export-buttons { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-export {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 11px 22px;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .btn-export:hover { opacity: 0.85; transform: translateY(-1px); }
+    .btn-print {
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      color: var(--white);
+    }
+    .btn-share {
+      background: var(--bg3);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white);
+    }
+    .btn-share.copied {
+      border-color: var(--green);
+      color: var(--green);
+    }
+
+    /* ── LOADER ────────────────────────────────────────────────────── */
+    #loader {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 60px 0;
+    }
+    #loader.visible { display: flex; }
+    .loader-ring {
+      width: 44px; height: 44px;
+      border: 3px solid rgba(0,212,255,0.15);
+      border-top-color: var(--cyan);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loader-text { font-size: 0.85rem; color: var(--gray-400); }
+
+    /* ── RESPONSIVE ────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .controls-row { grid-template-columns: 1fr 1fr; }
+      .btn-load { grid-column: span 2; }
+      .overview-cards { grid-template-columns: 1fr 1fr; }
+      .tables-grid { grid-template-columns: 1fr; }
+      .bottom-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+    @media (max-width: 560px) {
+      .controls-row { grid-template-columns: 1fr; }
+      .btn-load { grid-column: span 1; }
+      .overview-cards { grid-template-columns: 1fr 1fr; }
+      .stat-card .card-value { font-size: 1.5rem; }
+      .controls-card { padding: 22px 18px; }
+      .export-section { flex-direction: column; }
+    }
+
+    /* ── PRINT STYLES ──────────────────────────────────────────────── */
+    @media print {
+      * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+      nav, .controls-card, #status-banner, #loader,
+      .no-print { display: none !important; }
+
+      body {
+        background: #fff;
+        color: #111;
+        font-size: 13px;
+      }
+      .page-wrap { padding-top: 20px; }
+      .analytics-header { padding: 20px 0 24px; }
+      .analytics-header h1 {
+        background: none;
+        -webkit-text-fill-color: #111;
+        color: #111;
+        font-size: 1.8rem;
+      }
+      .analytics-header .subtitle { color: #555; }
+      .tag-pill { background: #eef; color: #5b21b6; border: 1px solid #c4b5fd; }
+
+      .stat-card {
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        break-inside: avoid;
+      }
+      .stat-card::before { display: none; }
+      .stat-card .card-label { color: #6b7280; }
+      .stat-card .card-value { color: #111; }
+      .stat-card .card-value.cyan { color: #0284c7; }
+      .stat-card .card-value.purple { color: #7c3aed; }
+      .stat-card .card-value.green { color: #16a34a; }
+      .stat-card .card-value.red { color: #dc2626; }
+      .stat-card .card-sub { color: #6b7280; }
+
+      .chart-section, .table-card, .info-card, .export-section {
+        background: #f9fafb;
+        border: 1px solid #e5e7eb;
+        break-inside: avoid;
+      }
+      .table-card-header { border-bottom: 1px solid #e5e7eb; }
+      thead th { background: #f3f4f6; color: #6b7280; }
+      tbody tr { border-bottom: 1px solid #f0f0f0; }
+      tbody td { color: #111; }
+      tbody td:not(:first-child) { color: #555; }
+      tbody td.path-cell { color: #0284c7; }
+
+      .country-bar-track { background: #e5e7eb; }
+      .country-bar-fill { background: #7c3aed; }
+      .device-pill { background: #f3f4f6; border-color: #e5e7eb; }
+      .device-pill .pill-pct { color: #0284c7; }
+      .device-pill .pill-label { color: #6b7280; }
+
+      .section-label { color: #7c3aed; }
+      .chart-title { color: #111; }
+      .chart-sub { color: #6b7280; }
+      .chart-sub { color: #555; }
+
+      .export-buttons { display: none; }
+
+      /* Print footer */
+      #report-area::after {
+        content: 'Generated by Synprism — synprism.io';
+        display: block;
+        text-align: center;
+        margin-top: 40px;
+        padding-top: 16px;
+        border-top: 1px solid #e5e7eb;
+        color: #9ca3af;
+        font-size: 0.75rem;
+        letter-spacing: 0.06em;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ───────────────────────────────────────────────────────────── -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="https://synprism.io" class="nav-logo">
+        <img src="logo-mark.jpg" alt="Synprism" style="width:38px;height:38px;object-fit:cover;border-radius:4px;mix-blend-mode:screen;" />
+        Synprism<span style="background:linear-gradient(135deg,#7b2fff,#ff00cc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">.io</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="https://synprism.io/#about">About</a></li>
+        <li><a href="https://synprism.io/#services">Services</a></li>
+        <li><a href="https://synprism.io/#why">Why Us</a></li>
+        <li><a href="https://synprism.io/chatbot-services.html">AI Chatbots</a></li>
+        <li><a href="https://synprism.io/#contact" class="nav-cta">Get Started →</a></li>
+      </ul>
+      <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+    <ul class="nav-mobile" id="nav-mobile">
+      <li><a href="https://synprism.io/#about">About</a></li>
+      <li><a href="https://synprism.io/#services">Services</a></li>
+      <li><a href="https://synprism.io/#why">Why Us</a></li>
+      <li><a href="https://synprism.io/chatbot-services.html">AI Chatbots</a></li>
+      <li><a href="https://synprism.io/#contact" class="nav-cta">Get Started →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ── PAGE CONTENT ───────────────────────────────────────────────────── -->
+<div class="page-wrap">
+  <div class="container">
+
+    <!-- Header -->
+    <div class="analytics-header">
+      <div class="tag-pill">Analytics Dashboard</div>
+      <h1>Client Analytics Report</h1>
+      <p class="subtitle">Powered by Cloudflare Web Analytics</p>
+    </div>
+
+    <!-- Controls Card -->
+    <div class="controls-card no-print">
+      <div class="token-notice">
+        <strong>🔐 For live data, set your CF API token in the input below.</strong><br>
+        Your token is stored only in <code>sessionStorage</code> for this browser tab — never saved to disk, localStorage, or any external server. It is sent exclusively to <code>api.cloudflare.com</code> directly from your browser.
+      </div>
+      <div class="controls-row">
+        <div class="form-group">
+          <label for="cf-token">Cloudflare API Token</label>
+          <input type="password" id="cf-token" placeholder="Bearer token…" autocomplete="off"
+                 oninput="sessionStorage.setItem('cf_token', this.value)" />
+        </div>
+        <div class="form-group">
+          <label for="site-select">Site</label>
+          <div class="select-wrap">
+            <select id="site-select">
+              <option value="cb467e41d6564261840e66b176d356a9" data-name="Synprism.io">Synprism.io</option>
+              <option value="5664d827fac34c7eaa127d59f02921ef" data-name="MetricNetworks.net">MetricNetworks.net</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="month-select">Month / Year</label>
+          <input type="month" id="month-select" />
+        </div>
+        <button class="btn-load" onclick="loadReport()">Load Report ▶</button>
+      </div>
+    </div>
+
+    <!-- Status Banner -->
+    <div id="status-banner"></div>
+
+    <!-- Loader -->
+    <div id="loader">
+      <div class="loader-ring"></div>
+      <div class="loader-text">Fetching analytics from Cloudflare…</div>
+    </div>
+
+    <!-- ── REPORT AREA ──────────────────────────────────────────────── -->
+    <div id="report-area">
+
+      <!-- 1. Overview Cards -->
+      <div class="section-label">Overview</div>
+      <div class="overview-cards" id="overview-cards">
+        <div class="stat-card">
+          <div class="card-icon">👥</div>
+          <div class="card-label">Total Visitors</div>
+          <div class="card-value cyan" id="stat-visitors">—</div>
+          <div class="card-sub">unique sessions</div>
+        </div>
+        <div class="stat-card">
+          <div class="card-icon">📄</div>
+          <div class="card-label">Page Views</div>
+          <div class="card-value purple" id="stat-pageviews">—</div>
+          <div class="card-sub">this month</div>
+        </div>
+        <div class="stat-card">
+          <div class="card-icon">📈</div>
+          <div class="card-label">vs Last Month</div>
+          <div class="card-value" id="stat-change">—</div>
+          <div class="card-sub" id="stat-change-sub">page view change</div>
+        </div>
+        <div class="stat-card">
+          <div class="card-icon">🌍</div>
+          <div class="card-label">Top Country</div>
+          <div class="card-value magenta" id="stat-country" style="font-size:1.3rem;">—</div>
+          <div class="card-sub" id="stat-country-sub">highest traffic</div>
+        </div>
+      </div>
+
+      <!-- 2. Daily Traffic Chart -->
+      <div class="chart-section">
+        <div class="section-label">Daily Traffic</div>
+        <div class="chart-title">Page Views per Day</div>
+        <div class="chart-sub" id="chart-subtitle">Daily breakdown for selected month</div>
+        <svg id="bar-chart-svg" viewBox="0 0 1000 180" preserveAspectRatio="none">
+          <!-- bars rendered by JS -->
+        </svg>
+        <div class="chart-x-labels" id="chart-x-labels"></div>
+      </div>
+
+      <!-- 3 & 4. Top Pages + Traffic Sources -->
+      <div class="tables-grid">
+        <div class="table-card">
+          <div class="table-card-header">
+            <div class="section-label">Top Pages</div>
+            <div class="chart-title">Most Visited Paths</div>
+          </div>
+          <table id="pages-table">
+            <thead>
+              <tr>
+                <th>Page Path</th>
+                <th>Views</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody id="pages-tbody"></tbody>
+          </table>
+        </div>
+        <div class="table-card">
+          <div class="table-card-header">
+            <div class="section-label">Traffic Sources</div>
+            <div class="chart-title">Referrers &amp; Sources</div>
+          </div>
+          <table id="sources-table">
+            <thead>
+              <tr>
+                <th>Source / Referrer</th>
+                <th>Visits</th>
+                <th>%</th>
+              </tr>
+            </thead>
+            <tbody id="sources-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 5 & 6. Devices + Countries -->
+      <div class="bottom-grid">
+        <div class="info-card">
+          <div class="section-label">Device Breakdown</div>
+          <div class="chart-title">Visits by Device Type</div>
+          <div class="devices-pills" id="devices-pills"></div>
+        </div>
+        <div class="info-card">
+          <div class="section-label">Top Countries</div>
+          <div class="chart-title">Visitors by Location</div>
+          <div class="country-bars" id="country-bars"></div>
+        </div>
+      </div>
+
+      <!-- 7. Export -->
+      <div class="export-section">
+        <div class="export-info">
+          <div class="export-title">Export &amp; Share</div>
+          <div class="export-sub">Download a print-ready report or share this view with a direct link.</div>
+        </div>
+        <div class="export-buttons">
+          <button class="btn-export btn-print" onclick="window.print()">🖨 Print Report</button>
+          <button class="btn-export btn-share" id="btn-share" onclick="copyShareLink()">🔗 Copy Share Link</button>
+        </div>
+      </div>
+
+    </div><!-- /#report-area -->
+
+  </div><!-- /.container -->
+</div><!-- /.page-wrap -->
+
+<script>
+/* ── CONSTANTS ─────────────────────────────────────────────────────── */
+const CF_GRAPHQL = 'https://api.cloudflare.com/client/v4/graphql';
+const ACCOUNT_TAG = '57281dd7024e9e7f682fad7f2d904e46';
+
+/* ── INIT ──────────────────────────────────────────────────────────── */
+(function init() {
+  // Restore token from sessionStorage
+  const savedToken = sessionStorage.getItem('cf_token');
+  if (savedToken) document.getElementById('cf-token').value = savedToken;
+
+  // Default month to current
+  const now = new Date();
+  const yyyy = now.getFullYear();
+  const mm   = String(now.getMonth() + 1).padStart(2, '0');
+  document.getElementById('month-select').value = `${yyyy}-${mm}`;
+
+  // Check URL params (for share links)
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('site')) {
+    const sel = document.getElementById('site-select');
+    for (let o of sel.options) { if (o.value === params.get('site')) { sel.value = params.get('site'); break; } }
+  }
+  if (params.get('month')) {
+    document.getElementById('month-select').value = params.get('month');
+  }
+  if (params.get('autoload') === '1') {
+    loadReport();
+  }
+})();
+
+/* ── HAMBURGER ─────────────────────────────────────────────────────── */
+function toggleMenu() {
+  document.getElementById('nav-mobile').classList.toggle('open');
+}
+
+/* ── CLOUDFLARE GRAPHQL QUERY ──────────────────────────────────────── */
+/*
+  GraphQL query used for live data:
+
+  query RumAnalytics($accountTag: string, $siteTag: string, $startDate: string, $endDate: string) {
+    viewer {
+      accounts(filter: {accountTag: $accountTag}) {
+        rumPageloadEventsAdaptiveGroups(
+          filter: {AND: [{date_geq: $startDate}, {date_leq: $endDate}, {siteTag: $siteTag}]}
+          limit: 1000
+          orderBy: [date_ASC]
+        ) {
+          count
+          sum { visits pageViews }
+          dimensions { date metric }
+        }
+      }
+    }
+  }
+*/
+
+async function fetchRumData(token, siteTag, startDate, endDate) {
+  const query = `{
+    viewer {
+      accounts(filter: {accountTag: "${ACCOUNT_TAG}"}) {
+        rumPageloadEventsAdaptiveGroups(
+          filter: {AND: [{date_geq: "${startDate}"}, {date_leq: "${endDate}"}, {siteTag: "${siteTag}"}]}
+          limit: 1000
+          orderBy: [date_ASC]
+        ) {
+          count
+          sum { visits pageViews }
+          dimensions { date metric }
+        }
+      }
+    }
+  }`;
+
+  const res = await fetch(CF_GRAPHQL, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    },
+    body: JSON.stringify({ query })
+  });
+
+  if (!res.ok) throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+  const json = await res.json();
+  if (json.errors && json.errors.length) throw new Error(json.errors[0].message);
+  return json.data?.viewer?.accounts?.[0]?.rumPageloadEventsAdaptiveGroups ?? [];
+}
+
+/* ── DEMO DATA ─────────────────────────────────────────────────────── */
+function generateDemoData(year, month) {
+  const daysInMonth = new Date(year, month, 0).getDate();
+  const dailyData = [];
+
+  // Generate plausible daily data
+  const seed = (year * 12 + month) % 7;
+  const baseViews = 120 + seed * 40;
+
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dayOfWeek = new Date(year, month - 1, d).getDay();
+    const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
+    const rand = 0.6 + Math.abs(Math.sin(d * 7.3 + seed)) * 0.9;
+    const weekendFactor = isWeekend ? 0.65 : 1;
+    const views = Math.round(baseViews * rand * weekendFactor);
+    dailyData.push({ date: `${year}-${String(month).padStart(2,'0')}-${String(d).padStart(2,'0')}`, pageViews: views });
+  }
+
+  const totalViews = dailyData.reduce((s, d) => s + d.pageViews, 0);
+  const totalVisitors = Math.round(totalViews * 0.72);
+
+  // Last month comparison
+  const lastMonthViews = Math.round(totalViews * (0.82 + Math.abs(Math.sin(seed)) * 0.4));
+  const changePct = Math.round(((totalViews - lastMonthViews) / lastMonthViews) * 100);
+
+  const pages = [
+    { path: '/', views: Math.round(totalViews * 0.38) },
+    { path: '/services', views: Math.round(totalViews * 0.18) },
+    { path: '/chatbot-services', views: Math.round(totalViews * 0.14) },
+    { path: '/about', views: Math.round(totalViews * 0.10) },
+    { path: '/contact', views: Math.round(totalViews * 0.08) },
+    { path: '/blog', views: Math.round(totalViews * 0.05) },
+    { path: '/privacy', views: Math.round(totalViews * 0.04) },
+    { path: '/terms', views: Math.round(totalViews * 0.02) },
+    { path: '/pricing', views: Math.round(totalViews * 0.008) },
+    { path: '/404', views: Math.round(totalViews * 0.005) },
+  ];
+
+  const sources = [
+    { source: 'Direct', visits: Math.round(totalVisitors * 0.42) },
+    { source: 'Google Search', visits: Math.round(totalVisitors * 0.28) },
+    { source: 'LinkedIn', visits: Math.round(totalVisitors * 0.10) },
+    { source: 'Twitter / X', visits: Math.round(totalVisitors * 0.07) },
+    { source: 'Bing', visits: Math.round(totalVisitors * 0.05) },
+    { source: 'GitHub', visits: Math.round(totalVisitors * 0.03) },
+    { source: 'Reddit', visits: Math.round(totalVisitors * 0.02) },
+    { source: 'YouTube', visits: Math.round(totalVisitors * 0.015) },
+    { source: 'Facebook', visits: Math.round(totalVisitors * 0.01) },
+    { source: 'Other', visits: Math.round(totalVisitors * 0.005) },
+  ];
+
+  const devices = [
+    { name: 'Desktop', icon: '🖥', pct: 58 },
+    { name: 'Mobile',  icon: '📱', pct: 36 },
+    { name: 'Tablet',  icon: '📲', pct: 6  },
+  ];
+
+  const countries = [
+    { name: '🇺🇸 United States', visitors: Math.round(totalVisitors * 0.52) },
+    { name: '🇬🇧 United Kingdom', visitors: Math.round(totalVisitors * 0.11) },
+    { name: '🇨🇦 Canada',         visitors: Math.round(totalVisitors * 0.09) },
+    { name: '🇦🇺 Australia',       visitors: Math.round(totalVisitors * 0.07) },
+    { name: '🇩🇪 Germany',         visitors: Math.round(totalVisitors * 0.05) },
+  ];
+
+  return {
+    isDemo: true,
+    totalViews, totalVisitors, changePct, lastMonthViews,
+    topCountry: '🇺🇸 United States',
+    dailyData, pages, sources, devices, countries
+  };
+}
+
+/* ── PARSE CF RESPONSE → unified data structure ────────────────────── */
+function parseRumGroups(groups, year, month) {
+  // groups: [{count, sum:{visits,pageViews}, dimensions:{date,metric}}, ...]
+  const daysInMonth = new Date(year, month, 0).getDate();
+  const dailyMap = {};
+
+  let totalViews = 0, totalVisitors = 0;
+  const pageMap = {}, sourceMap = {};
+
+  for (const g of groups) {
+    const date = g.dimensions?.date;
+    const metric = g.dimensions?.metric;
+    const pv = g.sum?.pageViews ?? 0;
+    const v  = g.sum?.visits   ?? 0;
+
+    if (date) {
+      dailyMap[date] = (dailyMap[date] || 0) + pv;
+    }
+    totalViews    += pv;
+    totalVisitors += v;
+
+    if (metric === 'referrer' && g.dimensions?.host) {
+      const src = g.dimensions.host || 'Direct';
+      sourceMap[src] = (sourceMap[src] || 0) + v;
+    }
+    if (metric === 'path' && g.dimensions?.requestPath) {
+      const path = g.dimensions.requestPath || '/';
+      pageMap[path] = (pageMap[path] || 0) + pv;
+    }
+  }
+
+  const dailyData = [];
+  for (let d = 1; d <= daysInMonth; d++) {
+    const dateStr = `${year}-${String(month).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+    dailyData.push({ date: dateStr, pageViews: dailyMap[dateStr] || 0 });
+  }
+
+  const pages = Object.entries(pageMap)
+    .sort((a,b) => b[1]-a[1]).slice(0,10)
+    .map(([path,views]) => ({path, views}));
+
+  const sources = Object.entries(sourceMap)
+    .sort((a,b) => b[1]-a[1]).slice(0,10)
+    .map(([source,visits]) => ({source, visits}));
+
+  return {
+    isDemo: false,
+    totalViews, totalVisitors,
+    changePct: null, lastMonthViews: null,
+    topCountry: '—',
+    dailyData, pages, sources,
+    devices: [], countries: []
+  };
+}
+
+/* ── RENDER ────────────────────────────────────────────────────────── */
+function fmt(n) {
+  if (n === null || n === undefined) return '—';
+  if (n >= 1000000) return (n/1000000).toFixed(1) + 'M';
+  if (n >= 1000) return (n/1000).toFixed(1) + 'K';
+  return n.toLocaleString();
+}
+
+function renderReport(data) {
+  // Overview cards
+  document.getElementById('stat-visitors').textContent = fmt(data.totalVisitors);
+  document.getElementById('stat-pageviews').textContent = fmt(data.totalViews);
+
+  const changeEl = document.getElementById('stat-change');
+  if (data.changePct !== null) {
+    const up = data.changePct >= 0;
+    changeEl.textContent = (up ? '+' : '') + data.changePct + '%';
+    changeEl.className = 'card-value ' + (up ? 'green' : 'red');
+    document.getElementById('stat-change-sub').textContent =
+      `vs ${fmt(data.lastMonthViews)} last month`;
+  } else {
+    changeEl.textContent = '—';
+    changeEl.className = 'card-value cyan';
+    document.getElementById('stat-change-sub').textContent = 'no prev data';
+  }
+
+  document.getElementById('stat-country').textContent = data.topCountry;
+
+  // Bar chart
+  renderBarChart(data.dailyData);
+
+  // Top pages
+  renderTableBody('pages-tbody', data.pages, (row) => {
+    const total = data.pages.reduce((s,r) => s+r.views, 0) || 1;
+    const pct = ((row.views / total) * 100).toFixed(1);
+    return `<td class="path-cell">${escHtml(row.path)}</td>
+            <td>${fmt(row.views)}</td>
+            <td>${pct}%</td>`;
+  });
+
+  // Sources
+  renderTableBody('sources-tbody', data.sources, (row) => {
+    const total = data.sources.reduce((s,r) => s+r.visits, 0) || 1;
+    const pct = ((row.visits / total) * 100).toFixed(1);
+    return `<td>${escHtml(row.source)}</td>
+            <td>${fmt(row.visits)}</td>
+            <td>${pct}%</td>`;
+  });
+
+  // Devices
+  renderDevices(data.devices);
+
+  // Countries
+  renderCountries(data.countries);
+}
+
+function renderBarChart(dailyData) {
+  const svg = document.getElementById('bar-chart-svg');
+  const xLabels = document.getElementById('chart-x-labels');
+  svg.innerHTML = '';
+  xLabels.innerHTML = '';
+
+  const n = dailyData.length;
+  if (n === 0) return;
+
+  const maxVal = Math.max(...dailyData.map(d => d.pageViews), 1);
+  const W = 1000, H = 180;
+  const barW = Math.floor((W - (n - 1) * 4) / n);
+  const gap = Math.floor((W - barW * n) / (n - 1)) || 0;
+
+  // Y-axis grid lines
+  for (let i = 1; i <= 4; i++) {
+    const y = H - (i / 4) * H;
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', 0); line.setAttribute('x2', W);
+    line.setAttribute('y1', y); line.setAttribute('y2', y);
+    line.setAttribute('stroke', 'rgba(255,255,255,0.06)');
+    line.setAttribute('stroke-width', '1');
+    svg.appendChild(line);
+  }
+
+  dailyData.forEach((d, i) => {
+    const barH = Math.max(2, Math.round((d.pageViews / maxVal) * (H - 8)));
+    const x = i * (barW + gap);
+    const y = H - barH;
+
+    // Gradient bar
+    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    rect.setAttribute('x', x);
+    rect.setAttribute('y', y);
+    rect.setAttribute('width', barW);
+    rect.setAttribute('height', barH);
+    rect.setAttribute('fill', 'url(#barGrad)');
+    rect.setAttribute('rx', '2');
+
+    // Tooltip via title
+    const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+    title.textContent = `${d.date}: ${d.pageViews.toLocaleString()} views`;
+    rect.appendChild(title);
+    svg.appendChild(rect);
+  });
+
+  // Define gradient
+  const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+  defs.innerHTML = `
+    <linearGradient id="barGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#7b2fff" stop-opacity="0.7"/>
+    </linearGradient>`;
+  svg.insertBefore(defs, svg.firstChild);
+
+  // X-axis labels (show every ~5 days)
+  const labelStep = Math.ceil(n / 6);
+  dailyData.forEach((d, i) => {
+    if (i % labelStep === 0 || i === n - 1) {
+      const span = document.createElement('span');
+      span.textContent = d.date.slice(8); // day number
+      span.style.flex = i === n - 1 ? '0' : '1';
+      xLabels.appendChild(span);
+    }
+  });
+}
+
+function renderTableBody(tbodyId, rows, rowFn) {
+  const tbody = document.getElementById(tbodyId);
+  tbody.innerHTML = '';
+  if (!rows || rows.length === 0) {
+    tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;color:var(--gray-400);padding:20px;">No data available</td></tr>';
+    return;
+  }
+  rows.forEach(row => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = rowFn(row);
+    tbody.appendChild(tr);
+  });
+}
+
+function renderDevices(devices) {
+  const container = document.getElementById('devices-pills');
+  container.innerHTML = '';
+  if (!devices || devices.length === 0) {
+    container.innerHTML = '<span style="color:var(--gray-400);font-size:0.82rem;">No device data</span>';
+    return;
+  }
+  devices.forEach(d => {
+    const pill = document.createElement('div');
+    pill.className = 'device-pill';
+    pill.innerHTML = `
+      <span class="pill-icon">${d.icon}</span>
+      <span class="pill-pct">${d.pct}%</span>
+      <span class="pill-label">${d.name}</span>`;
+    container.appendChild(pill);
+  });
+}
+
+function renderCountries(countries) {
+  const container = document.getElementById('country-bars');
+  container.innerHTML = '';
+  if (!countries || countries.length === 0) {
+    container.innerHTML = '<span style="color:var(--gray-400);font-size:0.82rem;">No country data</span>';
+    return;
+  }
+  const maxVisitors = Math.max(...countries.map(c => c.visitors), 1);
+  countries.forEach(c => {
+    const pct = Math.round((c.visitors / maxVisitors) * 100);
+    const row = document.createElement('div');
+    row.className = 'country-row';
+    row.innerHTML = `
+      <div class="country-row-top">
+        <span class="country-name">${c.name}</span>
+        <span class="country-count">${fmt(c.visitors)}</span>
+      </div>
+      <div class="country-bar-track">
+        <div class="country-bar-fill" style="width: ${pct}%"></div>
+      </div>`;
+    container.appendChild(row);
+  });
+}
+
+function escHtml(str) {
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+/* ── LOAD REPORT ───────────────────────────────────────────────────── */
+async function loadReport() {
+  const token    = sessionStorage.getItem('cf_token') || document.getElementById('cf-token').value.trim();
+  const siteTag  = document.getElementById('site-select').value;
+  const monthVal = document.getElementById('month-select').value; // YYYY-MM
+
+  if (!monthVal) { alert('Please select a month.'); return; }
+
+  const [year, month] = monthVal.split('-').map(Number);
+  const startDate = `${year}-${String(month).padStart(2,'0')}-01`;
+  const lastDay   = new Date(year, month, 0).getDate();
+  const endDate   = `${year}-${String(month).padStart(2,'0')}-${lastDay}`;
+
+  // Update chart subtitle
+  const monthName = new Date(year, month - 1, 1).toLocaleString('default', { month: 'long' });
+  const siteName  = document.getElementById('site-select').selectedOptions[0].dataset.name;
+  document.getElementById('chart-subtitle').textContent = `${monthName} ${year} · ${siteName}`;
+
+  // Show loader, hide report
+  document.getElementById('loader').classList.add('visible');
+  document.getElementById('report-area').classList.remove('visible');
+  document.getElementById('status-banner').className = '';
+
+  let data;
+  let usedDemo = false;
+
+  if (token) {
+    try {
+      const groups = await fetchRumData(token, siteTag, startDate, endDate);
+      if (groups.length === 0) {
+        // Possibly no data for this period — use demo with note
+        data = generateDemoData(year, month);
+        usedDemo = true;
+        showBanner('demo', '⚠️ API returned no data for this period — showing demo data. Check that the site tag and date range are correct.');
+      } else {
+        data = parseRumGroups(groups, year, month);
+        showBanner('live', `✅ Live data loaded from Cloudflare Web Analytics for ${siteName} · ${monthName} ${year}`);
+      }
+    } catch (err) {
+      console.error('CF API error:', err);
+      data = generateDemoData(year, month);
+      usedDemo = true;
+      showBanner('error', `❌ API Error: ${err.message} — showing demo data instead.`);
+    }
+  } else {
+    data = generateDemoData(year, month);
+    usedDemo = true;
+    showBanner('demo', '📊 No API token provided — showing demo/sample data. Enter your Cloudflare Bearer token above for live analytics.');
+  }
+
+  // Hide loader, show report
+  document.getElementById('loader').classList.remove('visible');
+  document.getElementById('report-area').classList.add('visible');
+
+  renderReport(data);
+}
+
+/* ── STATUS BANNER ─────────────────────────────────────────────────── */
+function showBanner(type, msg) {
+  const el = document.getElementById('status-banner');
+  el.className = type;
+  el.textContent = msg;
+}
+
+/* ── SHARE LINK ────────────────────────────────────────────────────── */
+function copyShareLink() {
+  const site  = document.getElementById('site-select').value;
+  const month = document.getElementById('month-select').value;
+  const url   = new URL(window.location.href);
+  url.searchParams.set('site',     site);
+  url.searchParams.set('month',    month);
+  url.searchParams.set('autoload', '1');
+
+  navigator.clipboard.writeText(url.toString()).then(() => {
+    const btn = document.getElementById('btn-share');
+    btn.textContent = '✓ Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => {
+      btn.textContent = '🔗 Copy Share Link';
+      btn.classList.remove('copied');
+    }, 2500);
+  }).catch(() => {
+    prompt('Copy this link:', url.toString());
+  });
+}
+
+/* ── AUTO-LOAD on params ────────────────────────────────────────────── */
+// (handled in init already via autoload=1 param)
+</script>
+</body>
+</html>
