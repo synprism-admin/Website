@@ -1,0 +1,1734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-71XKLW8QMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-71XKLW8QMF');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chatbot Build Request | Synprism</title>
+  <meta name="description" content="Fill out our chatbot intake form and we'll build your custom Smart FAQ Bot or AI Chat Assistant. We'll reach out within 24 hours." />
+  <meta name="robots" content="index, follow" />
+  <meta name="author" content="Synprism" />
+  <meta name="theme-color" content="#080b18" />
+  <link rel="canonical" href="https://synprism.io/chatbot-questionnaire" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Chatbot Build Request | Synprism" />
+  <meta property="og:description" content="Fill out our chatbot intake form and we'll build your custom Smart FAQ Bot or AI Chat Assistant. We'll reach out within 24 hours." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://synprism.io/chatbot-questionnaire" />
+  <meta property="og:image" content="https://synprism.io/og-image.jpg" />
+  <meta property="og:site_name" content="Synprism" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ── RESET & BASE ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #080b18;
+      --bg2:       #0d1128;
+      --bg3:       #111830;
+      --cyan:      #00d4ff;
+      --cyan-dim:  #00a8cc;
+      --purple:    #7b2fff;
+      --magenta:   #ff00cc;
+      --white:     #fff;
+      --gray-100:  #e8eaf6;
+      --gray-400:  #8892b0;
+      --gray-600:  #4a5568;
+      --radius:    16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--gray-100);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Neural background canvas */
+    #neural-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.4;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ── NAV ──────────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 24px;
+      transition: background 0.3s, backdrop-filter 0.3s;
+    }
+    nav.scrolled {
+      background: rgba(8,11,24,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--white);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--gray-400);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      color: var(--white) !important;
+      padding: 10px 22px;
+      border-radius: 8px;
+      font-weight: 700 !important;
+      transition: opacity 0.2s, transform 0.2s !important;
+    }
+    .nav-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: var(--gray-400);
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+    .hamburger:hover span { background: var(--white); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+    }
+
+    /* ── PAGE HEADER ──────────────────────────────────────────────── */
+    .page-header {
+      position: relative;
+      z-index: 1;
+      padding: 120px 0 48px;
+      text-align: center;
+    }
+    .page-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.25);
+      color: var(--cyan);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 6px 16px;
+      border-radius: 100px;
+      margin-bottom: 20px;
+    }
+    .page-eyebrow-dot {
+      width: 6px; height: 6px;
+      background: var(--cyan);
+      border-radius: 50%;
+      animation: pulse-dot 2s ease-in-out infinite;
+    }
+    @keyframes pulse-dot {
+      0%,100% { opacity:1; transform:scale(1); }
+      50%      { opacity:0.5; transform:scale(0.7); }
+    }
+    .page-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: var(--white);
+    }
+    .gradient-text {
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .page-sub {
+      color: var(--gray-400);
+      font-size: 1.05rem;
+      max-width: 580px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── PROGRESS BAR ─────────────────────────────────────────────── */
+    .progress-wrapper {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      padding: 0 24px;
+    }
+    .progress-steps {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+    }
+    .progress-steps::before {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px; right: 20px;
+      height: 2px;
+      background: rgba(255,255,255,0.1);
+      z-index: 0;
+    }
+    .progress-line {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      z-index: 1;
+      transition: width 0.4s ease;
+    }
+    .step-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      z-index: 2;
+      cursor: default;
+    }
+    .step-circle {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      font-weight: 700;
+      border: 2px solid rgba(255,255,255,0.1);
+      background: var(--bg2);
+      color: var(--gray-400);
+      transition: all 0.3s;
+    }
+    .step-node.active .step-circle {
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      border-color: var(--cyan);
+      color: var(--white);
+      box-shadow: 0 0 20px rgba(0,212,255,0.4);
+    }
+    .step-node.done .step-circle {
+      background: linear-gradient(135deg, var(--cyan-dim), var(--purple));
+      border-color: var(--cyan-dim);
+      color: var(--white);
+    }
+    .step-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--gray-600);
+      text-align: center;
+      white-space: nowrap;
+      transition: color 0.3s;
+    }
+    .step-node.active .step-label { color: var(--cyan); }
+    .step-node.done .step-label   { color: var(--gray-400); }
+
+    /* ── FORM CARD ────────────────────────────────────────────────── */
+    .form-card {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto 80px;
+      padding: 0 24px;
+    }
+    .step-panel {
+      display: none;
+      background: var(--bg2);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      padding: 40px;
+      animation: step-in 0.35s ease both;
+    }
+    .step-panel.active { display: block; }
+
+    @keyframes step-in {
+      from { opacity:0; transform: translateY(18px); }
+      to   { opacity:1; transform: translateY(0); }
+    }
+
+    .step-heading {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .step-subheading {
+      font-size: 0.88rem;
+      color: var(--gray-400);
+      margin-bottom: 32px;
+    }
+
+    /* ── FORM FIELDS ──────────────────────────────────────────────── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-group.full { grid-column: 1 / -1; }
+
+    label {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gray-400);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    label .req {
+      color: var(--magenta);
+      margin-left: 2px;
+    }
+    label .opt {
+      color: var(--gray-600);
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      margin-left: 4px;
+      font-size: 0.78rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="url"],
+    input[type="time"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px 16px;
+      background: var(--bg3);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 10px;
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+    }
+    input:focus, textarea:focus, select:focus {
+      border-color: rgba(0,212,255,0.5);
+      box-shadow: 0 0 0 3px rgba(0,212,255,0.08);
+    }
+    input.invalid, textarea.invalid, select.invalid {
+      border-color: rgba(255,0,204,0.6) !important;
+      box-shadow: 0 0 0 3px rgba(255,0,204,0.08) !important;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 110px;
+    }
+    select option { background: var(--bg2); }
+    ::placeholder { color: var(--gray-600); }
+
+    .field-hint {
+      font-size: 0.77rem;
+      color: var(--gray-600);
+      margin-top: -2px;
+    }
+
+    /* ── HOURS TABLE ──────────────────────────────────────────────── */
+    .hours-table {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .hours-row {
+      display: grid;
+      grid-template-columns: 120px 80px 1fr;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--bg3);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 10px;
+    }
+    .hours-day {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--gray-100);
+    }
+    .toggle-wrap {
+      display: flex;
+      align-items: center;
+    }
+    .toggle {
+      position: relative;
+      width: 46px; height: 24px;
+    }
+    .toggle input { opacity:0; width:0; height:0; }
+    .toggle-slider {
+      position: absolute;
+      inset: 0;
+      background: var(--bg);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 24px;
+      cursor: pointer;
+      transition: background 0.25s;
+    }
+    .toggle-slider::before {
+      content: '';
+      position: absolute;
+      width: 18px; height: 18px;
+      background: var(--gray-600);
+      border-radius: 50%;
+      top: 2px; left: 2px;
+      transition: transform 0.25s, background 0.25s;
+    }
+    .toggle input:checked + .toggle-slider { background: rgba(0,212,255,0.2); border-color: var(--cyan); }
+    .toggle input:checked + .toggle-slider::before { transform: translateX(22px); background: var(--cyan); }
+
+    .hours-times {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      color: var(--gray-400);
+    }
+    .hours-times input[type="time"] {
+      padding: 6px 10px;
+      font-size: 0.85rem;
+    }
+    .hours-times.hidden { visibility: hidden; }
+
+    /* ── RADIO CARDS (Tier) ───────────────────────────────────────── */
+    .tier-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .tier-card {
+      position: relative;
+      background: var(--bg3);
+      border: 2px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      padding: 20px 22px;
+      cursor: pointer;
+      transition: border-color 0.25s, box-shadow 0.25s;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    .tier-card:hover { border-color: rgba(0,212,255,0.3); }
+    .tier-card.selected {
+      border-color: var(--cyan);
+      box-shadow: 0 0 24px rgba(0,212,255,0.15);
+    }
+    .tier-card input[type="radio"] {
+      width: 20px; height: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      accent-color: var(--cyan);
+      cursor: pointer;
+    }
+    .tier-info { flex: 1; }
+    .tier-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+    .tier-price {
+      font-size: 0.88rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 6px;
+    }
+    .tier-desc {
+      font-size: 0.83rem;
+      color: var(--gray-400);
+      line-height: 1.55;
+    }
+    .tier-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+    .tier-badge.popular {
+      background: rgba(123,47,255,0.25);
+      color: #a06fff;
+      border: 1px solid rgba(123,47,255,0.4);
+    }
+    .tier-badge.ai {
+      background: rgba(0,212,255,0.15);
+      color: var(--cyan);
+      border: 1px solid rgba(0,212,255,0.35);
+    }
+
+    /* ── COLOR PICKER ─────────────────────────────────────────────── */
+    .color-picker-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    input[type="color"] {
+      width: 52px;
+      height: 44px;
+      padding: 4px;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 10px;
+      background: var(--bg3);
+      cursor: pointer;
+    }
+    .color-hex-input {
+      flex: 1;
+    }
+
+    /* ── RADIO GROUP ──────────────────────────────────────────────── */
+    .radio-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .radio-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      background: var(--bg3);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.2s;
+      font-size: 0.92rem;
+      color: var(--gray-100);
+    }
+    .radio-option:hover { border-color: rgba(0,212,255,0.3); }
+    .radio-option input[type="radio"] {
+      width: 18px; height: 18px;
+      accent-color: var(--cyan);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* ── DIVIDER ──────────────────────────────────────────────────── */
+    .section-divider {
+      height: 1px;
+      background: rgba(255,255,255,0.06);
+      margin: 28px 0;
+    }
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--cyan);
+      margin-bottom: 16px;
+    }
+
+    /* ── NAVIGATION BUTTONS ───────────────────────────────────────── */
+    .step-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 36px;
+      gap: 16px;
+    }
+    .btn-back {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: var(--gray-400);
+      padding: 13px 28px;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-back:hover { border-color: rgba(255,255,255,0.35); color: var(--white); }
+    .btn-next {
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      border: none;
+      color: var(--white);
+      padding: 13px 32px;
+      border-radius: 10px;
+      font-size: 0.97rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+      transition: opacity 0.2s, transform 0.2s;
+      margin-left: auto;
+    }
+    .btn-next:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    /* ── REVIEW PANEL ─────────────────────────────────────────────── */
+    .review-section {
+      margin-bottom: 24px;
+    }
+    .review-section-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--cyan);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(0,212,255,0.15);
+    }
+    .review-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 8px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .review-key {
+      color: var(--gray-400);
+      font-weight: 500;
+      min-width: 160px;
+      flex-shrink: 0;
+    }
+    .review-val {
+      color: var(--gray-100);
+      word-break: break-word;
+    }
+
+    /* ── SUCCESS ──────────────────────────────────────────────────── */
+    .success-panel {
+      display: none;
+      text-align: center;
+      padding: 60px 40px;
+      background: var(--bg2);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius);
+      max-width: 700px;
+      margin: 0 auto 80px;
+    }
+    .success-icon {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+    }
+    .success-panel h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 14px;
+    }
+    .success-panel p {
+      color: var(--gray-400);
+      font-size: 1rem;
+      line-height: 1.7;
+      max-width: 460px;
+      margin: 0 auto;
+    }
+
+    /* ── FOOTER ───────────────────────────────────────────────────── */
+    footer {
+      position: relative;
+      z-index: 1;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 40px 0 28px;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .footer-logo {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--white);
+    }
+    .footer-links {
+      display: flex;
+      list-style: none;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      color: var(--gray-400);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--gray-600);
+    }
+    .powered {
+      font-size: 0.78rem;
+      color: var(--gray-600);
+      text-align: center;
+      margin-top: 16px;
+    }
+    .powered a {
+      color: var(--cyan);
+      text-decoration: none;
+    }
+
+    /* ── RESPONSIVE ───────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .step-panel { padding: 28px 20px; }
+      .form-grid  { grid-template-columns: 1fr; }
+      .hours-row  { grid-template-columns: 90px 60px 1fr; gap: 8px; }
+      .review-key { min-width: 110px; }
+      .step-label { display: none; }
+      .step-circle { width: 32px; height: 32px; font-size: 0.72rem; }
+      .progress-steps::before { top: 16px; }
+      .progress-line { top: 16px; }
+    }
+
+    /* ── CONDITIONAL FIELDS ───────────────────────────────────────── */
+    .conditional { display: none; }
+    .conditional.show { display: block; }
+
+    /* Validation error message */
+    .field-error {
+      font-size: 0.78rem;
+      color: var(--magenta);
+      margin-top: 2px;
+      display: none;
+    }
+    .form-group.has-error .field-error { display: block; }
+    .form-group.has-error label { color: var(--magenta); }
+
+    /* Step nav error banner */
+    .nav-error {
+      font-size: 0.83rem;
+      color: var(--magenta);
+      text-align: center;
+      margin-top: 12px;
+      display: none;
+    }
+    .nav-error.show { display: block; }
+  </style>
+</head>
+<body>
+
+<canvas id="neural-canvas"></canvas>
+
+<!-- ── NAV ──────────────────────────────────────────────────────────── -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="https://synprism.io" class="nav-logo">
+      <img src="/logo-mark.jpg" alt="Synprism" style="width:36px;height:36px;object-fit:cover;border-radius:4px;mix-blend-mode:screen;" />
+      Synprism<span style="background:linear-gradient(135deg,#7b2fff,#ff00cc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">.io</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="https://synprism.io/#about">About</a></li>
+      <li><a href="https://synprism.io/#services">Services</a></li>
+      <li><a href="https://synprism.io/#why">Why Us</a></li>
+      <li><a href="https://synprism.io/#contact" class="nav-cta">Get Started →</a></li>
+    </ul>
+
+    <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div id="mobile-menu" style="display:none;position:fixed;top:68px;left:0;right:0;z-index:99;background:rgba(8,11,24,0.97);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.07);padding:24px;">
+  <ul style="list-style:none;display:flex;flex-direction:column;gap:20px;text-align:center;">
+    <li><a href="https://synprism.io/#about" onclick="toggleMenu()" style="color:#8892b0;text-decoration:none;font-size:1rem;font-weight:500;">About</a></li>
+    <li><a href="https://synprism.io/#services" onclick="toggleMenu()" style="color:#8892b0;text-decoration:none;font-size:1rem;font-weight:500;">Services</a></li>
+    <li><a href="https://synprism.io/#why" onclick="toggleMenu()" style="color:#8892b0;text-decoration:none;font-size:1rem;font-weight:500;">Why Us</a></li>
+    <li><a href="https://synprism.io/#contact" onclick="toggleMenu()" style="display:inline-block;background:linear-gradient(135deg,#00d4ff,#7b2fff);color:#fff;text-decoration:none;padding:12px 28px;border-radius:8px;font-weight:700;">Get Started →</a></li>
+  </ul>
+</div>
+
+<!-- ── PAGE HEADER ──────────────────────────────────────────────────── -->
+<div class="page-header">
+  <div class="container">
+    <div class="page-eyebrow">
+      <div class="page-eyebrow-dot"></div>
+      <span>Chatbot Build Request</span>
+    </div>
+    <h1 class="page-title">Tell Us About<br /><span class="gradient-text">Your Business</span></h1>
+    <p class="page-sub">Fill out this form and we'll build your custom chatbot. Takes about 5–8 minutes. We'll reach out within 24 hours to confirm and get started.</p>
+  </div>
+</div>
+
+<!-- ── PROGRESS BAR ─────────────────────────────────────────────────── -->
+<div class="progress-wrapper">
+  <div class="progress-steps" id="progressSteps">
+    <div class="progress-line" id="progressLine" style="width:0%"></div>
+    <div class="step-node active" data-step="1">
+      <div class="step-circle">1</div>
+      <div class="step-label">Basics</div>
+    </div>
+    <div class="step-node" data-step="2">
+      <div class="step-circle">2</div>
+      <div class="step-label">Hours &amp; Services</div>
+    </div>
+    <div class="step-node" data-step="3">
+      <div class="step-circle">3</div>
+      <div class="step-label">Chat Flow</div>
+    </div>
+    <div class="step-node" data-step="4">
+      <div class="step-circle">4</div>
+      <div class="step-label">Design</div>
+    </div>
+    <div class="step-node" data-step="5">
+      <div class="step-circle">✓</div>
+      <div class="step-label">Review</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MULTI-STEP FORM ──────────────────────────────────────────────── -->
+<div class="form-card" id="formCard">
+
+  <!-- ── STEP 1: Business Basics ──────────────────────────────────── -->
+  <div class="step-panel active" id="step-1">
+    <div class="step-heading">Business Basics</div>
+    <div class="step-subheading">Let's start with who you are and what you do.</div>
+
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="bizName">Business Name<span class="req">*</span></label>
+        <input type="text" id="bizName" name="bizName" placeholder="e.g. Mike's Auto Repair" required />
+        <div class="field-error">This field is required.</div>
+      </div>
+      <div class="form-group">
+        <label for="contactName">Your Name / Contact<span class="req">*</span></label>
+        <input type="text" id="contactName" name="contactName" placeholder="e.g. Mike Johnson" required />
+        <div class="field-error">This field is required.</div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email Address<span class="req">*</span></label>
+        <input type="email" id="email" name="email" placeholder="you@yourbusiness.com" required />
+        <div class="field-error">Please enter a valid email.</div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number<span class="req">*</span></label>
+        <input type="tel" id="phone" name="phone" placeholder="(555) 555-5555" required />
+        <div class="field-error">This field is required.</div>
+      </div>
+      <div class="form-group">
+        <label for="website">Business Website <span class="opt">(optional)</span></label>
+        <input type="url" id="website" name="website" placeholder="https://yourbusiness.com" />
+      </div>
+      <div class="form-group">
+        <label for="address">Business Address / Location<span class="req">*</span></label>
+        <input type="text" id="address" name="address" placeholder="123 Main St, Nashville, TN 37201" required />
+        <div class="field-error">Customers ask about your location — required.</div>
+      </div>
+      <div class="form-group full">
+        <label for="bizType">Business Type<span class="req">*</span></label>
+        <select id="bizType" name="bizType" required>
+          <option value="" disabled selected>Select your business type…</option>
+          <option value="Auto Repair">Auto Repair</option>
+          <option value="Contractor/Trades">Contractor / Trades</option>
+          <option value="Restaurant/Food">Restaurant / Food</option>
+          <option value="Medical/Dental">Medical / Dental</option>
+          <option value="Legal Services">Legal Services</option>
+          <option value="Retail">Retail</option>
+          <option value="Real Estate">Real Estate</option>
+          <option value="SaaS/Tech">SaaS / Tech</option>
+          <option value="Other">Other</option>
+        </select>
+        <div class="field-error">Please select a business type.</div>
+      </div>
+      <div class="form-group full">
+        <label for="bizDesc">Brief Description of Your Business<span class="req">*</span></label>
+        <textarea id="bizDesc" name="bizDesc" rows="4" placeholder="e.g. We're a family-owned auto repair shop serving Nashville for 20+ years. We specialize in oil changes, brakes, tires, and full engine work." required></textarea>
+        <div class="field-error">Please describe your business.</div>
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <div></div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+        <button class="btn-next" onclick="goNext(1)">Next: Hours &amp; Services →</button>
+        <div class="nav-error" id="err-1">Please fill in all required fields above.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 2: Hours, Services & Pricing ────────────────────────── -->
+  <div class="step-panel" id="step-2">
+    <div class="step-heading">Hours, Services &amp; Pricing</div>
+    <div class="step-subheading">Your chatbot will use this to answer customer questions accurately.</div>
+
+    <div class="section-label">Business Hours</div>
+    <div class="hours-table" id="hoursTable">
+      <!-- Rows injected by JS -->
+    </div>
+
+    <div class="section-divider"></div>
+
+    <div class="form-grid">
+      <div class="form-group full">
+        <label for="services">Your Main Services<span class="req">*</span></label>
+        <textarea id="services" name="services" rows="5" placeholder="List each service on a new line, e.g.:&#10;Oil Change&#10;Brake Repair&#10;Tire Rotation&#10;Engine Diagnostic" required></textarea>
+        <div class="field-hint">List each service on its own line.</div>
+        <div class="field-error">Please list at least one service.</div>
+      </div>
+
+      <div class="form-group full">
+        <label>Pricing in Chatbot?<span class="req">*</span></label>
+        <div class="radio-group" id="pricingGroup">
+          <label class="radio-option">
+            <input type="radio" name="pricing" value="Yes — exact prices" required onchange="togglePricing()" /> Yes — show exact prices
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="pricing" value="Yes — starting prices" onchange="togglePricing()" /> Yes — show starting prices only
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="pricing" value="No — direct to call" onchange="togglePricing()" /> No — direct customers to call for pricing
+          </label>
+        </div>
+        <div class="field-error" id="pricingErr">Please select a pricing preference.</div>
+      </div>
+
+      <div class="form-group full conditional" id="pricingListWrap">
+        <label for="pricingList">Service + Price Pairs</label>
+        <textarea id="pricingList" name="pricingList" rows="5" placeholder="e.g.:&#10;Oil Change — $49.99&#10;Brake Pads (front) — $129&#10;Tire Rotation — $29&#10;Engine Diagnostic — $75"></textarea>
+        <div class="field-hint">List each service + price on its own line.</div>
+      </div>
+
+      <div class="form-group full">
+        <label>Online Booking?<span class="req">*</span></label>
+        <div class="radio-group" id="bookingGroup">
+          <label class="radio-option">
+            <input type="radio" name="booking" value="Yes — booking link" required onchange="toggleBooking()" /> Yes — we have a booking link
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="booking" value="Yes — call to book CTA" onchange="toggleBooking()" /> Yes — we want a "call to book" CTA
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="booking" value="No booking" onchange="toggleBooking()" /> No booking needed
+          </label>
+        </div>
+        <div class="field-error" id="bookingErr">Please select a booking option.</div>
+      </div>
+
+      <div class="form-group full conditional" id="bookingLinkWrap">
+        <label for="bookingLink">Booking Link URL</label>
+        <input type="url" id="bookingLink" name="bookingLink" placeholder="https://calendly.com/yourbusiness" />
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-back" onclick="goBack(2)">← Back</button>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+        <button class="btn-next" onclick="goNext(2)">Next: Chat Flow →</button>
+        <div class="nav-error" id="err-2">Please fill in all required fields above.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 3: Chat Flow & Tone ──────────────────────────────────── -->
+  <div class="step-panel" id="step-3">
+    <div class="step-heading">Chat Flow &amp; Tone</div>
+    <div class="step-subheading">How your chatbot speaks, handles questions, and escalates.</div>
+
+    <div class="section-label">Top 5 Customer Questions</div>
+    <div class="form-grid">
+      <div class="form-group full">
+        <label for="q1">Q1 — Most Common Question<span class="req">*</span></label>
+        <input type="text" id="q1" name="q1" placeholder="e.g. How long does an oil change take?" required />
+        <div class="field-error">Please enter at least Q1.</div>
+      </div>
+      <div class="form-group full">
+        <label for="q2">Q2</label>
+        <input type="text" id="q2" name="q2" placeholder="e.g. Do you offer free estimates?" />
+      </div>
+      <div class="form-group full">
+        <label for="q3">Q3</label>
+        <input type="text" id="q3" name="q3" placeholder="e.g. Do you work on European cars?" />
+      </div>
+      <div class="form-group full">
+        <label for="q4">Q4</label>
+        <input type="text" id="q4" name="q4" placeholder="e.g. Can I drop off my car without an appointment?" />
+      </div>
+      <div class="form-group full">
+        <label for="q5">Q5</label>
+        <input type="text" id="q5" name="q5" placeholder="e.g. What forms of payment do you accept?" />
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+    <div class="section-label">Tone &amp; Escalation</div>
+
+    <div class="form-grid">
+      <div class="form-group full">
+        <label for="tone">Chatbot Tone<span class="req">*</span></label>
+        <select id="tone" name="tone" required>
+          <option value="" disabled selected>Select a tone…</option>
+          <option value="Friendly & Casual">Friendly &amp; Casual</option>
+          <option value="Professional & Formal">Professional &amp; Formal</option>
+          <option value="Warm & Helpful">Warm &amp; Helpful</option>
+          <option value="Technical & Precise">Technical &amp; Precise</option>
+        </select>
+        <div class="field-error">Please select a tone.</div>
+      </div>
+
+      <div class="form-group full">
+        <label for="escalation">When Chatbot Can't Help…<span class="req">*</span></label>
+        <select id="escalation" name="escalation" required>
+          <option value="" disabled selected>Select escalation action…</option>
+          <option value="Show phone number">Show phone number</option>
+          <option value="Show email address">Show email address</option>
+          <option value="Show both phone and email">Show both phone and email</option>
+          <option value="Say 'visit us in person'">Say "visit us in person"</option>
+        </select>
+        <div class="field-error">Please select an escalation action.</div>
+      </div>
+
+      <div class="form-group">
+        <label for="chatPhone">Chatbot Phone Number <span class="opt">(if different)</span></label>
+        <input type="tel" id="chatPhone" name="chatPhone" placeholder="(555) 555-5555" />
+      </div>
+      <div class="form-group">
+        <label for="chatEmail">Chatbot Email <span class="opt">(if different)</span></label>
+        <input type="email" id="chatEmail" name="chatEmail" placeholder="support@yourbusiness.com" />
+      </div>
+
+      <div class="form-group full">
+        <label for="neverDiscuss">Topics the Chatbot Should NEVER Discuss <span class="opt">(optional)</span></label>
+        <textarea id="neverDiscuss" name="neverDiscuss" rows="3" placeholder="e.g. Do not discuss competitors. Do not quote prices for transmission rebuilds."></textarea>
+      </div>
+
+      <div class="form-group full">
+        <label for="alwaysMention">Anything the Chatbot Should Always Mention? <span class="opt">(optional)</span></label>
+        <textarea id="alwaysMention" name="alwaysMention" rows="3" placeholder="e.g. Always mention our free estimates. Always promote our 12-month warranty."></textarea>
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-back" onclick="goBack(3)">← Back</button>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+        <button class="btn-next" onclick="goNext(3)">Next: Design &amp; Tier →</button>
+        <div class="nav-error" id="err-3">Please fill in all required fields above.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 4: Design & Tier ────────────────────────────────────── -->
+  <div class="step-panel" id="step-4">
+    <div class="step-heading">Design &amp; Tier</div>
+    <div class="step-subheading">Choose your chatbot tier and share your brand details.</div>
+
+    <div class="section-label">Which Chatbot Tier?<span class="req" style="margin-left:4px;">*</span></div>
+    <div class="tier-cards" id="tierCards">
+      <label class="tier-card" id="tc1">
+        <input type="radio" name="tier" value="Tier 1 Basic" required onchange="selectTier()" />
+        <div class="tier-info">
+          <div class="tier-name">Tier 1 — Basic Bot</div>
+          <div class="tier-price">$200 – $400 one-time</div>
+          <div class="tier-desc">A simple scripted bot with your hours, location, services, and a contact CTA. No AI — pure rule-based. Perfect for small local businesses that just need a 24/7 FAQ presence.</div>
+        </div>
+      </label>
+      <label class="tier-card" id="tc2">
+        <input type="radio" name="tier" value="Tier 2 Smart FAQ" onchange="selectTier()" />
+        <div class="tier-info">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+            <div class="tier-name" style="margin-bottom:0;">Tier 2 — Smart FAQ Bot</div>
+            <span class="tier-badge popular">Most Popular</span>
+          </div>
+          <div class="tier-price">$500 – $900 one-time · $0/mo hosting</div>
+          <div class="tier-desc">An intelligent FAQ bot trained on your business data. Answers questions naturally, handles objections, collects leads. Hosted forever with no monthly fee.</div>
+        </div>
+      </label>
+      <label class="tier-card" id="tc3">
+        <input type="radio" name="tier" value="Tier 3 AI Chat" onchange="selectTier()" />
+        <div class="tier-info">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
+            <div class="tier-name" style="margin-bottom:0;">Tier 3 — Full AI Chat Assistant</div>
+            <span class="tier-badge ai">AI-Powered</span>
+          </div>
+          <div class="tier-price">$1,200 – $2,000 one-time</div>
+          <div class="tier-desc">Full GPT-powered conversational AI with memory, multi-step conversations, CRM integration, booking, and custom personality. Your business's always-on AI employee.</div>
+        </div>
+      </label>
+    </div>
+    <div class="field-error" id="tierErr" style="margin-top:8px;">Please select a chatbot tier.</div>
+
+    <div class="section-divider"></div>
+    <div class="section-label">Brand &amp; Design</div>
+
+    <div class="form-grid">
+      <div class="form-group full">
+        <label for="brandColor">Primary Brand Color<span class="req">*</span></label>
+        <div class="color-picker-row">
+          <input type="color" id="brandColorPicker" value="#00d4ff" oninput="syncColor('picker')" />
+          <input type="text" id="brandColor" name="brandColor" class="color-hex-input" value="#00d4ff" placeholder="#000000" required oninput="syncColor('text')" />
+        </div>
+        <div class="field-hint">This is the accent color for your chatbot widget.</div>
+        <div class="field-error">Please enter a brand color.</div>
+      </div>
+
+      <div class="form-group full">
+        <label>Do You Have a Logo?<span class="req">*</span></label>
+        <div class="radio-group" id="logoGroup">
+          <label class="radio-option">
+            <input type="radio" name="logo" value="Yes — I'll email it" required onchange="toggleLogo()" /> Yes — I'll email it to you
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="logo" value="Yes — URL provided" onchange="toggleLogo()" /> Yes — here's a URL to download it
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="logo" value="No — Synprism will design" onchange="toggleLogo()" /> No — Synprism will design one for me
+          </label>
+        </div>
+        <div class="field-error" id="logoErr">Please select a logo option.</div>
+      </div>
+
+      <div class="form-group full conditional" id="logoUrlWrap">
+        <label for="logoUrl">Logo URL</label>
+        <input type="url" id="logoUrl" name="logoUrl" placeholder="https://yourbusiness.com/logo.png" />
+      </div>
+
+      <div class="form-group full">
+        <label for="designInspiration">Websites You Love the Look Of <span class="opt">(optional)</span></label>
+        <textarea id="designInspiration" name="designInspiration" rows="3" placeholder="e.g. apple.com, stripe.com, notion.so — paste any sites whose design you admire."></textarea>
+      </div>
+
+      <div class="form-group full">
+        <label for="notes">Additional Notes or Special Requests <span class="opt">(optional)</span></label>
+        <textarea id="notes" name="notes" rows="4" placeholder="Anything else we should know? Special integrations, unique requirements, questions for our team…"></textarea>
+      </div>
+    </div>
+
+    <div class="step-nav">
+      <button class="btn-back" onclick="goBack(4)">← Back</button>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px;">
+        <button class="btn-next" onclick="goNext(4)">Review My Request →</button>
+        <div class="nav-error" id="err-4">Please fill in all required fields above.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── STEP 5: Review & Submit ───────────────────────────────────── -->
+  <div class="step-panel" id="step-5">
+    <div class="step-heading">Review &amp; Submit</div>
+    <div class="step-subheading">Double-check your info before submitting. We'll follow up within 24 hours.</div>
+
+    <div id="reviewContent"><!-- populated by JS --></div>
+
+    <!-- Web3Forms hidden submit form -->
+    <form id="submitForm" action="https://api.web3forms.com/submit" method="POST" style="margin-top:32px;">
+      <input type="hidden" name="access_key" value="52212c46-8eae-4fae-9515-1de276476a42" />
+      <input type="hidden" name="subject" id="sub_subject" value="New Chatbot Build Request" />
+      <input type="hidden" name="from_name" value="Synprism Chatbot Questionnaire" />
+
+      <!-- All data fields populated by JS on submit -->
+      <input type="hidden" name="Business Name"              id="sub_bizName" />
+      <input type="hidden" name="Contact Name"               id="sub_contactName" />
+      <input type="hidden" name="Email"                      id="sub_email" />
+      <input type="hidden" name="Phone"                      id="sub_phone" />
+      <input type="hidden" name="Website"                    id="sub_website" />
+      <input type="hidden" name="Address"                    id="sub_address" />
+      <input type="hidden" name="Business Type"              id="sub_bizType" />
+      <input type="hidden" name="Business Description"       id="sub_bizDesc" />
+      <input type="hidden" name="Business Hours"             id="sub_hours" />
+      <input type="hidden" name="Services"                   id="sub_services" />
+      <input type="hidden" name="Pricing Option"             id="sub_pricing" />
+      <input type="hidden" name="Pricing List"               id="sub_pricingList" />
+      <input type="hidden" name="Booking Option"             id="sub_booking" />
+      <input type="hidden" name="Booking Link"               id="sub_bookingLink" />
+      <input type="hidden" name="Q1"                         id="sub_q1" />
+      <input type="hidden" name="Q2"                         id="sub_q2" />
+      <input type="hidden" name="Q3"                         id="sub_q3" />
+      <input type="hidden" name="Q4"                         id="sub_q4" />
+      <input type="hidden" name="Q5"                         id="sub_q5" />
+      <input type="hidden" name="Tone"                       id="sub_tone" />
+      <input type="hidden" name="Escalation"                 id="sub_escalation" />
+      <input type="hidden" name="Chatbot Phone"              id="sub_chatPhone" />
+      <input type="hidden" name="Chatbot Email"              id="sub_chatEmail" />
+      <input type="hidden" name="Never Discuss"              id="sub_neverDiscuss" />
+      <input type="hidden" name="Always Mention"             id="sub_alwaysMention" />
+      <input type="hidden" name="Tier"                       id="sub_tier" />
+      <input type="hidden" name="Brand Color"                id="sub_brandColor" />
+      <input type="hidden" name="Logo"                       id="sub_logo" />
+      <input type="hidden" name="Logo URL"                   id="sub_logoUrl" />
+      <input type="hidden" name="Design Inspiration"         id="sub_designInspiration" />
+      <input type="hidden" name="Notes"                      id="sub_notes" />
+
+      <input type="checkbox" name="botcheck" style="display:none;" />
+
+      <div style="text-align:center;">
+        <button type="submit" class="btn-next" id="submitBtn" style="font-size:1.05rem;padding:16px 40px;">
+          Submit My Chatbot Request →
+        </button>
+      </div>
+    </form>
+
+    <div class="step-nav" style="margin-top:20px;">
+      <button class="btn-back" onclick="goBack(5)">← Edit Answers</button>
+    </div>
+  </div>
+
+</div><!-- /form-card -->
+
+<!-- ── SUCCESS PANEL ─────────────────────────────────────────────────── -->
+<div class="success-panel" id="successPanel">
+  <div class="success-icon">🎉</div>
+  <h2>We received your request!</h2>
+  <p>A Synprism team member will reach out within 24 hours to confirm details and get started.<br /><br />
+  In the meantime, if you have any questions email us at <a href="mailto:info@synprism.io" style="color:var(--cyan);">info@synprism.io</a>.</p>
+</div>
+
+<!-- ── FOOTER ────────────────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <img src="/logo-mark.jpg" alt="Synprism" style="width:36px;height:36px;object-fit:cover;border-radius:4px;mix-blend-mode:screen;" />
+      <div class="footer-logo">Synprism.io</div>
+    </div>
+
+    <ul class="footer-links">
+      <li><a href="https://synprism.io/#about">About</a></li>
+      <li><a href="https://synprism.io/#services">Services</a></li>
+      <li><a href="https://synprism.io/#contact">Contact</a></li>
+      <li><a href="/privacy.html">Privacy</a></li>
+      <li><a href="/terms.html">Terms</a></li>
+    </ul>
+
+    <div class="footer-copy">© 2025 Synprism. All rights reserved.</div>
+  </div>
+  <div class="powered">Powered by <a href="https://synprism.io">Synprism</a></div>
+</footer>
+
+<!-- ── SCRIPTS ───────────────────────────────────────────────────────── -->
+<script>
+// ── Neural Canvas ──────────────────────────────────────────────────────
+(function() {
+  const canvas = document.getElementById('neural-canvas');
+  const ctx = canvas.getContext('2d');
+  let nodes = [];
+  const NODE_COUNT = 50;
+  const MAX_DIST = 140;
+
+  function resize() {
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  for (let i = 0; i < NODE_COUNT; i++) {
+    nodes.push({
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      vx: (Math.random() - 0.5) * 0.35,
+      vy: (Math.random() - 0.5) * 0.35
+    });
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    nodes.forEach(n => {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x < 0 || n.x > canvas.width)  n.vx *= -1;
+      if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+    });
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const d = Math.sqrt(dx*dx + dy*dy);
+        if (d < MAX_DIST) {
+          const a = (1 - d / MAX_DIST) * 0.4;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = `rgba(0,212,255,${a})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    nodes.forEach(n => {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0,212,255,0.5)';
+      ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── Navbar scroll ──────────────────────────────────────────────────────
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+// ── Mobile menu ────────────────────────────────────────────────────────
+function toggleMenu() {
+  const m = document.getElementById('mobile-menu');
+  m.style.display = m.style.display === 'none' ? 'block' : 'none';
+}
+
+// ── Hours Table Builder ────────────────────────────────────────────────
+const DAYS = [
+  { id: 'mon', label: 'Monday',    open: true,  from: '08:00', to: '17:00' },
+  { id: 'tue', label: 'Tuesday',   open: true,  from: '08:00', to: '17:00' },
+  { id: 'wed', label: 'Wednesday', open: true,  from: '08:00', to: '17:00' },
+  { id: 'thu', label: 'Thursday',  open: true,  from: '08:00', to: '17:00' },
+  { id: 'fri', label: 'Friday',    open: true,  from: '08:00', to: '17:00' },
+  { id: 'sat', label: 'Saturday',  open: false, from: '09:00', to: '14:00' },
+  { id: 'sun', label: 'Sunday',    open: false, from: '09:00', to: '14:00' }
+];
+
+function buildHoursTable() {
+  const table = document.getElementById('hoursTable');
+  DAYS.forEach(day => {
+    const row = document.createElement('div');
+    row.className = 'hours-row';
+    row.innerHTML = `
+      <div class="hours-day">${day.label}</div>
+      <div class="toggle-wrap">
+        <label class="toggle" title="${day.label} open/closed">
+          <input type="checkbox" id="open_${day.id}" ${day.open ? 'checked' : ''}
+                 onchange="toggleDay('${day.id}')" />
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <div class="hours-times${day.open ? '' : ' hidden'}" id="times_${day.id}">
+        <input type="time" id="from_${day.id}" value="${day.from}" title="Open time" />
+        <span>–</span>
+        <input type="time" id="to_${day.id}" value="${day.to}" title="Close time" />
+      </div>
+    `;
+    table.appendChild(row);
+  });
+}
+buildHoursTable();
+
+function toggleDay(id) {
+  const cb = document.getElementById(`open_${id}`);
+  const times = document.getElementById(`times_${id}`);
+  times.classList.toggle('hidden', !cb.checked);
+}
+
+function getHoursSummary() {
+  return DAYS.map(day => {
+    const cb = document.getElementById(`open_${day.id}`);
+    if (!cb.checked) return `${day.label}: Closed`;
+    const from = document.getElementById(`from_${day.id}`).value;
+    const to   = document.getElementById(`to_${day.id}`).value;
+    return `${day.label}: ${fmt12(from)} – ${fmt12(to)}`;
+  }).join('\n');
+}
+
+function fmt12(t) {
+  if (!t) return '';
+  const [h, m] = t.split(':');
+  const hh = parseInt(h);
+  const ampm = hh >= 12 ? 'PM' : 'AM';
+  const hr = hh % 12 || 12;
+  return `${hr}:${m} ${ampm}`;
+}
+
+// ── Conditional visibility ─────────────────────────────────────────────
+function togglePricing() {
+  const val = document.querySelector('input[name="pricing"]:checked')?.value || '';
+  const show = val.startsWith('Yes');
+  document.getElementById('pricingListWrap').classList.toggle('show', show);
+}
+
+function toggleBooking() {
+  const val = document.querySelector('input[name="booking"]:checked')?.value || '';
+  document.getElementById('bookingLinkWrap').classList.toggle('show', val === 'Yes — booking link');
+}
+
+function toggleLogo() {
+  const val = document.querySelector('input[name="logo"]:checked')?.value || '';
+  document.getElementById('logoUrlWrap').classList.toggle('show', val === 'Yes — URL provided');
+}
+
+function selectTier() {
+  document.querySelectorAll('.tier-card').forEach(card => {
+    const radio = card.querySelector('input[type="radio"]');
+    card.classList.toggle('selected', radio.checked);
+  });
+}
+
+// ── Color picker sync ──────────────────────────────────────────────────
+function syncColor(source) {
+  if (source === 'picker') {
+    document.getElementById('brandColor').value = document.getElementById('brandColorPicker').value;
+  } else {
+    const val = document.getElementById('brandColor').value.trim();
+    if (/^#[0-9a-fA-F]{6}$/.test(val)) {
+      document.getElementById('brandColorPicker').value = val;
+    }
+  }
+}
+
+// ── Step navigation ────────────────────────────────────────────────────
+let currentStep = 1;
+const TOTAL_STEPS = 5;
+
+function updateProgress(step) {
+  document.querySelectorAll('.step-node').forEach((node, i) => {
+    const n = i + 1;
+    node.classList.remove('active', 'done');
+    if (n === step) node.classList.add('active');
+    else if (n < step) node.classList.add('done');
+  });
+
+  // Line width: between node centers
+  const nodes = document.querySelectorAll('.step-node');
+  const stepsEl = document.getElementById('progressSteps');
+  const lineEl = document.getElementById('progressLine');
+  const stepsRect = stepsEl.getBoundingClientRect();
+
+  if (step === 1) {
+    lineEl.style.width = '0%';
+  } else {
+    // Calculate pixel position of the current active node center relative to container
+    const targetNode = nodes[step - 1];
+    const targetRect = targetNode.getBoundingClientRect();
+    const targetCenter = targetRect.left + targetRect.width / 2 - stepsRect.left;
+    const firstNode = nodes[0];
+    const firstRect = firstNode.getBoundingClientRect();
+    const firstCenter = firstRect.left + firstRect.width / 2 - stepsRect.left;
+    const containerW = stepsRect.width;
+    lineEl.style.left = firstCenter + 'px';
+    lineEl.style.width = (targetCenter - firstCenter) + 'px';
+  }
+}
+
+function showStep(step) {
+  document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
+  const panel = document.getElementById(`step-${step}`);
+  if (panel) panel.classList.add('active');
+  updateProgress(step);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── Validation ─────────────────────────────────────────────────────────
+function validateStep(step) {
+  let valid = true;
+
+  if (step === 1) {
+    const fields = [
+      { id: 'bizName',     check: v => v.trim() !== '' },
+      { id: 'contactName', check: v => v.trim() !== '' },
+      { id: 'email',       check: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v) },
+      { id: 'phone',       check: v => v.trim() !== '' },
+      { id: 'address',     check: v => v.trim() !== '' },
+      { id: 'bizType',     check: v => v !== '' },
+      { id: 'bizDesc',     check: v => v.trim() !== '' }
+    ];
+    fields.forEach(f => {
+      const el = document.getElementById(f.id);
+      const fg = el.closest('.form-group');
+      const ok = f.check(el.value);
+      fg.classList.toggle('has-error', !ok);
+      el.classList.toggle('invalid', !ok);
+      if (!ok) valid = false;
+    });
+  }
+
+  if (step === 2) {
+    // Services
+    const svcEl = document.getElementById('services');
+    const svcFg = svcEl.closest('.form-group');
+    const svcOk = svcEl.value.trim() !== '';
+    svcFg.classList.toggle('has-error', !svcOk);
+    svcEl.classList.toggle('invalid', !svcOk);
+    if (!svcOk) valid = false;
+
+    // Pricing radio
+    const pricingOk = !!document.querySelector('input[name="pricing"]:checked');
+    document.getElementById('pricingErr').style.display = pricingOk ? 'none' : 'block';
+    if (!pricingOk) valid = false;
+
+    // Booking radio
+    const bookingOk = !!document.querySelector('input[name="booking"]:checked');
+    document.getElementById('bookingErr').style.display = bookingOk ? 'none' : 'block';
+    if (!bookingOk) valid = false;
+  }
+
+  if (step === 3) {
+    // Q1
+    const q1El = document.getElementById('q1');
+    const q1Fg = q1El.closest('.form-group');
+    const q1Ok = q1El.value.trim() !== '';
+    q1Fg.classList.toggle('has-error', !q1Ok);
+    q1El.classList.toggle('invalid', !q1Ok);
+    if (!q1Ok) valid = false;
+
+    // Tone
+    const toneEl = document.getElementById('tone');
+    const toneFg = toneEl.closest('.form-group');
+    const toneOk = toneEl.value !== '';
+    toneFg.classList.toggle('has-error', !toneOk);
+    toneEl.classList.toggle('invalid', !toneOk);
+    if (!toneOk) valid = false;
+
+    // Escalation
+    const escEl = document.getElementById('escalation');
+    const escFg = escEl.closest('.form-group');
+    const escOk = escEl.value !== '';
+    escFg.classList.toggle('has-error', !escOk);
+    escEl.classList.toggle('invalid', !escOk);
+    if (!escOk) valid = false;
+  }
+
+  if (step === 4) {
+    // Tier
+    const tierOk = !!document.querySelector('input[name="tier"]:checked');
+    document.getElementById('tierErr').style.display = tierOk ? 'none' : 'block';
+    if (!tierOk) valid = false;
+
+    // Brand color
+    const bcEl = document.getElementById('brandColor');
+    const bcFg = bcEl.closest('.form-group');
+    const bcOk = bcEl.value.trim() !== '';
+    bcFg.classList.toggle('has-error', !bcOk);
+    bcEl.classList.toggle('invalid', !bcOk);
+    if (!bcOk) valid = false;
+
+    // Logo
+    const logoOk = !!document.querySelector('input[name="logo"]:checked');
+    document.getElementById('logoErr').style.display = logoOk ? 'none' : 'block';
+    if (!logoOk) valid = false;
+  }
+
+  return valid;
+}
+
+function goNext(step) {
+  const errBanner = document.getElementById(`err-${step}`);
+  if (!validateStep(step)) {
+    errBanner.classList.add('show');
+    // scroll to first invalid
+    const firstInvalid = document.querySelector(`#step-${step} .invalid, #step-${step} .has-error input`);
+    if (firstInvalid) firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  errBanner.classList.remove('show');
+
+  if (step === 4) {
+    buildReview();
+  }
+
+  currentStep = step + 1;
+  showStep(currentStep);
+}
+
+function goBack(step) {
+  currentStep = step - 1;
+  showStep(currentStep);
+}
+
+// ── Build Review Summary ───────────────────────────────────────────────
+function rv(label, value) {
+  if (!value || value.toString().trim() === '') return '';
+  return `<div class="review-row"><div class="review-key">${label}</div><div class="review-val">${value.replace(/\n/g, '<br />')}</div></div>`;
+}
+
+function buildReview() {
+  const hours = getHoursSummary();
+  const pricingVal = document.querySelector('input[name="pricing"]:checked')?.value || '';
+  const bookingVal = document.querySelector('input[name="booking"]:checked')?.value || '';
+  const logoVal    = document.querySelector('input[name="logo"]:checked')?.value || '';
+  const tierVal    = document.querySelector('input[name="tier"]:checked')?.value || '';
+
+  const html = `
+    <div class="review-section">
+      <div class="review-section-title">Business Basics</div>
+      ${rv('Business Name',    document.getElementById('bizName').value)}
+      ${rv('Contact',          document.getElementById('contactName').value)}
+      ${rv('Email',            document.getElementById('email').value)}
+      ${rv('Phone',            document.getElementById('phone').value)}
+      ${rv('Website',          document.getElementById('website').value)}
+      ${rv('Address',          document.getElementById('address').value)}
+      ${rv('Business Type',    document.getElementById('bizType').value)}
+      ${rv('Description',      document.getElementById('bizDesc').value)}
+    </div>
+
+    <div class="review-section">
+      <div class="review-section-title">Hours, Services &amp; Pricing</div>
+      ${rv('Business Hours',   hours)}
+      ${rv('Services',         document.getElementById('services').value)}
+      ${rv('Pricing Option',   pricingVal)}
+      ${pricingVal.startsWith('Yes') ? rv('Price List', document.getElementById('pricingList').value) : ''}
+      ${rv('Booking',          bookingVal)}
+      ${bookingVal === 'Yes — booking link' ? rv('Booking Link', document.getElementById('bookingLink').value) : ''}
+    </div>
+
+    <div class="review-section">
+      <div class="review-section-title">Chat Flow &amp; Tone</div>
+      ${rv('Q1', document.getElementById('q1').value)}
+      ${rv('Q2', document.getElementById('q2').value)}
+      ${rv('Q3', document.getElementById('q3').value)}
+      ${rv('Q4', document.getElementById('q4').value)}
+      ${rv('Q5', document.getElementById('q5').value)}
+      ${rv('Tone',             document.getElementById('tone').value)}
+      ${rv('Escalation',       document.getElementById('escalation').value)}
+      ${rv('Chatbot Phone',    document.getElementById('chatPhone').value)}
+      ${rv('Chatbot Email',    document.getElementById('chatEmail').value)}
+      ${rv('Never Discuss',    document.getElementById('neverDiscuss').value)}
+      ${rv('Always Mention',   document.getElementById('alwaysMention').value)}
+    </div>
+
+    <div class="review-section">
+      <div class="review-section-title">Design &amp; Tier</div>
+      ${rv('Tier',             tierVal)}
+      ${rv('Brand Color',      document.getElementById('brandColor').value)}
+      ${rv('Logo',             logoVal)}
+      ${logoVal === 'Yes — URL provided' ? rv('Logo URL', document.getElementById('logoUrl').value) : ''}
+      ${rv('Design Inspiration', document.getElementById('designInspiration').value)}
+      ${rv('Notes',            document.getElementById('notes').value)}
+    </div>
+  `;
+
+  document.getElementById('reviewContent').innerHTML = html;
+}
+
+// ── Populate hidden fields & handle submit ─────────────────────────────
+document.getElementById('submitForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const bizName = document.getElementById('bizName').value;
+  document.getElementById('sub_subject').value = `New Chatbot Build Request — ${bizName}`;
+  document.getElementById('sub_bizName').value          = bizName;
+  document.getElementById('sub_contactName').value      = document.getElementById('contactName').value;
+  document.getElementById('sub_email').value            = document.getElementById('email').value;
+  document.getElementById('sub_phone').value            = document.getElementById('phone').value;
+  document.getElementById('sub_website').value          = document.getElementById('website').value;
+  document.getElementById('sub_address').value          = document.getElementById('address').value;
+  document.getElementById('sub_bizType').value          = document.getElementById('bizType').value;
+  document.getElementById('sub_bizDesc').value          = document.getElementById('bizDesc').value;
+  document.getElementById('sub_hours').value            = getHoursSummary();
+  document.getElementById('sub_services').value         = document.getElementById('services').value;
+  document.getElementById('sub_pricing').value          = document.querySelector('input[name="pricing"]:checked')?.value || '';
+  document.getElementById('sub_pricingList').value      = document.getElementById('pricingList').value;
+  document.getElementById('sub_booking').value          = document.querySelector('input[name="booking"]:checked')?.value || '';
+  document.getElementById('sub_bookingLink').value      = document.getElementById('bookingLink').value;
+  document.getElementById('sub_q1').value               = document.getElementById('q1').value;
+  document.getElementById('sub_q2').value               = document.getElementById('q2').value;
+  document.getElementById('sub_q3').value               = document.getElementById('q3').value;
+  document.getElementById('sub_q4').value               = document.getElementById('q4').value;
+  document.getElementById('sub_q5').value               = document.getElementById('q5').value;
+  document.getElementById('sub_tone').value             = document.getElementById('tone').value;
+  document.getElementById('sub_escalation').value       = document.getElementById('escalation').value;
+  document.getElementById('sub_chatPhone').value        = document.getElementById('chatPhone').value;
+  document.getElementById('sub_chatEmail').value        = document.getElementById('chatEmail').value;
+  document.getElementById('sub_neverDiscuss').value     = document.getElementById('neverDiscuss').value;
+  document.getElementById('sub_alwaysMention').value    = document.getElementById('alwaysMention').value;
+  document.getElementById('sub_tier').value             = document.querySelector('input[name="tier"]:checked')?.value || '';
+  document.getElementById('sub_brandColor').value       = document.getElementById('brandColor').value;
+  document.getElementById('sub_logo').value             = document.querySelector('input[name="logo"]:checked')?.value || '';
+  document.getElementById('sub_logoUrl').value          = document.getElementById('logoUrl').value;
+  document.getElementById('sub_designInspiration').value = document.getElementById('designInspiration').value;
+  document.getElementById('sub_notes').value            = document.getElementById('notes').value;
+
+  const btn = document.getElementById('submitBtn');
+  const orig = btn.innerHTML;
+  btn.innerHTML = 'Submitting…';
+  btn.disabled = true;
+
+  try {
+    const res  = await fetch('https://api.web3forms.com/submit', {
+      method: 'POST',
+      body: new FormData(this),
+      headers: { 'Accept': 'application/json' }
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      document.getElementById('formCard').style.display = 'none';
+      document.getElementById('successPanel').style.display = 'block';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      btn.innerHTML = 'Something went wrong — please try again';
+      btn.disabled = false;
+    }
+  } catch {
+    btn.innerHTML = 'Something went wrong — please try again';
+    btn.disabled = false;
+  }
+});
+
+// Initial progress render
+updateProgress(1);
+</script>
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cb467e41d6564261840e66b176d356a9"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

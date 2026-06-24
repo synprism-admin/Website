@@ -1,0 +1,8 @@
+name = "website"
+main = "worker.js"
+compatibility_date = "2024-12-01"
+account_id = "57281dd7024e9e7f682fad7f2d904e46"
+
+[assets]
+directory = "."
+binding = "ASSETS"
