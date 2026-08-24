@@ -459,7 +459,7 @@
     .work-header .section-sub { margin: 0 auto; }
     .work-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
       gap: 24px;
     }
     .demo-card {
@@ -498,6 +498,12 @@
     .demo-card-top.well::before { background: linear-gradient(135deg, #7b2fff, transparent); }
     .demo-card-top.interior { background: linear-gradient(135deg, #0a1820, #1a2830); }
     .demo-card-top.interior::before { background: linear-gradient(135deg, #ff00cc, transparent); }
+    .demo-card-top.it      { background: linear-gradient(135deg, #080f1a, #0d1f38); }
+    .demo-card-top.it::before { background: linear-gradient(135deg, #00d4ff, #7b2fff); opacity: 0.2; }
+    .demo-card-top.vintage { background: linear-gradient(135deg, #1a0f20, #2a1535); }
+    .demo-card-top.vintage::before { background: linear-gradient(135deg, #a06fff, #ff00cc); opacity: 0.18; }
+    .demo-card-top.saas    { background: linear-gradient(135deg, #0d0818, #1a1030); }
+    .demo-card-top.saas::before { background: linear-gradient(135deg, #7b2fff, #ff00cc); opacity: 0.2; }
     .demo-card-body { padding: 24px; }
     .demo-card-industry {
       font-size: 0.72rem;
@@ -886,7 +892,7 @@
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      .work-grid { grid-template-columns: 1fr 1fr; }
+      .work-grid { grid-template-columns: 1fr; }
       .steps-row { grid-template-columns: 1fr 1fr; gap: 40px; }
       .steps-row::before { display: none; }
       .pricing-grid { grid-template-columns: 1fr; }
@@ -1001,38 +1007,48 @@
   <div class="container">
     <div class="work-header fade-up">
       <div class="tag">Real Sites We've Built</div>
-      <h2 class="section-title">See the work before you commit to anything.</h2>
-      <p class="section-sub">These are real demo sites — full, production-quality builds across different local industries. Click through and see exactly what you'd be getting.</p>
+      <h2 class="section-title">See the quality. Then decide.</h2>
+      <p class="section-sub">These are production-quality sites we've delivered — across industries, business types, and budgets. Click through any of them and see exactly what you'd be getting.</p>
     </div>
 
     <div class="work-grid">
-      <a href="https://demos.synprism.io/baoautorepair/" target="_blank" rel="noopener" class="demo-card fade-up">
-        <div class="demo-card-top auto">🔧</div>
-        <div class="demo-card-body">
-          <div class="demo-card-industry">Auto Repair · Knoxville, TN</div>
-          <div class="demo-card-name">BAO Auto Repair</div>
-          <div class="demo-card-desc">Full multi-page site with services, contact form, maps integration, and Google-ready local SEO. Live in 24 hours.</div>
-          <div class="demo-card-link">View Live Demo ↗</div>
-        </div>
-      </a>
-
-      <a href="https://demos.synprism.io/diamondwelldrilling/" target="_blank" rel="noopener" class="demo-card fade-up">
-        <div class="demo-card-top well">💧</div>
-        <div class="demo-card-body">
-          <div class="demo-card-industry">Well Drilling · Auburn, CA</div>
-          <div class="demo-card-name">Diamond Well Drilling</div>
-          <div class="demo-card-desc">Multi-page site covering well drilling, pump service, water testing, and filtration — built for a highly specialized trade.</div>
-          <div class="demo-card-link">View Live Demo ↗</div>
-        </div>
-      </a>
-
       <a href="https://demos.synprism.io/jtinteriors/" target="_blank" rel="noopener" class="demo-card fade-up">
         <div class="demo-card-top interior">🏠</div>
         <div class="demo-card-body">
-          <div class="demo-card-industry">Interior Remodeling · Vancouver, WA</div>
-          <div class="demo-card-name">JT Interiors Remodeling</div>
-          <div class="demo-card-desc">Premium multi-page site with kitchen, bath, whole-home, and smart home sections. Category navigation, service grid, photo gallery.</div>
-          <div class="demo-card-link">View Live Demo ↗</div>
+          <div class="demo-card-industry">Interior Remodeling</div>
+          <div class="demo-card-name">Remodeling Contractor</div>
+          <div class="demo-card-desc">Multi-page site with kitchen, bath, whole-home, and smart home sections. Service category navigation, photo gallery, contact form.</div>
+          <div class="demo-card-link">View Live Site ↗</div>
+        </div>
+      </a>
+
+      <a href="https://metricnetworks.net/" target="_blank" rel="noopener" class="demo-card fade-up">
+        <div class="demo-card-top it">💻</div>
+        <div class="demo-card-body">
+          <div class="demo-card-industry">IT Services &amp; Managed Networks</div>
+          <div class="demo-card-name">IT Service Provider</div>
+          <div class="demo-card-desc">Professional multi-page site for an enterprise IT firm — services breakdown, consultation form, local trust signals, and a live chat integration.</div>
+          <div class="demo-card-link">View Live Site ↗</div>
+        </div>
+      </a>
+
+      <a href="https://broodandco.com/" target="_blank" rel="noopener" class="demo-card fade-up">
+        <div class="demo-card-top vintage">🏺</div>
+        <div class="demo-card-body">
+          <div class="demo-card-industry">Vintage &amp; Collectibles Retail</div>
+          <div class="demo-card-name">Vintage Goods Shop</div>
+          <div class="demo-card-desc">Brand-forward site for a vintage and antique seller with live auction integration, social channels, and a strong storytelling-first layout.</div>
+          <div class="demo-card-link">View Live Site ↗</div>
+        </div>
+      </a>
+
+      <a href="https://gethaully.app/" target="_blank" rel="noopener" class="demo-card fade-up">
+        <div class="demo-card-top saas">📦</div>
+        <div class="demo-card-body">
+          <div class="demo-card-industry">SaaS / Mobile App</div>
+          <div class="demo-card-name">AI-Powered Reseller App</div>
+          <div class="demo-card-desc">Clean app landing page for an AI inventory tool — feature walkthrough, App Store CTA, and a no-jargon pitch aimed at resellers and side-hustlers.</div>
+          <div class="demo-card-link">View Live Site ↗</div>
         </div>
       </a>
     </div>
@@ -1171,15 +1187,15 @@
   <div class="container">
     <div class="industries-header fade-up">
       <div class="tag">Industries We Serve</div>
-      <h2 class="section-title">We know your trade.<br /><span class="gradient-text">And your customers.</span></h2>
-      <p class="section-sub">We specialize in local service businesses. Each industry page shows real demo work and explains exactly what we build for that trade.</p>
+      <h2 class="section-title">Whatever your business does,<br /><span class="gradient-text">we know how to present it.</span></h2>
+      <p class="section-sub">We've built for local trades, retailers, service businesses, tech companies, and everything in between. If your customers search for you online, we can help them find you.</p>
     </div>
 
     <div class="industry-grid">
       <a href="/industries/auto-repair/" class="industry-card fade-up">
         <span class="industry-icon">🔧</span>
         <div class="industry-name">Auto Repair &amp; Mechanics</div>
-        <div class="industry-desc">Shops that need to show up when someone Googles "mechanic near me." We build trust, display your services, and make it easy to call.</div>
+        <div class="industry-desc">Shops that need to show up when someone Googles "mechanic near me." Services, contact, maps, click-to-call — built to convert.</div>
         <div class="industry-link">See auto repair sites →</div>
       </a>
 
@@ -1193,8 +1209,29 @@
       <a href="/industries/well-drilling-water-services/" class="industry-card fade-up">
         <span class="industry-icon">💧</span>
         <div class="industry-name">Well Drilling &amp; Water Services</div>
-        <div class="industry-desc">Highly specialized trade, underserved online. We build sites that explain your services clearly and convert rural property owners.</div>
+        <div class="industry-desc">Highly specialized trade, underserved online. We build sites that explain what you do clearly and convert rural property owners.</div>
         <div class="industry-link">See water service sites →</div>
+      </a>
+
+      <a href="/website-questionnaire" class="industry-card fade-up">
+        <span class="industry-icon">💻</span>
+        <div class="industry-name">IT &amp; Managed Services</div>
+        <div class="industry-desc">Network providers, MSPs, IT consultants. Professional, trust-forward sites with service breakdowns and consultation forms that close.</div>
+        <div class="industry-link">Get a quote →</div>
+      </a>
+
+      <a href="/website-questionnaire" class="industry-card fade-up">
+        <span class="industry-icon">🛍️</span>
+        <div class="industry-name">Retail &amp; E-Commerce</div>
+        <div class="industry-desc">Boutiques, vintage sellers, specialty shops. Brand storytelling, product showcasing, and social/marketplace integrations built in.</div>
+        <div class="industry-link">Get a quote →</div>
+      </a>
+
+      <a href="/website-questionnaire" class="industry-card fade-up">
+        <span class="industry-icon">✨</span>
+        <div class="industry-name">Any Local Service Business</div>
+        <div class="industry-desc">Don't see your industry? Good — we build for anyone who needs customers to find them online. Fill out the form and we'll figure it out together.</div>
+        <div class="industry-link">Tell us about your business →</div>
       </a>
     </div>
   </div>
