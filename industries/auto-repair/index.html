@@ -11,13 +11,13 @@
     gtag('js', new Date());
     gtag('config', 'G-71XKLW8QMF');
   </script>
-  <title>Synprism — Custom Websites for Local Businesses, Built in a Day</title>
-  <meta name="description" content="Synprism builds professional websites for local service businesses in 24 hours — auto repair shops, contractors, home services, and more. Affordable, fast, and built to get you found on Google." />
+  <title>Auto Repair Shop Websites — Built in 24 Hours | Synprism</title>
+  <meta name="description" content="Get a professional website for your auto repair shop or mechanic shop — built in 24 hours, optimized for local search, and priced for small businesses. Synprism serves Tennessee and beyond." />
   <meta name="robots" content="index, follow" />
   <meta name="author" content="Synprism" />
   <meta name="theme-color" content="#080b18" />
-  <link rel="canonical" href="https://synprism.io/" />
-  <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+  <meta name="keywords" content="website for auto repair shop, mechanic shop website, auto repair website design, local mechanic website, tire shop website, mobile mechanic website" />
+  <link rel="canonical" href="https://synprism.io/industries/auto-repair/" />
 
   <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
@@ -25,10 +25,10 @@
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
 
   <!-- Open Graph -->
-  <meta property="og:title" content="Synprism — Custom Websites for Local Businesses, Built in a Day" />
-  <meta property="og:description" content="Your business, online in 24 hours. We build professional websites for local service businesses — auto repair, contractors, home services. Priced to make sense." />
+  <meta property="og:title" content="Auto Repair Shop Websites — Built in 24 Hours | Synprism" />
+  <meta property="og:description" content="Professional websites for auto repair shops and mechanic shops — fast, affordable, and built to rank on Google when someone searches mechanic near me." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://synprism.io/" />
+  <meta property="og:url" content="https://synprism.io/industries/auto-repair/" />
   <meta property="og:image" content="https://synprism.io/og-image.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -38,8 +38,8 @@
   <!-- Twitter / X Card -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:site" content="@synprism" />
-  <meta name="twitter:title" content="Synprism — Custom Websites for Local Businesses, Built in a Day" />
-  <meta name="twitter:description" content="Your business, online in 24 hours. Professional websites for local service businesses, priced to make sense." />
+  <meta name="twitter:title" content="Auto Repair Shop Websites — Built in 24 Hours | Synprism" />
+  <meta name="twitter:description" content="Professional websites for auto repair shops and mechanic shops — fast, affordable, built to rank locally." />
   <meta name="twitter:image" content="https://synprism.io/og-image.jpg" />
 
   <!-- JSON-LD Structured Data -->
@@ -56,7 +56,7 @@
           "@type": "ImageObject",
           "url": "https://synprism.io/logo.jpg"
         },
-        "description": "Synprism builds professional websites for local service businesses in 24 hours — auto repair shops, contractors, home services, and more.",
+        "description": "Synprism builds professional websites for auto repair shops, mechanic shops, and tire shops — optimized for local search in Tennessee and beyond.",
         "areaServed": {
           "@type": "State",
           "name": "Tennessee"
@@ -85,12 +85,39 @@
       },
       {
         "@type": "WebPage",
-        "@id": "https://synprism.io/#webpage",
-        "url": "https://synprism.io",
-        "name": "Synprism — Custom Websites for Local Businesses, Built in a Day",
-        "description": "Your business, online in 24 hours. Professional websites for local service businesses — affordable, fast, built to get you found.",
+        "@id": "https://synprism.io/industries/auto-repair/#webpage",
+        "url": "https://synprism.io/industries/auto-repair/",
+        "name": "Auto Repair Shop Websites — Built in 24 Hours | Synprism",
+        "description": "Get a professional website for your auto repair shop or mechanic shop — built in 24 hours, optimized for local search.",
         "isPartOf": { "@id": "https://synprism.io/#website" },
         "about": { "@id": "https://synprism.io/#organization" }
+      },
+      {
+        "@type": "LocalBusiness",
+        "@id": "https://synprism.io/industries/auto-repair/#service",
+        "name": "Auto Repair Shop Website Design — Synprism",
+        "description": "Synprism designs and builds websites specifically for auto repair shops, mobile mechanics, and tire shops in Tennessee. Sites are delivered in 24 hours, mobile-first, and optimized for local SEO.",
+        "url": "https://synprism.io/industries/auto-repair/",
+        "provider": { "@id": "https://synprism.io/#organization" },
+        "serviceType": "Web Design for Auto Repair Shops",
+        "areaServed": [
+          {
+            "@type": "State",
+            "name": "Tennessee"
+          },
+          {
+            "@type": "City",
+            "name": "Knoxville",
+            "containedInPlace": {
+              "@type": "State",
+              "name": "Tennessee"
+            }
+          }
+        ],
+        "audience": {
+          "@type": "Audience",
+          "audienceType": "Auto Repair Shops, Mechanic Shops, Tire Shops, Mobile Mechanics"
+        }
       }
     ]
   }
@@ -100,7 +127,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-  <link rel="preload" as="image" href="logo-mark.jpg" fetchpriority="high" />
+  <link rel="preload" as="image" href="/logo-mark.jpg" fetchpriority="high" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
@@ -238,6 +265,7 @@
       transition: color 0.2s;
     }
     .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--white); }
     .nav-cta {
       background: linear-gradient(135deg, var(--cyan), var(--purple));
       color: var(--white) !important;
@@ -405,16 +433,16 @@
     }
     .hero-headline {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(2.6rem, 6vw, 4.8rem);
+      font-size: clamp(2.4rem, 5.5vw, 4.4rem);
       font-weight: 800;
-      line-height: 1.06;
+      line-height: 1.08;
       margin-bottom: 24px;
       letter-spacing: -0.02em;
     }
     .hero-sub {
       font-size: 1.2rem;
       color: var(--gray-400);
-      max-width: 600px;
+      max-width: 620px;
       margin: 0 auto 40px;
       line-height: 1.75;
     }
@@ -434,9 +462,7 @@
       padding-top: 48px;
       border-top: 1px solid rgba(255,255,255,0.07);
     }
-    .proof-item {
-      text-align: center;
-    }
+    .proof-item { text-align: center; }
     .proof-number {
       font-family: 'Space Grotesk', sans-serif;
       font-size: 2rem;
@@ -449,134 +475,226 @@
     }
     .proof-label { font-size: 0.8rem; color: var(--gray-400); font-weight: 500; }
 
-    /* ── WORK GALLERY ────────────────────────────────────────────── */
-    #work {
+    /* ── PAIN POINTS ─────────────────────────────────────────────── */
+    #pain-points {
       position: relative;
       z-index: 1;
       padding: 100px 0;
     }
-    .work-header { text-align: center; margin-bottom: 56px; }
-    .work-header .section-sub { margin: 0 auto; }
-    .work-grid {
+    .pain-header { text-align: center; margin-bottom: 56px; }
+    .pain-header .section-title { max-width: 760px; margin: 0 auto 16px; }
+    .pain-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 24px;
     }
-    .demo-card {
+    .pain-card {
       background: var(--bg2);
       border: 1px solid rgba(255,255,255,0.08);
       border-radius: var(--radius);
-      overflow: hidden;
-      text-decoration: none;
-      color: var(--white);
-      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-      display: block;
-    }
-    .demo-card:hover {
-      transform: translateY(-5px);
-      border-color: rgba(0,212,255,0.35);
-      box-shadow: 0 16px 48px rgba(0,212,255,0.12);
-    }
-    .demo-card-top {
-      height: 180px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3.5rem;
+      padding: 32px;
+      transition: border-color 0.2s, transform 0.2s;
       position: relative;
       overflow: hidden;
     }
-    .demo-card-top::before {
+    .pain-card::before {
       content: '';
       position: absolute;
-      inset: 0;
-      opacity: 0.15;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
     }
-    .demo-card-top.auto    { background: linear-gradient(135deg, #0a1628, #1a2840); }
-    .demo-card-top.auto::before { background: linear-gradient(135deg, #00d4ff, transparent); }
-    .demo-card-top.well    { background: linear-gradient(135deg, #0a1a28, #102030); }
-    .demo-card-top.well::before { background: linear-gradient(135deg, #7b2fff, transparent); }
-    .demo-card-top.interior { background: linear-gradient(135deg, #0a1820, #1a2830); }
-    .demo-card-top.interior::before { background: linear-gradient(135deg, #ff00cc, transparent); }
-    .demo-card-body { padding: 24px; }
-    .demo-card-industry {
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 8px;
+    .pain-card:hover {
+      border-color: rgba(0,212,255,0.25);
+      transform: translateY(-4px);
     }
-    .demo-card-name {
+    .pain-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+    .pain-stat {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.25rem;
-      font-weight: 700;
-      margin-bottom: 8px;
+      font-size: 2.8rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--cyan), var(--purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      margin-bottom: 12px;
     }
-    .demo-card-desc { font-size: 0.88rem; color: var(--gray-400); line-height: 1.6; margin-bottom: 16px; }
-    .demo-card-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: var(--cyan);
+    .pain-text {
+      font-size: 0.95rem;
+      color: var(--gray-100);
+      line-height: 1.7;
     }
-    .work-cta { text-align: center; margin-top: 48px; }
 
-    /* ── HOW IT WORKS ────────────────────────────────────────────── */
-    #how {
+    /* ── DEMO SPOTLIGHT ──────────────────────────────────────────── */
+    #demo-spotlight {
       position: relative;
       z-index: 1;
       padding: 100px 0;
     }
-    .how-header { text-align: center; margin-bottom: 60px; }
-    .how-header .section-sub { margin: 0 auto; }
-    .steps-row {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-      position: relative;
+    .demo-spotlight-header { text-align: center; margin-bottom: 56px; }
+    .demo-spotlight-header .section-sub { margin: 0 auto; }
+    .demo-feature-card {
+      background: var(--bg2);
+      border: 1px solid rgba(0,212,255,0.25);
+      border-radius: var(--radius);
+      overflow: hidden;
+      max-width: 900px;
+      margin: 0 auto;
+      box-shadow: 0 0 60px rgba(0,212,255,0.07);
     }
-    .steps-row::before {
+    .demo-feature-top {
+      background: linear-gradient(135deg, #0a1628, #1a2840);
+      padding: 60px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .demo-feature-top::before {
       content: '';
       position: absolute;
-      top: 40px;
-      left: calc(12.5% + 40px);
-      right: calc(12.5% + 40px);
-      height: 1px;
-      background: linear-gradient(90deg, var(--cyan), var(--purple), var(--magenta), var(--purple));
-      opacity: 0.3;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,212,255,0.08), transparent 60%);
     }
-    .step {
-      text-align: center;
-      padding: 0 20px;
-      position: relative;
-    }
-    .step-num {
-      width: 80px; height: 80px;
-      border-radius: 50%;
-      margin: 0 auto 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 800;
+    .demo-feature-emoji {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 20px;
       position: relative;
       z-index: 1;
     }
-    .step:nth-child(1) .step-num { background: linear-gradient(135deg, rgba(0,212,255,0.15), rgba(0,212,255,0.08)); border: 1px solid rgba(0,212,255,0.4); color: var(--cyan); }
-    .step:nth-child(2) .step-num { background: linear-gradient(135deg, rgba(123,47,255,0.15), rgba(123,47,255,0.08)); border: 1px solid rgba(123,47,255,0.4); color: #a06fff; }
-    .step:nth-child(3) .step-num { background: linear-gradient(135deg, rgba(255,0,204,0.15), rgba(255,0,204,0.08)); border: 1px solid rgba(255,0,204,0.4); color: var(--magenta); }
-    .step:nth-child(4) .step-num { background: linear-gradient(135deg, rgba(0,212,255,0.1), rgba(123,47,255,0.1)); border: 1px solid rgba(0,212,255,0.3); color: var(--cyan); }
-    .step-title {
+    .demo-feature-title {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      margin-bottom: 10px;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 1;
     }
-    .step-desc { font-size: 0.88rem; color: var(--gray-400); line-height: 1.65; }
+    .demo-feature-location {
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      position: relative;
+      z-index: 1;
+      margin-bottom: 28px;
+    }
+    .demo-feature-btn {
+      position: relative;
+      z-index: 1;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 100%);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.05rem;
+      padding: 16px 36px;
+      border-radius: var(--radius-sm);
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 28px rgba(0,212,255,0.3);
+    }
+    .demo-feature-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 40px rgba(0,212,255,0.45);
+    }
+    .demo-feature-body {
+      padding: 40px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .demo-feature-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 16px;
+    }
+    .demo-includes-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .demo-includes-list li {
+      font-size: 0.92rem;
+      color: var(--gray-100);
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .demo-includes-list li::before {
+      content: '✓';
+      color: var(--cyan);
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .demo-quote-box {
+      background: rgba(0,212,255,0.05);
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: var(--radius-sm);
+      padding: 24px;
+    }
+    .demo-quote-text {
+      font-size: 1rem;
+      color: var(--gray-100);
+      line-height: 1.7;
+      font-style: italic;
+      margin-bottom: 16px;
+    }
+    .demo-quote-sub {
+      font-size: 0.82rem;
+      color: var(--gray-400);
+      line-height: 1.6;
+    }
+
+    /* ── WHAT WE BUILD ───────────────────────────────────────────── */
+    #what-we-build {
+      position: relative;
+      z-index: 1;
+      padding: 100px 0;
+    }
+    .build-header { text-align: center; margin-bottom: 56px; }
+    .build-header .section-sub { margin: 0 auto; }
+    .build-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .build-card {
+      background: var(--bg2);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .build-card:hover {
+      border-color: rgba(0,212,255,0.2);
+      transform: translateY(-3px);
+    }
+    .build-icon {
+      font-size: 1.8rem;
+      margin-bottom: 14px;
+      display: block;
+    }
+    .build-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .build-desc { font-size: 0.85rem; color: var(--gray-400); line-height: 1.6; }
 
     /* ── PRICING ─────────────────────────────────────────────────── */
     #pricing {
@@ -672,154 +790,6 @@
       color: var(--gray-400);
     }
 
-    /* ── INDUSTRIES ──────────────────────────────────────────────── */
-    #industries {
-      position: relative;
-      z-index: 1;
-      padding: 100px 0;
-    }
-    .industries-header { text-align: center; margin-bottom: 56px; }
-    .industries-header .section-sub { margin: 0 auto; }
-    .industry-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .industry-card {
-      background: var(--bg2);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: var(--radius);
-      padding: 32px;
-      text-decoration: none;
-      color: var(--white);
-      transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
-      display: block;
-    }
-    .industry-card:hover {
-      border-color: rgba(0,212,255,0.35);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,212,255,0.1);
-    }
-    .industry-icon { font-size: 2.4rem; margin-bottom: 16px; display: block; }
-    .industry-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1.15rem;
-      font-weight: 700;
-      margin-bottom: 10px;
-    }
-    .industry-desc { font-size: 0.87rem; color: var(--gray-400); line-height: 1.6; margin-bottom: 16px; }
-    .industry-link { font-size: 0.82rem; font-weight: 600; color: var(--cyan); }
-
-    /* ── ABOUT / TRUST ───────────────────────────────────────────── */
-    #about {
-      position: relative;
-      z-index: 1;
-      padding: 100px 0;
-    }
-    .about-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 80px;
-      align-items: center;
-    }
-    .about-tag { margin-bottom: 20px; }
-    .about-headline {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.8rem, 3.5vw, 2.5rem);
-      font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 20px;
-    }
-    .about-body { color: var(--gray-400); line-height: 1.8; font-size: 1rem; margin-bottom: 16px; }
-    .about-guarantee {
-      background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(123,47,255,0.08));
-      border: 1px solid rgba(0,212,255,0.25);
-      border-radius: var(--radius-sm);
-      padding: 20px 24px;
-      margin-top: 28px;
-    }
-    .about-guarantee-title {
-      font-weight: 700;
-      color: var(--cyan);
-      font-size: 0.88rem;
-      margin-bottom: 6px;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-    }
-    .about-guarantee p { font-size: 0.92rem; color: var(--gray-100); line-height: 1.6; }
-    .about-visual {
-      background: var(--bg2);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: var(--radius);
-      padding: 36px;
-    }
-    .about-visual-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 24px;
-      color: var(--gray-400);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      font-size: 0.78rem;
-    }
-    .why-list { display: flex; flex-direction: column; gap: 16px; }
-    .why-item {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-    }
-    .why-icon {
-      width: 40px; height: 40px;
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      flex-shrink: 0;
-      background: rgba(0,212,255,0.08);
-      border: 1px solid rgba(0,212,255,0.2);
-    }
-    .why-content h4 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin-bottom: 2px;
-    }
-    .why-content p { font-size: 0.84rem; color: var(--gray-400); line-height: 1.55; }
-
-    /* ── SERVICES (secondary) ────────────────────────────────────── */
-    #services {
-      position: relative;
-      z-index: 1;
-      padding: 100px 0;
-    }
-    .services-header { text-align: center; margin-bottom: 56px; }
-    .services-header .section-sub { margin: 0 auto; }
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-    .service-card {
-      background: var(--bg2);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: var(--radius);
-      padding: 28px;
-      transition: border-color 0.2s, transform 0.2s;
-    }
-    .service-card:hover {
-      border-color: rgba(0,212,255,0.2);
-      transform: translateY(-3px);
-    }
-    .service-icon { font-size: 1.8rem; margin-bottom: 14px; display: block; }
-    .service-name {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 1rem;
-      font-weight: 700;
-      margin-bottom: 8px;
-    }
-    .service-desc { font-size: 0.85rem; color: var(--gray-400); line-height: 1.6; }
-
     /* ── FINAL CTA ───────────────────────────────────────────────── */
     #cta {
       position: relative;
@@ -827,10 +797,7 @@
       padding: 120px 0;
       text-align: center;
     }
-    .cta-inner {
-      max-width: 700px;
-      margin: 0 auto;
-    }
+    .cta-inner { max-width: 700px; margin: 0 auto; }
     .cta-headline {
       font-family: 'Space Grotesk', sans-serif;
       font-size: clamp(2rem, 4.5vw, 3.4rem);
@@ -886,25 +853,23 @@
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      .work-grid { grid-template-columns: 1fr 1fr; }
-      .steps-row { grid-template-columns: 1fr 1fr; gap: 40px; }
-      .steps-row::before { display: none; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .demo-feature-body { grid-template-columns: 1fr; gap: 28px; }
+      .build-grid { grid-template-columns: 1fr 1fr; }
       .pricing-grid { grid-template-columns: 1fr; }
       .pricing-grid-bottom { grid-template-columns: 1fr; }
-      .industry-grid { grid-template-columns: 1fr 1fr; }
-      .about-grid { grid-template-columns: 1fr; gap: 48px; }
-      .services-grid { grid-template-columns: 1fr 1fr; }
       .footer-inner { grid-template-columns: 1fr; text-align: center; }
       .footer-copy { text-align: center; }
     }
     @media (max-width: 600px) {
-      .work-grid { grid-template-columns: 1fr; }
-      .steps-row { grid-template-columns: 1fr; }
-      .industry-grid { grid-template-columns: 1fr; }
-      .services-grid { grid-template-columns: 1fr; }
+      .pain-grid { grid-template-columns: 1fr; }
+      .build-grid { grid-template-columns: 1fr; }
       .hero-actions { flex-direction: column; align-items: center; }
       .hero-social-proof { gap: 24px; }
       .btn-primary, .btn-secondary { width: 100%; justify-content: center; }
+      .demo-feature-top { padding: 40px 24px; }
+      .demo-feature-body { padding: 28px 24px; }
+      .demo-feature-title { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -917,15 +882,15 @@
   <div class="container">
     <div class="nav-inner">
       <a href="/" class="nav-logo">
-        <img src="logo-mark.jpg" alt="Synprism logo" />
+        <img src="/logo-mark.jpg" alt="Synprism logo" />
         Synprism.io
       </a>
       <ul class="nav-links">
         <li><a href="/work/">Our Work</a></li>
-        <li><a href="#how">How It Works</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#industries">Industries</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="/#how">How It Works</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+        <li><a href="/#industries" class="active">Industries</a></li>
+        <li><a href="/#about">About</a></li>
         <li><a href="/website-questionnaire" class="nav-cta">Get a Free Quote →</a></li>
       </ul>
       <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Open menu">
@@ -939,10 +904,10 @@
 <div class="mobile-menu" id="mobile-menu">
   <button class="mobile-menu-close" onclick="toggleMobileMenu()">✕</button>
   <a href="/work/" onclick="toggleMobileMenu()">Our Work</a>
-  <a href="#how" onclick="toggleMobileMenu()">How It Works</a>
-  <a href="#pricing" onclick="toggleMobileMenu()">Pricing</a>
-  <a href="#industries" onclick="toggleMobileMenu()">Industries</a>
-  <a href="#about" onclick="toggleMobileMenu()">About</a>
+  <a href="/#how" onclick="toggleMobileMenu()">How It Works</a>
+  <a href="/#pricing" onclick="toggleMobileMenu()">Pricing</a>
+  <a href="/#industries" onclick="toggleMobileMenu()" style="color:var(--cyan);">Industries</a>
+  <a href="/#about" onclick="toggleMobileMenu()">About</a>
   <a href="/website-questionnaire" onclick="toggleMobileMenu()" style="color:var(--cyan);">Get a Free Quote →</a>
 </div>
 
@@ -954,21 +919,20 @@
     <div class="hero-inner fade-up">
       <div class="hero-eyebrow">
         <div class="hero-eyebrow-dot"></div>
-        <span>Custom Websites for Local Business</span>
+        <span>Auto Repair &amp; Mechanic Shop Websites</span>
       </div>
 
       <h1 class="hero-headline">
-        Your business, online,<br />
-        <span class="gradient-text">in 24 hours.</span>
+        Your shop shows up when<br />
+        someone Googles <span class="gradient-text">mechanic near me.</span>
       </h1>
 
       <p class="hero-sub">
-        We build professional websites for local service businesses — auto shops, contractors, home services, and more.
-        Fast, affordable, and built to get you found on Google.
+        We build professional websites for auto repair shops, mobile mechanics, and tire shops — fast, affordable, and optimized for local search.
       </p>
 
       <div class="hero-actions">
-        <a href="/work/" class="btn-primary">See Our Work →</a>
+        <a href="https://demos.synprism.io/baoautorepair/" target="_blank" rel="noopener" class="btn-primary">See Auto Repair Demos →</a>
         <a href="/website-questionnaire" class="btn-secondary">Get a Free Quote</a>
       </div>
 
@@ -978,12 +942,12 @@
           <span class="proof-label">Avg. build time</span>
         </div>
         <div class="proof-item">
-          <span class="proof-number">10+</span>
-          <span class="proof-label">Sites delivered</span>
-        </div>
-        <div class="proof-item">
           <span class="proof-number">$0</span>
           <span class="proof-label">See it before you pay</span>
+        </div>
+        <div class="proof-item">
+          <span class="proof-number">Local</span>
+          <span class="proof-label">SEO built in</span>
         </div>
         <div class="proof-item">
           <span class="proof-number">5x</span>
@@ -996,84 +960,31 @@
 
 <div class="section-divider"></div>
 
-<!-- ── WORK GALLERY ──────────────────────────────────────────────── -->
-<section id="work">
+<!-- ── PAIN POINTS ────────────────────────────────────────────────── -->
+<section id="pain-points">
   <div class="container">
-    <div class="work-header fade-up">
-      <div class="tag">Real Sites We've Built</div>
-      <h2 class="section-title">See the work before you commit to anything.</h2>
-      <p class="section-sub">These are real demo sites — full, production-quality builds across different local industries. Click through and see exactly what you'd be getting.</p>
+    <div class="pain-header fade-up">
+      <div class="tag">The Reality</div>
+      <h2 class="section-title">Your competitors are outranking you — because they have a website and you don't.</h2>
     </div>
 
-    <div class="work-grid">
-      <a href="https://demos.synprism.io/baoautorepair/" target="_blank" rel="noopener" class="demo-card fade-up">
-        <div class="demo-card-top auto">🔧</div>
-        <div class="demo-card-body">
-          <div class="demo-card-industry">Auto Repair · Knoxville, TN</div>
-          <div class="demo-card-name">BAO Auto Repair</div>
-          <div class="demo-card-desc">Full multi-page site with services, contact form, maps integration, and Google-ready local SEO. Live in 24 hours.</div>
-          <div class="demo-card-link">View Live Demo ↗</div>
-        </div>
-      </a>
-
-      <a href="https://demos.synprism.io/diamondwelldrilling/" target="_blank" rel="noopener" class="demo-card fade-up">
-        <div class="demo-card-top well">💧</div>
-        <div class="demo-card-body">
-          <div class="demo-card-industry">Well Drilling · Auburn, CA</div>
-          <div class="demo-card-name">Diamond Well Drilling</div>
-          <div class="demo-card-desc">Multi-page site covering well drilling, pump service, water testing, and filtration — built for a highly specialized trade.</div>
-          <div class="demo-card-link">View Live Demo ↗</div>
-        </div>
-      </a>
-
-      <a href="https://demos.synprism.io/jtinteriors/" target="_blank" rel="noopener" class="demo-card fade-up">
-        <div class="demo-card-top interior">🏠</div>
-        <div class="demo-card-body">
-          <div class="demo-card-industry">Interior Remodeling · Vancouver, WA</div>
-          <div class="demo-card-name">JT Interiors Remodeling</div>
-          <div class="demo-card-desc">Premium multi-page site with kitchen, bath, whole-home, and smart home sections. Category navigation, service grid, photo gallery.</div>
-          <div class="demo-card-link">View Live Demo ↗</div>
-        </div>
-      </a>
-    </div>
-
-    <div class="work-cta fade-up">
-      <a href="/work/" class="btn-secondary">See All Demos →</a>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ── HOW IT WORKS ──────────────────────────────────────────────── -->
-<section id="how">
-  <div class="container">
-    <div class="how-header fade-up">
-      <div class="tag">How It Works</div>
-      <h2 class="section-title">From first call to live site.<br /><span class="gradient-text">Here's exactly what happens.</span></h2>
-      <p class="section-sub">No surprises, no weeks of back-and-forth. Most businesses are live within 24 hours of that first call.</p>
-    </div>
-
-    <div class="steps-row">
-      <div class="step fade-up">
-        <div class="step-num">1</div>
-        <h3 class="step-title">Quick call</h3>
-        <p class="step-desc">We talk for 15–20 minutes. You tell us what your business does, who your customers are, and what you want them to do on your site. That's it.</p>
+    <div class="pain-grid">
+      <div class="pain-card fade-up">
+        <span class="pain-icon">📊</span>
+        <div class="pain-stat">73%</div>
+        <p class="pain-text">73% of consumers research online before visiting a local business. If you're not there, someone else is.</p>
       </div>
-      <div class="step fade-up">
-        <div class="step-num">2</div>
-        <h3 class="step-title">We build it</h3>
-        <p class="step-desc">We get to work. Your site is fully built — real pages, real copy, real design — typically within the same day. No cookie-cutter templates.</p>
+
+      <div class="pain-card fade-up">
+        <span class="pain-icon">📱</span>
+        <div class="pain-stat">#1</div>
+        <p class="pain-text">A customer with car trouble will call the first shop they find on Google. That's not always the best shop — it's the one with a website.</p>
       </div>
-      <div class="step fade-up">
-        <div class="step-num">3</div>
-        <h3 class="step-title">You review</h3>
-        <p class="step-desc">We send you a live preview link. You click through, request any changes, and sign off. You see the finished product before paying a cent.</p>
-      </div>
-      <div class="step fade-up">
-        <div class="step-num">4</div>
-        <h3 class="step-title">Go live</h3>
-        <p class="step-desc">We handle hosting, launch, and the technical stuff. Want ongoing updates and maintenance? We offer monthly plans so you're never on your own.</p>
+
+      <div class="pain-card fade-up">
+        <span class="pain-icon">🗣️</span>
+        <div class="pain-stat">WOM</div>
+        <p class="pain-text">Word of mouth is great. But new customers can't refer you if they can't find you.</p>
       </div>
     </div>
   </div>
@@ -1081,13 +992,107 @@
 
 <div class="section-divider"></div>
 
-<!-- ── PRICING ───────────────────────────────────────────────────── -->
+<!-- ── DEMO SPOTLIGHT ──────────────────────────────────────────────── -->
+<section id="demo-spotlight">
+  <div class="container">
+    <div class="demo-spotlight-header fade-up">
+      <div class="tag">Real Work</div>
+      <h2 class="section-title">See a real auto repair site we built.</h2>
+      <p class="section-sub">This is a live demo — a full, production-quality website built for an auto repair shop. Click through and see exactly what your site could look like.</p>
+    </div>
+
+    <div class="demo-feature-card fade-up">
+      <div class="demo-feature-top">
+        <span class="demo-feature-emoji">🔧</span>
+        <h3 class="demo-feature-title">BAO Auto Repair</h3>
+        <p class="demo-feature-location">Knoxville, TN &middot; Delivered in 24 hours</p>
+        <a href="https://demos.synprism.io/baoautorepair/" target="_blank" rel="noopener" class="demo-feature-btn">
+          View Live Demo ↗
+        </a>
+      </div>
+
+      <div class="demo-feature-body">
+        <div>
+          <div class="demo-feature-label">What was included</div>
+          <ul class="demo-includes-list">
+            <li>Multi-page site (Home, Services, About, Contact)</li>
+            <li>Service listing — brakes, tires, oil change, diagnostics</li>
+            <li>Google Maps integration</li>
+            <li>Click-to-call button</li>
+            <li>Local SEO setup</li>
+            <li>Mobile-first design</li>
+          </ul>
+        </div>
+
+        <div class="demo-quote-box">
+          <p class="demo-quote-text">"We built this from scratch in under 24 hours — real pages, real copy, real design. No templates. This is the same quality and process every client gets."</p>
+          <p class="demo-quote-sub">Every auto repair site we build gets the same treatment: fast, professional, and built to show up when someone in your area needs a mechanic. <a href="/website-questionnaire" style="color:var(--cyan);font-weight:600;">Get yours →</a></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ── WHAT WE BUILD FOR SHOPS ─────────────────────────────────────── -->
+<section id="what-we-build">
+  <div class="container">
+    <div class="build-header fade-up">
+      <div class="tag">What We Build</div>
+      <h2 class="section-title">Everything your shop needs.<br /><span class="gradient-text">Nothing it doesn't.</span></h2>
+      <p class="section-sub">Every auto repair website we build is purpose-built for a shop like yours — optimized to convert local searchers into paying customers.</p>
+    </div>
+
+    <div class="build-grid">
+      <div class="build-card fade-up">
+        <span class="build-icon">📱</span>
+        <div class="build-name">Mobile-first design</div>
+        <div class="build-desc">Most of your customers will Google you on their phone while their car is breaking down. Your site is built for that moment.</div>
+      </div>
+
+      <div class="build-card fade-up">
+        <span class="build-icon">🔩</span>
+        <div class="build-name">Services page</div>
+        <div class="build-desc">List every service you offer — brakes, tires, oil changes, diagnostics, alignment, transmission, and more. Customers (and Google) want to see it.</div>
+      </div>
+
+      <div class="build-card fade-up">
+        <span class="build-icon">📞</span>
+        <div class="build-name">Click-to-call button</div>
+        <div class="build-desc">Make it trivial to call. A prominent click-to-call button means customers call you in two taps — not your competitor.</div>
+      </div>
+
+      <div class="build-card fade-up">
+        <span class="build-icon">📍</span>
+        <div class="build-name">Google Maps embed</div>
+        <div class="build-desc">Your location embedded directly on the site. Customers know exactly where you are and can get directions in one tap.</div>
+      </div>
+
+      <div class="build-card fade-up">
+        <span class="build-icon">🔍</span>
+        <div class="build-name">Local SEO setup</div>
+        <div class="build-desc">Structured data, schema markup, and Google-ready site structure so you show up when someone searches "mechanic near me" in your area.</div>
+      </div>
+
+      <div class="build-card fade-up">
+        <span class="build-icon">📋</span>
+        <div class="build-name">Contact &amp; appointment form</div>
+        <div class="build-desc">Let customers request appointments or ask questions online — captures leads even when you're under a car or closed for the night.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ── PRICING ────────────────────────────────────────────────────── -->
 <section id="pricing">
   <div class="container">
     <div class="pricing-header fade-up">
       <div class="tag">Transparent Pricing</div>
       <h2 class="section-title">No hidden fees. No surprises.<br /><span class="gradient-text">Pick the tier that fits.</span></h2>
-      <p class="section-sub">Straightforward tiers based on what your business actually needs. Not sure which fits? We'll tell you on the call.</p>
+      <p class="section-sub">Straightforward tiers based on what your shop actually needs. Not sure which fits? We'll tell you on the call.</p>
     </div>
 
     <div class="pricing-grid">
@@ -1107,7 +1112,7 @@
       <div class="price-card featured fade-up">
         <div class="price-tier">Standard</div>
         <div class="price-amount">$500–$1,500</div>
-        <div class="price-desc">Multi-page site (3–6 pages). The right choice for most local service businesses.</div>
+        <div class="price-desc">Multi-page site (3–6 pages). The right choice for most auto repair shops.</div>
         <ul class="price-features">
           <li>3–6 full pages</li>
           <li>Services, About, Contact, Gallery</li>
@@ -1136,7 +1141,7 @@
       <div class="price-card fade-up">
         <div class="price-tier">Enterprise</div>
         <div class="price-amount">$3,000+</div>
-        <div class="price-desc">Complex builds — e-commerce, multi-location, web apps, or deeply custom solutions.</div>
+        <div class="price-desc">Complex builds — multi-location shops, e-commerce, or deeply custom solutions.</div>
         <ul class="price-features">
           <li>Everything in Premium</li>
           <li>E-commerce, memberships, web apps</li>
@@ -1160,170 +1165,19 @@
       </div>
     </div>
 
-    <p class="pricing-note fade-up">All prices are one-time build fees. Hosting is separate. <a href="/website-questionnaire" style="color:var(--cyan);">Fill out the quick form →</a> and we'll give you an exact quote for your project.</p>
+    <p class="pricing-note fade-up">All prices are one-time build fees. Hosting is separate. <a href="/website-questionnaire" style="color:var(--cyan);">Fill out the quick form →</a> and we'll give you an exact quote for your shop.</p>
   </div>
 </section>
 
 <div class="section-divider"></div>
 
-<!-- ── INDUSTRIES ────────────────────────────────────────────────── -->
-<section id="industries">
-  <div class="container">
-    <div class="industries-header fade-up">
-      <div class="tag">Industries We Serve</div>
-      <h2 class="section-title">We know your trade.<br /><span class="gradient-text">And your customers.</span></h2>
-      <p class="section-sub">We specialize in local service businesses. Each industry page shows real demo work and explains exactly what we build for that trade.</p>
-    </div>
-
-    <div class="industry-grid">
-      <a href="/industries/auto-repair/" class="industry-card fade-up">
-        <span class="industry-icon">🔧</span>
-        <div class="industry-name">Auto Repair &amp; Mechanics</div>
-        <div class="industry-desc">Shops that need to show up when someone Googles "mechanic near me." We build trust, display your services, and make it easy to call.</div>
-        <div class="industry-link">See auto repair sites →</div>
-      </a>
-
-      <a href="/industries/home-services-contractors/" class="industry-card fade-up">
-        <span class="industry-icon">🏠</span>
-        <div class="industry-name">Home Services &amp; Contractors</div>
-        <div class="industry-desc">Plumbers, electricians, roofers, remodelers, landscapers. Your customers search before they call — make sure they find you first.</div>
-        <div class="industry-link">See contractor sites →</div>
-      </a>
-
-      <a href="/industries/well-drilling-water-services/" class="industry-card fade-up">
-        <span class="industry-icon">💧</span>
-        <div class="industry-name">Well Drilling &amp; Water Services</div>
-        <div class="industry-desc">Highly specialized trade, underserved online. We build sites that explain your services clearly and convert rural property owners.</div>
-        <div class="industry-link">See water service sites →</div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ── ABOUT / TRUST ─────────────────────────────────────────────── -->
-<section id="about">
-  <div class="container">
-    <div class="about-grid">
-      <div class="fade-up">
-        <div class="tag about-tag">Why Synprism</div>
-        <h2 class="about-headline">You shouldn't need a $10,000 agency budget to have a professional website.</h2>
-        <p class="about-body">
-          I started Synprism after watching great local businesses lose customers to competitors with worse service — just because those competitors had a website and they didn't.
-        </p>
-        <p class="about-body">
-          The typical web agency charges $5,000–$15,000 and takes 6–8 weeks. We do the same quality work — custom, professional, mobile-first — and deliver it in 24 hours at a fraction of the cost.
-        </p>
-        <p class="about-body">
-          We're based in Tennessee and focused on local service businesses: trades, repair shops, contractors, home services. This is what we do every day.
-        </p>
-
-        <div class="about-guarantee">
-          <div class="about-guarantee-title">Our Guarantee</div>
-          <p>You see your finished site before you pay anything. If you don't love it, you owe us nothing. That's how confident we are in our work.</p>
-        </div>
-      </div>
-
-      <div class="about-visual fade-up">
-        <div class="about-visual-title">Why businesses choose us</div>
-        <div class="why-list">
-          <div class="why-item">
-            <div class="why-icon">⚡</div>
-            <div class="why-content">
-              <h4>Same-day delivery</h4>
-              <p>Most sites are built and ready to review within 24 hours of your first call. Not weeks — hours.</p>
-            </div>
-          </div>
-          <div class="why-item">
-            <div class="why-icon">💰</div>
-            <div class="why-content">
-              <h4>Fraction of agency pricing</h4>
-              <p>You're not paying for a downtown office, a team of 20, or a long production pipeline. You're paying for the work.</p>
-            </div>
-          </div>
-          <div class="why-item">
-            <div class="why-icon">📱</div>
-            <div class="why-content">
-              <h4>Built for mobile</h4>
-              <p>Most of your customers will find you on their phones. Every site we build is mobile-first by default.</p>
-            </div>
-          </div>
-          <div class="why-item">
-            <div class="why-icon">🔍</div>
-            <div class="why-content">
-              <h4>Built to be found</h4>
-              <p>Local SEO, schema markup, Google-ready structure — built in from day one so you show up when it matters.</p>
-            </div>
-          </div>
-          <div class="why-item">
-            <div class="why-icon">🤝</div>
-            <div class="why-content">
-              <h4>We stay with you</h4>
-              <p>Monthly plans for ongoing updates, hosting, and support. We don't disappear after launch.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ── OTHER AI SERVICES (secondary) ────────────────────────────── -->
-<section id="services">
-  <div class="container">
-    <div class="services-header fade-up">
-      <div class="tag">More From Synprism</div>
-      <h2 class="section-title">Need more than a website?</h2>
-      <p class="section-sub">Once your site is live, we can layer in AI tools to help your business run smarter — automation, lead capture, CRM, and more.</p>
-    </div>
-
-    <div class="services-grid">
-      <div class="service-card fade-up">
-        <span class="service-icon">📞</span>
-        <div class="service-name">AI Cold Callers</div>
-        <div class="service-desc">Deploy AI voice agents that prospect, qualify leads, and book meetings — around the clock, without the burnout.</div>
-      </div>
-      <div class="service-card fade-up">
-        <span class="service-icon">📊</span>
-        <div class="service-name">AI CRM</div>
-        <div class="service-desc">AI-powered CRM that tracks customers, automates follow-ups, and keeps your pipeline organized.</div>
-      </div>
-      <div class="service-card fade-up">
-        <span class="service-icon">🤖</span>
-        <div class="service-name">AI Assistants</div>
-        <div class="service-desc">A 24/7 AI assistant for your business — answers questions, captures leads, and handles routine tasks while you focus on the job.</div>
-      </div>
-      <div class="service-card fade-up">
-        <span class="service-icon">🔗</span>
-        <div class="service-name">AI Integration</div>
-        <div class="service-desc">Connect the AI tools you already use — or want to use — into a coherent system that actually works together.</div>
-      </div>
-      <div class="service-card fade-up">
-        <span class="service-icon">📝</span>
-        <div class="service-name">AI Note Takers</div>
-        <div class="service-desc">Never miss a detail from a customer call or job site walkthrough. AI captures, summarizes, and organizes automatically.</div>
-      </div>
-      <div class="service-card fade-up">
-        <span class="service-icon">✨</span>
-        <div class="service-name">Bespoke Solutions</div>
-        <div class="service-desc">Something unique to your business? We build custom AI solutions from scratch — exactly what you need, nothing you don't.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- ── FINAL CTA ──────────────────────────────────────────────────── -->
+<!-- ── FINAL CTA ───────────────────────────────────────────────────── -->
 <section id="cta">
   <div class="container">
     <div class="cta-inner fade-up">
-      <div class="tag">Get Started</div>
-      <h2 class="cta-headline">Ready to show up online?<br /><span class="gradient-text">Takes 2 minutes.</span></h2>
-      <p class="cta-sub">Fill out a quick form — your business type, what you do, who your customers are. We'll take it from there and have something to show you within 24 hours.</p>
+      <div class="tag">Get Started Today</div>
+      <h2 class="cta-headline">Ready to show up when someone<br />searches <span class="gradient-text">mechanic near me?</span></h2>
+      <p class="cta-sub">2 minutes to fill out. We'll have something to show you in 24 hours.</p>
       <a href="/website-questionnaire" class="btn-primary" style="font-size:1.05rem;padding:18px 40px;">Get Your Free Quote →</a>
       <p class="cta-fine">No obligation. No credit card. You see the site before you pay anything.</p>
     </div>
@@ -1335,21 +1189,21 @@
   <div class="container">
     <div class="footer-inner">
       <div class="footer-logo-wrap">
-        <img src="logo-mark.jpg" alt="Synprism" />
+        <img src="/logo-mark.jpg" alt="Synprism" />
         <div class="footer-logo">Synprism.io</div>
       </div>
 
       <ul class="footer-links">
         <li><a href="/work/">Our Work</a></li>
-        <li><a href="#how">How It Works</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#industries">Industries</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="/#how">How It Works</a></li>
+        <li><a href="/#pricing">Pricing</a></li>
+        <li><a href="/#industries">Industries</a></li>
+        <li><a href="/#about">About</a></li>
         <li><a href="/website-questionnaire">Get a Quote</a></li>
         <li><a href="/services/">AI Services</a></li>
         <li><a href="https://x.com/synprism" target="_blank" rel="noopener">𝕏 @synprism</a></li>
-        <li><a href="privacy.html">Privacy</a></li>
-        <li><a href="terms.html">Terms</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
       </ul>
 
       <div class="footer-copy">

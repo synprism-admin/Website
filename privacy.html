@@ -96,6 +96,13 @@
     }
     .highlight-box p { margin: 0; font-size: 0.9rem; }
 
+    .new-badge {
+      display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: #fff;
+      background: linear-gradient(135deg, var(--purple), var(--magenta));
+      padding: 2px 7px; border-radius: 4px; margin-left: 8px; vertical-align: middle;
+    }
+
     .contact-box {
       background: rgba(123,47,255,0.07); border: 1px solid rgba(123,47,255,0.25);
       border-radius: 14px; padding: 28px 32px; margin-top: 48px; text-align: center;
@@ -122,7 +129,7 @@
 <nav>
   <div class="nav-inner">
     <a href="index.html" class="nav-logo">
-<img src="logo-mark.jpg" alt="Synprism" style="width:30px;height:30px;object-fit:cover;border-radius:4px;mix-blend-mode:screen;" />
+      <img src="logo-mark.jpg" alt="Synprism" style="width:30px;height:30px;object-fit:cover;border-radius:4px;mix-blend-mode:screen;" />
       Synprism<span style="background:linear-gradient(135deg,#7b2fff,#ff00cc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">.io</span>
     </a>
     <a href="index.html" class="nav-back">← Back to Home</a>
@@ -133,7 +140,7 @@
   <div class="page-tag">Legal</div>
   <h1 class="page-title">Privacy Policy</h1>
   <p class="page-subtitle">We believe in transparency. Here's exactly what we collect, why, and how we protect it.</p>
-  <p class="effective-date">Effective Date: June 1, 2025 &nbsp;·&nbsp; Last Updated: June 1, 2025</p>
+  <p class="effective-date">Effective Date: June 1, 2025 &nbsp;·&nbsp; Last Updated: June 26, 2025</p>
 </div>
 
 <div class="content">
@@ -150,7 +157,7 @@
       <li><a href="#your-rights">Your Rights</a></li>
       <li><a href="#ccpa">California Privacy Rights (CCPA)</a></li>
       <li><a href="#gdpr">International Users (GDPR)</a></li>
-      <li><a href="#cookies">Cookies &amp; Tracking</a></li>
+      <li><a href="#cookies">Cookies &amp; Analytics</a></li>
       <li><a href="#children">Children's Privacy</a></li>
       <li><a href="#changes">Changes to This Policy</a></li>
       <li><a href="#contact-us">Contact Us</a></li>
@@ -160,18 +167,19 @@
   <!-- 1 -->
   <section class="policy" id="who-we-are">
     <h2><span class="num">1</span> Who We Are</h2>
-    <p>Synprism ("<strong>Synprism</strong>", "<strong>we</strong>", "<strong>us</strong>", or "<strong>our</strong>") is an AI integration and consulting firm headquartered in Tennessee, United States. We operate the website located at <a href="https://synprism.io">synprism.io</a> (the "<strong>Site</strong>").</p>
-    <p>This Privacy Policy describes how we collect, use, disclose, and safeguard information when you visit our Site or contact us through our contact form. Please read it carefully.</p>
+    <p>Synprism ("<strong>Synprism</strong>", "<strong>we</strong>", "<strong>us</strong>", or "<strong>our</strong>") is an AI integration and consulting firm headquartered in Tennessee, United States. We operate the website located at <a href="https://synprism.io">synprism.io</a> (the "<strong>Site</strong>"), including all sub-pages such as our chatbot services page and chatbot intake questionnaire.</p>
+    <p>This Privacy Policy describes how we collect, use, disclose, and safeguard information when you visit our Site or interact with us through our contact form, chatbot intake questionnaire, or any other features on the Site. Please read it carefully.</p>
     <div class="highlight-box">
-      <p><strong>Short version:</strong> We only collect information you voluntarily give us when you fill out our contact form. We use it to respond to you. We don't sell it. Ever.</p>
+      <p><strong>Short version:</strong> We collect information you voluntarily provide through our contact form and/or chatbot intake questionnaire. We use it to respond to you and deliver the service you requested. We don't sell it. Ever.</p>
     </div>
   </section>
 
   <!-- 2 -->
   <section class="policy" id="information-we-collect">
     <h2><span class="num">2</span> Information We Collect</h2>
-    <h3>Information You Provide Directly</h3>
-    <p>When you submit our contact form, we collect the following personally identifiable information ("<strong>PII</strong>"):</p>
+
+    <h3>A. Contact Form</h3>
+    <p>When you submit our main contact form, we collect the following personally identifiable information ("<strong>PII</strong>"):</p>
     <ul>
       <li><strong>First and last name</strong></li>
       <li><strong>Email address</strong></li>
@@ -179,21 +187,49 @@
       <li><strong>Service interest</strong> (the category you select)</li>
       <li><strong>Message content</strong> (what you write to us)</li>
     </ul>
-    <h3>Information Collected Automatically</h3>
-    <p>When you visit our Site, certain technical information may be collected automatically through Cloudflare's infrastructure, including:</p>
+    <p>Submitting the contact form is entirely voluntary. You are not required to submit it to access our website.</p>
+
+    <h3>B. Chatbot Intake Questionnaire <span class="new-badge">Updated</span></h3>
+    <p>Our chatbot services page includes a multi-step intake questionnaire for clients who wish to have a custom AI chatbot built for their business. If you choose to complete and submit this form, we collect the following information:</p>
     <ul>
-      <li>IP address (anonymized by Cloudflare)</li>
-      <li>Browser type and version</li>
-      <li>Pages visited and time spent</li>
-      <li>Referring website</li>
+      <li><strong>Business name</strong></li>
+      <li><strong>Your name / contact person</strong></li>
+      <li><strong>Email address</strong></li>
+      <li><strong>Phone number</strong></li>
+      <li><strong>Business website URL</strong> (optional)</li>
+      <li><strong>Business type</strong> (selected from a menu)</li>
+      <li><strong>Business description</strong></li>
+      <li><strong>Main services offered</strong> (free-text list)</li>
+      <li><strong>Business hours</strong></li>
+      <li><strong>Booking or scheduling link</strong> (optional)</li>
+      <li><strong>Support email address</strong> for the chatbot (optional)</li>
+      <li><strong>Chatbot tier selection</strong> (Tier 1 Basic, Tier 2 Smart FAQ, or Tier 3 AI Assistant)</li>
+      <li><strong>Brand color</strong> (hex code)</li>
+      <li><strong>Logo preference</strong> (whether you will provide one or need us to design one)</li>
+      <li><strong>Logo URL</strong> (if you choose to supply one via URL)</li>
     </ul>
-    <p>This data is used solely for security, performance, and analytics purposes by Cloudflare and is not linked to your personal identity by Synprism. We do not use third-party analytics tools (e.g., Google Analytics) on this Site.</p>
-    <h3>Information We Do NOT Collect</h3>
+    <p>This information is collected solely to enable us to build your custom chatbot. Submission is voluntary — you are not required to complete this form to use our website. This data is delivered to our team via Web3Forms (see Section 4).</p>
+
+    <h3>C. Information Collected Automatically <span class="new-badge">Updated</span></h3>
+    <p>When you visit our Site, certain data is collected automatically through the following technologies:</p>
+    <ul>
+      <li>
+        <strong>Cloudflare (CDN &amp; Security)</strong> — Our hosting provider collects technical data including your IP address (used for DDoS mitigation and bot detection), browser type and version, pages visited and time spent, and referring website. This data is used solely for security and performance purposes by Cloudflare and is governed by <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare's Privacy Policy</a>.
+      </li>
+      <li>
+        <strong>Google Analytics 4 (GA4)</strong> — We use Google Analytics 4 to understand how visitors use our Site. GA4 collects anonymized data such as pages visited, session duration, referral source, general geographic region, device type, and browser. GA4 does <strong>not</strong> collect your name, email, phone, or any information submitted through our forms. You may opt out using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a> for details.
+      </li>
+      <li>
+        <strong>Cloudflare Web Analytics</strong> — We use Cloudflare's privacy-first analytics beacon to measure aggregate page view data. It does not use cookies, does not fingerprint devices, and collects no personal information.
+      </li>
+    </ul>
+
+    <h3>D. Information We Do NOT Collect</h3>
     <ul>
       <li>Payment or financial information</li>
-      <li>Social Security numbers or government IDs</li>
-      <li>Sensitive personal categories (health, race, religion, etc.)</li>
-      <li>Location data beyond what is inherent in an IP address</li>
+      <li>Social Security numbers or government-issued IDs</li>
+      <li>Sensitive personal categories (health, race, religion, biometric data, etc.)</li>
+      <li>Precise geolocation data</li>
     </ul>
   </section>
 
@@ -202,30 +238,39 @@
     <h2><span class="num">3</span> How We Use Your Information</h2>
     <p>We use the information we collect for the following purposes:</p>
     <ul>
-      <li><strong>To respond to your inquiry</strong> — Your name, email, and message are used solely to reply to you regarding your interest in our services.</li>
-      <li><strong>To provide and improve our services</strong> — Understanding what services people are interested in helps us improve our offerings.</li>
+      <li><strong>To respond to your inquiry</strong> — Contact form submissions are used solely to reply to your question or service interest.</li>
+      <li><strong>To build your custom chatbot</strong> — Intake questionnaire data is used to design, configure, and deliver the chatbot you requested, including branding, service content, hours, and tier features.</li>
+      <li><strong>To contact you about your project</strong> — We use your name, email, and phone number from the intake form to follow up, ask clarifying questions, and coordinate delivery of your chatbot.</li>
+      <li><strong>To improve our services</strong> — Understanding what services people are interested in and how they navigate our site helps us improve our offerings and website experience.</li>
       <li><strong>To comply with legal obligations</strong> — We may use your information as required by applicable law.</li>
     </ul>
     <p>We do <strong>not</strong> use your information for:</p>
     <ul>
-      <li>Unsolicited marketing or spam</li>
-      <li>Automated profiling or decision-making</li>
+      <li>Unsolicited marketing, spam, or cold outreach unrelated to your inquiry</li>
+      <li>Automated profiling or algorithmic decision-making</li>
       <li>Sale or rental to third parties</li>
-      <li>Targeted advertising</li>
+      <li>Targeted advertising or retargeting campaigns</li>
     </ul>
-    <p>Our legal basis for processing your information (under GDPR) is <strong>legitimate interest</strong> — specifically, responding to a business inquiry you have initiated — and in some cases, <strong>your consent</strong> as implied by submitting the form.</p>
+    <p>Our legal basis for processing your information (under GDPR) is <strong>legitimate interest</strong> — specifically, responding to a business inquiry or delivering a service you have requested — and in some cases, <strong>your consent</strong> as implied by voluntarily submitting a form.</p>
   </section>
 
   <!-- 4 -->
   <section class="policy" id="sharing">
     <h2><span class="num">4</span> How We Share Information</h2>
     <p>We do not sell, trade, or rent your personal information to third parties. We may share information only in the following limited circumstances:</p>
-    <h3>Service Providers</h3>
-    <p>We use <strong>Resend</strong> (resend.com) to deliver email notifications of form submissions to our internal team. Resend processes your submission data solely to transmit the email and does not store or use it for any other purpose. Resend is GDPR-compliant.</p>
-    <h3>Infrastructure</h3>
-    <p>Our Site is hosted on <strong>Cloudflare Pages</strong> and our contact form is processed by a <strong>Cloudflare Worker</strong>. Cloudflare processes traffic through its global network. See <a href="https://www.cloudflare.com/privacypolicy/" target="_blank">Cloudflare's Privacy Policy</a>.</p>
+
+    <h3>Form Delivery — Web3Forms</h3>
+    <p>Both our contact form and our chatbot intake questionnaire use the <strong>Web3Forms</strong> API to deliver submitted data to our email inbox. Web3Forms receives the fields you submit solely to transmit them to us. Web3Forms acts as a data processor on our behalf and does not store or use your data for any other purpose. Please review <a href="https://web3forms.com/privacy" target="_blank" rel="noopener">Web3Forms' Privacy Policy</a> for details.</p>
+
+    <h3>Infrastructure — Cloudflare</h3>
+    <p>Our Site is hosted on <strong>Cloudflare Pages</strong> and our contact form backend runs as a <strong>Cloudflare Worker</strong>. All web traffic is processed through Cloudflare's global network for performance, security, and analytics. See <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener">Cloudflare's Privacy Policy</a>.</p>
+
+    <h3>Analytics — Google Analytics 4</h3>
+    <p>Anonymized, aggregated website usage data is shared with <strong>Google</strong> for analytics purposes via Google Analytics 4. Google does not receive your name, email, phone, or any information submitted through our forms. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a>.</p>
+
     <h3>Legal Requirements</h3>
     <p>We may disclose your information if required to do so by law, court order, or governmental authority, or when we believe disclosure is necessary to protect our rights, your safety, or the safety of others.</p>
+
     <h3>Business Transfers</h3>
     <p>In the event of a merger, acquisition, or sale of assets, your information may be transferred as part of that transaction. We will notify you via email if such a transfer occurs and your data is subject to a materially different privacy policy.</p>
   </section>
@@ -233,8 +278,9 @@
   <!-- 5 -->
   <section class="policy" id="retention">
     <h2><span class="num">5</span> Data Retention</h2>
-    <p>We retain contact form submissions in our email inbox for as long as necessary to fulfill the purpose for which they were collected — typically the duration of our business relationship or correspondence with you, plus a reasonable period thereafter for record-keeping.</p>
-    <p>You may request deletion of your data at any time (see <a href="#your-rights">Your Rights</a> below). Upon a valid deletion request, we will remove your information from our active systems within <strong>30 days</strong>.</p>
+    <p>We retain contact form and chatbot intake questionnaire submissions in our email inbox for as long as necessary to fulfill the purpose for which they were collected — typically the duration of our business relationship or correspondence with you, plus a reasonable period thereafter for record-keeping (generally up to three years).</p>
+    <p>Chatbot intake data (including business information, branding details, and service content) may be retained as part of the project record for the chatbot we build for you, for the duration of our service relationship.</p>
+    <p>You may request deletion of your data at any time (see <a href="#your-rights">Your Rights</a> below). Upon a valid deletion request, we will remove your information from our active systems within <strong>30 days</strong>, except where we are legally required to retain it or where it is necessary to complete an ongoing engagement you initiated.</p>
   </section>
 
   <!-- 6 -->
@@ -242,10 +288,11 @@
     <h2><span class="num">6</span> Security</h2>
     <p>We take reasonable technical and organizational measures to protect your personal information, including:</p>
     <ul>
-      <li>HTTPS encryption on all pages (enforced via Cloudflare SSL)</li>
-      <li>Cloudflare WAF and DDoS protection</li>
-      <li>Form data transmitted via encrypted API calls</li>
-      <li>API keys stored as encrypted secrets, never in source code</li>
+      <li><strong>HTTPS encryption</strong> on all pages (enforced via Cloudflare SSL/TLS)</li>
+      <li><strong>Cloudflare WAF and DDoS protection</strong> on all traffic</li>
+      <li><strong>Encrypted form transmission</strong> — form data is transmitted via encrypted HTTPS API calls to Web3Forms</li>
+      <li><strong>No server-side database of form submissions</strong> — intake data is delivered directly to our email inbox and is not stored in a web-accessible database</li>
+      <li><strong>Limited data scope</strong> — we collect only the information necessary to deliver the requested service</li>
     </ul>
     <p>No method of transmission over the Internet or electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your information, we cannot guarantee absolute security. In the event of a data breach that affects your rights, we will notify you as required by applicable law.</p>
   </section>
@@ -262,6 +309,7 @@
       <li><strong>Right to Object</strong> — Object to our processing of your information based on legitimate interest.</li>
       <li><strong>Right to Portability</strong> — Request your data in a structured, machine-readable format.</li>
       <li><strong>Right to Withdraw Consent</strong> — If processing is based on consent, you may withdraw it at any time without affecting prior processing.</li>
+      <li><strong>Right to Opt Out of Analytics</strong> — You may opt out of Google Analytics tracking using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">GA Opt-out Browser Add-on</a>.</li>
     </ul>
     <p>To exercise any of these rights, contact us at <a href="mailto:privacy@synprism.io">privacy@synprism.io</a>. We will respond within <strong>30 days</strong>. We will not discriminate against you for exercising your rights.</p>
   </section>
@@ -269,13 +317,24 @@
   <!-- 8 -->
   <section class="policy" id="ccpa">
     <h2><span class="num">8</span> California Privacy Rights (CCPA / CPRA)</h2>
-    <p>If you are a California resident, the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA) provide you with additional rights:</p>
+    <p>If you are a California resident, the California Consumer Privacy Act (CCPA) and California Privacy Rights Act (CPRA) provide you with additional rights.</p>
+
     <h3>Categories of Personal Information Collected</h3>
-    <p>In the past 12 months, we have collected the following categories of personal information: <strong>Identifiers</strong> (name, email address) and <strong>Commercial information</strong> (service interest). We have not collected any other CCPA-defined categories.</p>
+    <p>In the past 12 months, we have collected the following categories of personal information:</p>
+    <ul>
+      <li><strong>Identifiers</strong> — name, email address, phone number (contact form and/or chatbot intake questionnaire)</li>
+      <li><strong>Professional or business information</strong> — company name, business name, business type, services offered, business hours, website URL (chatbot intake questionnaire)</li>
+      <li><strong>Commercial information</strong> — service interest, chatbot tier selection (contact form and/or questionnaire)</li>
+      <li><strong>Internet or network activity</strong> — anonymized page view data via Google Analytics 4 and Cloudflare Analytics</li>
+    </ul>
+    <p>We have not collected any other CCPA-defined categories of personal information.</p>
+
     <h3>No Sale of Personal Information</h3>
     <p>We do <strong>not</strong> sell your personal information. We do not share your personal information with third parties for cross-context behavioral advertising.</p>
+
     <h3>How to Exercise Your Rights</h3>
-    <p>California residents may submit requests to know, delete, or correct their personal information by contacting us at <a href="mailto:privacy@synprism.io">privacy@synprism.io</a>. We will verify your identity before processing the request.</p>
+    <p>California residents may submit requests to know, delete, or correct their personal information by contacting us at <a href="mailto:privacy@synprism.io">privacy@synprism.io</a>. We will verify your identity before processing the request and will not discriminate against you for exercising these rights.</p>
+
     <h3>Shine the Light</h3>
     <p>California Civil Code Section 1798.83 allows California residents to request information about third-party disclosures for direct marketing purposes. Synprism does not share personal information with third parties for their direct marketing purposes.</p>
   </section>
@@ -286,31 +345,44 @@
     <p>Synprism is based in Tennessee, USA. If you are visiting from the European Economic Area (EEA), United Kingdom, or Switzerland, please be aware that your information will be transferred to and processed in the United States.</p>
     <p>We rely on the following legal bases under the GDPR for processing your personal data:</p>
     <ul>
-      <li><strong>Legitimate interests</strong> (Article 6(1)(f)) — responding to your business inquiry</li>
-      <li><strong>Consent</strong> (Article 6(1)(a)) — implied by voluntarily submitting our contact form</li>
+      <li><strong>Legitimate interests (Art. 6(1)(f))</strong> — responding to your business inquiry or delivering the chatbot service you requested</li>
+      <li><strong>Consent (Art. 6(1)(a))</strong> — implied by voluntarily submitting our contact form or chatbot intake questionnaire</li>
+      <li><strong>Legitimate interests — Analytics</strong> — using anonymized, aggregated GA4 data to improve our website and service offerings</li>
     </ul>
+    <p>We rely on standard contractual clauses and data processor agreements with Cloudflare, Web3Forms, and Google to safeguard international data transfers.</p>
     <p>If you are in the EEA/UK and believe our processing violates applicable law, you have the right to lodge a complaint with your local data protection authority (DPA).</p>
     <p>Our Data Protection contact is reachable at <a href="mailto:privacy@synprism.io">privacy@synprism.io</a>.</p>
   </section>
 
   <!-- 10 -->
   <section class="policy" id="cookies">
-    <h2><span class="num">10</span> Cookies &amp; Tracking Technologies</h2>
-    <p>Our Site uses <strong>no first-party cookies</strong> and no third-party tracking scripts (e.g., Google Analytics, Meta Pixel, or advertising trackers).</p>
-    <p>Cloudflare may set a security cookie (<code>__cf_bm</code>) as part of its bot management service. This cookie does not track you across websites and expires within 30 minutes. For more information, see <a href="https://developers.cloudflare.com/fundamentals/get-started/reference/cloudflare-cookies/" target="_blank">Cloudflare's cookie documentation</a>.</p>
-    <p>Because we use no tracking cookies, a cookie consent banner is not currently required for our Site.</p>
+    <h2><span class="num">10</span> Cookies &amp; Analytics</h2>
+    <p>We use a minimal cookie footprint. We do <strong>not</strong> use advertising cookies, behavioral tracking pixels, or retargeting technologies.</p>
+    <p>The following cookies and analytics technologies are active on this Site:</p>
+    <ul>
+      <li>
+        <strong><code>__cf_bm</code></strong> (Cloudflare Bot Management) — Set automatically by Cloudflare to distinguish human visitors from automated bots. This cookie expires within 30 minutes of inactivity, does not track you across websites, and contains no personal information. It is strictly necessary for the secure operation of our Site.
+      </li>
+      <li>
+        <strong>Google Analytics 4 cookies</strong> (<code>_ga</code>, <code>_ga_*</code>) — Set by GA4 to distinguish unique visitors and sessions. These cookies persist for up to 2 years. They collect anonymized browsing data and do <strong>not</strong> collect your name, email, phone, or form submission content. You may opt out using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>.
+      </li>
+      <li>
+        <strong>Cloudflare Web Analytics beacon</strong> — A lightweight, cookieless script that collects aggregate page view data. It does not set cookies, does not fingerprint your device, and collects no personal information.
+      </li>
+    </ul>
+    <p>The GA4 cookies are non-essential. By continuing to use our Site, you acknowledge their presence. If you prefer not to be tracked by GA4, please use the opt-out tool linked above. For Cloudflare's cookie details, see <a href="https://developers.cloudflare.com/fundamentals/get-started/reference/cloudflare-cookies/" target="_blank" rel="noopener">Cloudflare's cookie documentation</a>.</p>
   </section>
 
   <!-- 11 -->
   <section class="policy" id="children">
     <h2><span class="num">11</span> Children's Privacy</h2>
-    <p>Our Site is not directed to children under the age of 13, and we do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us at <a href="mailto:privacy@synprism.io">privacy@synprism.io</a> and we will delete it promptly.</p>
+    <p>Our Site is not directed to children under the age of 13, and we do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information through our contact form or chatbot intake questionnaire, please contact us at <a href="mailto:privacy@synprism.io">privacy@synprism.io</a> and we will delete it promptly.</p>
   </section>
 
   <!-- 12 -->
   <section class="policy" id="changes">
     <h2><span class="num">12</span> Changes to This Policy</h2>
-    <p>We may update this Privacy Policy from time to time. When we do, we will revise the "Last Updated" date at the top of this page. For material changes, we will make reasonable efforts to notify affected users (e.g., via email if you have contacted us).</p>
+    <p>We may update this Privacy Policy from time to time to reflect changes in our practices, legal requirements, or the services we offer — such as the addition of our chatbot intake questionnaire. When we do, we will revise the "Last Updated" date at the top of this page. For material changes, we will make reasonable efforts to notify affected users (e.g., via email if you have previously contacted us).</p>
     <p>Your continued use of the Site after any changes constitutes acceptance of the updated policy. We encourage you to review this page periodically.</p>
   </section>
 
@@ -339,6 +411,6 @@
   © 2025 Synprism. All rights reserved. &nbsp;·&nbsp; Tennessee, USA
 </footer>
 
-<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cb467e41d6564261840e66b176d356a9"}'></script><!-- End Cloudflare Web Analytics -->
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cb467e...56a9"}'></script><!-- End Cloudflare Web Analytics -->
 </body>
 </html>
