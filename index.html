@@ -459,7 +459,7 @@
     .work-header .section-sub { margin: 0 auto; }
     .work-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
       gap: 24px;
     }
     .demo-card {
@@ -504,6 +504,8 @@
     .demo-card-top.vintage::before { background: linear-gradient(135deg, #a06fff, #ff00cc); opacity: 0.18; }
     .demo-card-top.saas    { background: linear-gradient(135deg, #0d0818, #1a1030); }
     .demo-card-top.saas::before { background: linear-gradient(135deg, #7b2fff, #ff00cc); opacity: 0.2; }
+    .demo-card-top.bjj     { background: linear-gradient(135deg, #160808, #2a0e0e); }
+    .demo-card-top.bjj::before { background: linear-gradient(135deg, #cc1111, #7b0000); opacity: 0.28; }
     .demo-card-body { padding: 24px; }
     .demo-card-industry {
       font-size: 0.72rem;
@@ -892,7 +894,7 @@
     @media (max-width: 900px) {
       .nav-links { display: none; }
       .hamburger { display: flex; }
-      .work-grid { grid-template-columns: 1fr; }
+      .work-grid { grid-template-columns: 1fr 1fr; }
       .steps-row { grid-template-columns: 1fr 1fr; gap: 40px; }
       .steps-row::before { display: none; }
       .pricing-grid { grid-template-columns: 1fr; }
@@ -984,10 +986,6 @@
           <span class="proof-label">Avg. build time</span>
         </div>
         <div class="proof-item">
-          <span class="proof-number">10+</span>
-          <span class="proof-label">Sites delivered</span>
-        </div>
-        <div class="proof-item">
           <span class="proof-number">$0</span>
           <span class="proof-label">See it before you pay</span>
         </div>
@@ -1048,6 +1046,16 @@
           <div class="demo-card-industry">SaaS / Mobile App</div>
           <div class="demo-card-name">AI-Powered Reseller App</div>
           <div class="demo-card-desc">Clean app landing page for an AI inventory tool — feature walkthrough, App Store CTA, and a no-jargon pitch aimed at resellers and side-hustlers.</div>
+          <div class="demo-card-link">View Live Site ↗</div>
+        </div>
+      </a>
+
+      <a href="https://tenbjj.com/" target="_blank" rel="noopener" class="demo-card fade-up">
+        <div class="demo-card-top bjj">🥋</div>
+        <div class="demo-card-body">
+          <div class="demo-card-industry">Apparel &amp; E-Commerce</div>
+          <div class="demo-card-name">BJJ Apparel Brand</div>
+          <div class="demo-card-desc">Full e-commerce storefront for a Tennessee BJJ apparel brand — product grid with size selection, cart, category filters, and a strong brand identity.</div>
           <div class="demo-card-link">View Live Site ↗</div>
         </div>
       </a>
