@@ -888,7 +888,7 @@
       <div class="form-group">
         <label for="address">Business Address / Location<span class="req">*</span></label>
         <input type="text" id="address" name="address" placeholder="123 Main St, Nashville, TN 37201" required />
-        <div class="field-error">Customers ask about your location — required.</div>
+        <div class="field-error">Customers ask about your location - required.</div>
       </div>
       <div class="form-group full">
         <label for="bizType">Business Type<span class="req">*</span></label>
@@ -946,13 +946,13 @@
         <label>Pricing in Chatbot?<span class="req">*</span></label>
         <div class="radio-group" id="pricingGroup">
           <label class="radio-option">
-            <input type="radio" name="pricing" value="Yes — exact prices" required onchange="togglePricing()" /> Yes — show exact prices
+            <input type="radio" name="pricing" value="Yes - exact prices" required onchange="togglePricing()" /> Yes - show exact prices
           </label>
           <label class="radio-option">
-            <input type="radio" name="pricing" value="Yes — starting prices" onchange="togglePricing()" /> Yes — show starting prices only
+            <input type="radio" name="pricing" value="Yes - starting prices" onchange="togglePricing()" /> Yes - show starting prices only
           </label>
           <label class="radio-option">
-            <input type="radio" name="pricing" value="No — direct to call" onchange="togglePricing()" /> No — direct customers to call for pricing
+            <input type="radio" name="pricing" value="No - direct to call" onchange="togglePricing()" /> No - direct customers to call for pricing
           </label>
         </div>
         <div class="field-error" id="pricingErr">Please select a pricing preference.</div>
@@ -960,7 +960,7 @@
 
       <div class="form-group full conditional" id="pricingListWrap">
         <label for="pricingList">Service + Price Pairs</label>
-        <textarea id="pricingList" name="pricingList" rows="5" placeholder="e.g.:&#10;Oil Change — $49.99&#10;Brake Pads (front) — $129&#10;Tire Rotation — $29&#10;Engine Diagnostic — $75"></textarea>
+        <textarea id="pricingList" name="pricingList" rows="5" placeholder="e.g.:&#10;Oil Change - $49.99&#10;Brake Pads (front) - $129&#10;Tire Rotation - $29&#10;Engine Diagnostic - $75"></textarea>
         <div class="field-hint">List each service + price on its own line.</div>
       </div>
 
@@ -968,10 +968,10 @@
         <label>Online Booking?<span class="req">*</span></label>
         <div class="radio-group" id="bookingGroup">
           <label class="radio-option">
-            <input type="radio" name="booking" value="Yes — booking link" required onchange="toggleBooking()" /> Yes — we have a booking link
+            <input type="radio" name="booking" value="Yes - booking link" required onchange="toggleBooking()" /> Yes - we have a booking link
           </label>
           <label class="radio-option">
-            <input type="radio" name="booking" value="Yes — call to book CTA" onchange="toggleBooking()" /> Yes — we want a "call to book" CTA
+            <input type="radio" name="booking" value="Yes - call to book CTA" onchange="toggleBooking()" /> Yes - we want a "call to book" CTA
           </label>
           <label class="radio-option">
             <input type="radio" name="booking" value="No booking" onchange="toggleBooking()" /> No booking needed
@@ -1003,7 +1003,7 @@
     <div class="section-label">Top 5 Customer Questions</div>
     <div class="form-grid">
       <div class="form-group full">
-        <label for="q1">Q1 — Most Common Question<span class="req">*</span></label>
+        <label for="q1">Q1 - Most Common Question<span class="req">*</span></label>
         <input type="text" id="q1" name="q1" placeholder="e.g. How long does an oil change take?" required />
         <div class="field-error">Please enter at least Q1.</div>
       </div>
@@ -1092,16 +1092,16 @@
       <label class="tier-card" id="tc1">
         <input type="radio" name="tier" value="Tier 1 Basic" required onchange="selectTier()" />
         <div class="tier-info">
-          <div class="tier-name">Tier 1 — Basic Bot</div>
+          <div class="tier-name">Tier 1 - Basic Bot</div>
           <div class="tier-price">$200 – $400 one-time</div>
-          <div class="tier-desc">A simple scripted bot with your hours, location, services, and a contact CTA. No AI — pure rule-based. Perfect for small local businesses that just need a 24/7 FAQ presence.</div>
+          <div class="tier-desc">A simple scripted bot with your hours, location, services, and a contact CTA. No AI - pure rule-based. Perfect for small local businesses that just need a 24/7 FAQ presence.</div>
         </div>
       </label>
       <label class="tier-card" id="tc2">
         <input type="radio" name="tier" value="Tier 2 Smart FAQ" onchange="selectTier()" />
         <div class="tier-info">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
-            <div class="tier-name" style="margin-bottom:0;">Tier 2 — Smart FAQ Bot</div>
+            <div class="tier-name" style="margin-bottom:0;">Tier 2 - Smart FAQ Bot</div>
             <span class="tier-badge popular">Most Popular</span>
           </div>
           <div class="tier-price">$500 – $900 one-time · $0/mo hosting</div>
@@ -1112,7 +1112,7 @@
         <input type="radio" name="tier" value="Tier 3 AI Chat" onchange="selectTier()" />
         <div class="tier-info">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:4px;">
-            <div class="tier-name" style="margin-bottom:0;">Tier 3 — Full AI Chat Assistant</div>
+            <div class="tier-name" style="margin-bottom:0;">Tier 3 - Full AI Chat Assistant</div>
             <span class="tier-badge ai">AI-Powered</span>
           </div>
           <div class="tier-price">$1,200 – $2,000 one-time</div>
@@ -1140,13 +1140,13 @@
         <label>Do You Have a Logo?<span class="req">*</span></label>
         <div class="radio-group" id="logoGroup">
           <label class="radio-option">
-            <input type="radio" name="logo" value="Yes — I'll email it" required onchange="toggleLogo()" /> Yes — I'll email it to you
+            <input type="radio" name="logo" value="Yes - I'll email it" required onchange="toggleLogo()" /> Yes - I'll email it to you
           </label>
           <label class="radio-option">
-            <input type="radio" name="logo" value="Yes — URL provided" onchange="toggleLogo()" /> Yes — here's a URL to download it
+            <input type="radio" name="logo" value="Yes - URL provided" onchange="toggleLogo()" /> Yes - here's a URL to download it
           </label>
           <label class="radio-option">
-            <input type="radio" name="logo" value="No — Synprism will design" onchange="toggleLogo()" /> No — Synprism will design one for me
+            <input type="radio" name="logo" value="No - Synprism will design" onchange="toggleLogo()" /> No - Synprism will design one for me
           </label>
         </div>
         <div class="field-error" id="logoErr">Please select a logo option.</div>
@@ -1159,7 +1159,7 @@
 
       <div class="form-group full">
         <label for="designInspiration">Websites You Love the Look Of <span class="opt">(optional)</span></label>
-        <textarea id="designInspiration" name="designInspiration" rows="3" placeholder="e.g. apple.com, stripe.com, notion.so — paste any sites whose design you admire."></textarea>
+        <textarea id="designInspiration" name="designInspiration" rows="3" placeholder="e.g. apple.com, stripe.com, notion.so - paste any sites whose design you admire."></textarea>
       </div>
 
       <div class="form-group full">
@@ -1410,12 +1410,12 @@ function togglePricing() {
 
 function toggleBooking() {
   const val = document.querySelector('input[name="booking"]:checked')?.value || '';
-  document.getElementById('bookingLinkWrap').classList.toggle('show', val === 'Yes — booking link');
+  document.getElementById('bookingLinkWrap').classList.toggle('show', val === 'Yes - booking link');
 }
 
 function toggleLogo() {
   const val = document.querySelector('input[name="logo"]:checked')?.value || '';
-  document.getElementById('logoUrlWrap').classList.toggle('show', val === 'Yes — URL provided');
+  document.getElementById('logoUrlWrap').classList.toggle('show', val === 'Yes - URL provided');
 }
 
 function selectTier() {
@@ -1629,7 +1629,7 @@ function buildReview() {
       ${rv('Pricing Option',   pricingVal)}
       ${pricingVal.startsWith('Yes') ? rv('Price List', document.getElementById('pricingList').value) : ''}
       ${rv('Booking',          bookingVal)}
-      ${bookingVal === 'Yes — booking link' ? rv('Booking Link', document.getElementById('bookingLink').value) : ''}
+      ${bookingVal === 'Yes - booking link' ? rv('Booking Link', document.getElementById('bookingLink').value) : ''}
     </div>
 
     <div class="review-section">
@@ -1652,7 +1652,7 @@ function buildReview() {
       ${rv('Tier',             tierVal)}
       ${rv('Brand Color',      document.getElementById('brandColor').value)}
       ${rv('Logo',             logoVal)}
-      ${logoVal === 'Yes — URL provided' ? rv('Logo URL', document.getElementById('logoUrl').value) : ''}
+      ${logoVal === 'Yes - URL provided' ? rv('Logo URL', document.getElementById('logoUrl').value) : ''}
       ${rv('Design Inspiration', document.getElementById('designInspiration').value)}
       ${rv('Notes',            document.getElementById('notes').value)}
     </div>
@@ -1666,7 +1666,7 @@ document.getElementById('submitForm').addEventListener('submit', async function(
   e.preventDefault();
 
   const bizName = document.getElementById('bizName').value;
-  document.getElementById('sub_subject').value = `New Chatbot Build Request — ${bizName}`;
+  document.getElementById('sub_subject').value = `New Chatbot Build Request - ${bizName}`;
   document.getElementById('sub_bizName').value          = bizName;
   document.getElementById('sub_contactName').value      = document.getElementById('contactName').value;
   document.getElementById('sub_email').value            = document.getElementById('email').value;
@@ -1717,11 +1717,11 @@ document.getElementById('submitForm').addEventListener('submit', async function(
       document.getElementById('successPanel').style.display = 'block';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else {
-      btn.innerHTML = 'Something went wrong — please try again';
+      btn.innerHTML = 'Something went wrong - please try again';
       btn.disabled = false;
     }
   } catch {
-    btn.innerHTML = 'Something went wrong — please try again';
+    btn.innerHTML = 'Something went wrong - please try again';
     btn.disabled = false;
   }
 });
