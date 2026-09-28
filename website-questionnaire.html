@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- GA Consent Mode v2 - default denied until user accepts -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {'analytics_storage': 'denied', 'ad_storage': 'denied'});
+  </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-71XKLW8QMF"></script>
   <script>
@@ -695,9 +701,12 @@
 </head>
 <body>
 
+<a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:4px;z-index:9999;background:#00d4ff;color:#000;font-weight:700;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:'Inter',sans-serif;font-size:0.9rem;" onfocus="this.style.left='4px'" onblur="this.style.left='-9999px'">Skip to main content</a>
+
 <canvas id="neural-canvas"></canvas>
 
 <!-- ── NAV ──────────────────────────────────────────────────────────── -->
+<header role="banner">
 <nav id="navbar">
   <div class="nav-inner">
     <a href="https://synprism.io" class="nav-logo">
@@ -722,11 +731,13 @@
     <li><a href="https://synprism.io/#about"    onclick="toggleMenu()" style="color:#8892b0;text-decoration:none;font-size:1rem;font-weight:500;">About</a></li>
     <li><a href="https://synprism.io/#services" onclick="toggleMenu()" style="color:#8892b0;text-decoration:none;font-size:1rem;font-weight:500;">Services</a></li>
     <li><a href="https://synprism.io/#why"      onclick="toggleMenu()" style="color:#8892b0;text-decoration:none;font-size:1rem;font-weight:500;">Why Us</a></li>
-    <li><a href="https://synprism.io/#contact"  onclick="toggleMenu()" style="display:inline-block;background:linear-gradient(135deg,#00d4ff,#7b2fff);color:#fff;text-decoration:none;padding:12px 28px;border-radius:8px;font-weight:700;">Get Started &rarr;</a></li>
+    <li><a href="https://synprism.io/#contact"  onclick="toggleMenu()" style="display:inline-block;background:linear-gradient(135deg,#00d4ff,#7b2fff);color:#fff;text-decoration:none;padding:12px 28px;border-radius:8px;font-weight:700;">Get Started →</a></li>
   </ul>
 </div>
+</header>
 
 <!-- ── PAGE HEADER ───────────────────────────────────────────────────── -->
+<main id="main-content">
 <div class="page-header">
   <div class="container">
     <div class="page-eyebrow">
@@ -1189,7 +1200,15 @@
       <input type="hidden" name="access_key"  value="52212c46-8eae-4fae-9515-1de276476a42" />
       <input type="hidden" name="subject"     id="sub_subject" value="New Website Build Request" />
       <input type="hidden" name="from_name"   value="Synprism Website Questionnaire" />
-      <input type="checkbox" name="botcheck"  style="display:none;" />
+      <input type="checkbox" name="botcheck"  id="qs-consent-bot" style="display:none;" />
+
+      <!-- Consent checkbox -->
+      <div style="margin-bottom:20px;display:flex;align-items:flex-start;gap:10px;">
+        <input type="checkbox" id="qs-consent" name="consent" required style="margin-top:3px;accent-color:var(--cyan);width:17px;height:17px;flex-shrink:0;" />
+        <label for="qs-consent" style="font-size:0.88rem;color:var(--gray-400);line-height:1.5;cursor:pointer;">
+          I agree that Synprism may contact me about my website project. I have read and accept the <a href="/privacy.html" style="color:var(--cyan);">Privacy Policy</a> and <a href="/terms.html" style="color:var(--cyan);">Terms</a>. <span style="color:var(--magenta);">*</span>
+        </label>
+      </div>
 
       <!-- All data fields populated by JS before submit -->
       <input type="hidden" name="Business Name"          id="sub_bizName" />
@@ -1244,6 +1263,8 @@
 </div>
 
 <!-- ── FOOTER ────────────────────────────────────────────────────────── -->
+</main>
+
 <footer>
   <div class="footer-inner">
     <div style="display:flex;align-items:center;gap:10px;">
@@ -1256,6 +1277,7 @@
       <li><a href="https://synprism.io/#contact">Contact</a></li>
       <li><a href="/privacy.html">Privacy</a></li>
       <li><a href="/terms.html">Terms</a></li>
+      <li><a href="/accessibility.html">Accessibility</a></li>
     </ul>
     <div class="footer-copy">&copy; 2025 Synprism. All rights reserved.</div>
   </div>
@@ -1606,6 +1628,31 @@ document.getElementById('submitForm').addEventListener('submit', async function(
 
 /* ── Initial render ────────────────────────────────────────────────── */
 updateProgress(1);
+</script>
+
+<!-- Cookie Consent Banner -->
+<div id="sp-cookie-bar" role="dialog" aria-label="Cookie consent" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(8,11,24,0.97);backdrop-filter:blur(12px);border-top:1px solid rgba(0,212,255,0.18);padding:14px 24px;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:'Inter',sans-serif;font-size:0.83rem;color:#8892b0;">
+  <span>We use Google Analytics to understand how visitors use our site. <a href="/privacy#cookies" style="color:#00d4ff;text-decoration:none;">Privacy Policy</a></span>
+  <div style="display:flex;gap:10px;flex-shrink:0;">
+    <button onclick="spAccept()" style="background:linear-gradient(135deg,#00d4ff,#7b2fff);color:#fff;border:none;border-radius:6px;padding:7px 18px;font-size:0.82rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;">Accept</button>
+    <button onclick="spDecline()" style="background:transparent;color:#8892b0;border:1px solid rgba(255,255,255,0.15);border-radius:6px;padding:7px 18px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;">Decline</button>
+  </div>
+</div>
+<script>
+(function(){
+  var c = localStorage.getItem('sp_consent');
+  if (c === 'granted') { gtag('consent', 'update', {analytics_storage: 'granted'}); }
+  else if (!c) { var b = document.getElementById('sp-cookie-bar'); if (b) b.style.display = 'flex'; }
+})();
+function spAccept() {
+  localStorage.setItem('sp_consent', 'granted');
+  gtag('consent', 'update', {analytics_storage: 'granted'});
+  var b = document.getElementById('sp-cookie-bar'); if (b) b.style.display = 'none';
+}
+function spDecline() {
+  localStorage.setItem('sp_consent', 'declined');
+  var b = document.getElementById('sp-cookie-bar'); if (b) b.style.display = 'none';
+}
 </script>
 </body>
 </html>

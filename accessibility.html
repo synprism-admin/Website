@@ -11,6 +11,13 @@
   <link rel="icon" type="image/x-icon" href="/favicon.ico" />
   <link rel="icon" type="image/png" href="/favicon.png" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <!-- GA Consent Mode v2 - default denied until user accepts -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {'analytics_storage': 'denied', 'ad_storage': 'denied'});
+  </script>
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-71XKLW8QMF"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -183,6 +190,9 @@
 </head>
 <body>
 
+<a href="#main-content" class="skip-link" style="position:absolute;left:-9999px;top:4px;z-index:9999;background:#00d4ff;color:#000;font-weight:700;padding:8px 16px;border-radius:6px;text-decoration:none;font-family:'Inter',sans-serif;font-size:0.9rem;" onfocus="this.style.left='4px'" onblur="this.style.left='-9999px'">Skip to main content</a>
+
+<header role="banner">
 <nav id="navbar">
   <div class="nav-inner">
     <a href="https://synprism.io" class="nav-logo">
@@ -197,7 +207,9 @@
     </ul>
   </div>
 </nav>
+</header>
 
+<main id="main-content">
 <div class="page-wrap">
   <div class="page-eyebrow">Legal &amp; Compliance</div>
   <h1 class="page-title">Accessibility <span class="gradient-text">Statement</span></h1>
@@ -248,6 +260,7 @@
 
   <p style="margin-top:48px;"><a href="https://synprism.io">&larr; Back to Synprism.io</a></p>
 </div>
+</main>
 
 <footer>
   <div class="footer-inner">
@@ -268,5 +281,30 @@
   <div class="powered">Powered by <a href="https://synprism.io">Synprism</a></div>
 </footer>
 
+
+<!-- Cookie Consent Banner -->
+<div id="sp-cookie-bar" role="dialog" aria-label="Cookie consent" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:rgba(8,11,24,0.97);backdrop-filter:blur(12px);border-top:1px solid rgba(0,212,255,0.18);padding:14px 24px;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;font-family:'Inter',sans-serif;font-size:0.83rem;color:#8892b0;">
+  <span>We use Google Analytics to understand how visitors use our site. <a href="/privacy#cookies" style="color:#00d4ff;text-decoration:none;">Privacy Policy</a></span>
+  <div style="display:flex;gap:10px;flex-shrink:0;">
+    <button onclick="spAccept()" style="background:linear-gradient(135deg,#00d4ff,#7b2fff);color:#fff;border:none;border-radius:6px;padding:7px 18px;font-size:0.82rem;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;">Accept</button>
+    <button onclick="spDecline()" style="background:transparent;color:#8892b0;border:1px solid rgba(255,255,255,0.15);border-radius:6px;padding:7px 18px;font-size:0.82rem;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;">Decline</button>
+  </div>
+</div>
+<script>
+(function(){
+  var c = localStorage.getItem('sp_consent');
+  if (c === 'granted') { gtag('consent', 'update', {analytics_storage: 'granted'}); }
+  else if (!c) { var b = document.getElementById('sp-cookie-bar'); if (b) b.style.display = 'flex'; }
+})();
+function spAccept() {
+  localStorage.setItem('sp_consent', 'granted');
+  gtag('consent', 'update', {analytics_storage: 'granted'});
+  var b = document.getElementById('sp-cookie-bar'); if (b) b.style.display = 'none';
+}
+function spDecline() {
+  localStorage.setItem('sp_consent', 'declined');
+  var b = document.getElementById('sp-cookie-bar'); if (b) b.style.display = 'none';
+}
+</script>
 </body>
 </html>
