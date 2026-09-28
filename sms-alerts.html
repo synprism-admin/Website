@@ -383,18 +383,16 @@
 
     try {
       const data = new FormData(form);
-      const res = await fetch(form.action, {
+      // Apps Script web apps don't send CORS headers, so use no-cors.
+      // The submission still goes through on the backend; we just can't read the response.
+      await fetch(form.action, {
         method: 'POST',
-        body: data
+        body: data,
+        mode: 'no-cors'
       });
-
-      // Apps Script returns 200 on success
-      if (res.ok) {
-        form.style.display = 'none';
-        formSuccess.style.display = 'block';
-      } else {
-        throw new Error('Non-OK response');
-      }
+      // no-cors always resolves (opaque response) - show success
+      form.style.display = 'none';
+      formSuccess.style.display = 'block';
     } catch (err) {
       submitBtn.textContent = 'Something went wrong - please try again';
       submitBtn.disabled = false;
