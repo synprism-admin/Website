@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-71XKLW8QMF"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-71XKLW8QMF');
+  </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sale Alert Sign-Up - Synprism.io</title>
+  <meta name="description" content="Sign up to receive a text alert when your online store makes a sale. SynPrism Sale Alerts - transactional SMS notifications for storefront owners." />
+  <meta name="robots" content="noindex, follow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #080b18; --bg2: #0d1128;
+      --cyan: #00d4ff; --purple: #7b2fff; --magenta: #ff00cc;
+      --white: #ffffff; --gray-100: #e8eaf6; --gray-400: #8892b0; --gray-600: #4a5568;
+      --radius: 14px; --radius-sm: 10px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--gray-100); line-height: 1.7; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--purple); border-radius: 3px; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(8,11,24,0.9); backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      padding: 16px 0;
+    }
+    .nav-inner { max-width: 900px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--white); }
+    .nav-logo img { width: 30px; height: 30px; object-fit: cover; border-radius: 4px; mix-blend-mode: screen; }
+    .nav-back { color: var(--gray-400); text-decoration: none; font-size: 0.875rem; font-weight: 500; transition: color 0.2s; }
+    .nav-back:hover { color: var(--cyan); }
+
+    .page-header {
+      padding: 80px 24px 60px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .page-tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--cyan); border: 1px solid rgba(0,212,255,0.35); background: rgba(0,212,255,0.07);
+      padding: 5px 14px; border-radius: 100px; margin-bottom: 20px;
+    }
+    .page-title { font-family: 'Space Grotesk', sans-serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--white); margin-bottom: 16px; }
+    .page-subtitle { font-size: 1rem; color: var(--gray-400); max-width: 520px; margin: 0 auto; }
+
+    .content { max-width: 680px; margin: 0 auto; padding: 60px 24px 100px; }
+
+    /* How it works strip */
+    .how-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .how-item {
+      background: var(--bg2);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius-sm);
+      padding: 20px;
+      text-align: center;
+    }
+    .how-icon { font-size: 1.8rem; margin-bottom: 10px; display: block; }
+    .how-title { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--white); margin-bottom: 6px; }
+    .how-desc { font-size: 0.8rem; color: var(--gray-400); line-height: 1.5; }
+
+    /* Form card */
+    .form-card {
+      background: var(--bg2);
+      border: 1px solid rgba(0,212,255,0.2);
+      border-radius: var(--radius);
+      padding: 40px;
+      margin-bottom: 32px;
+    }
+    .form-card h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+    .form-card .form-intro {
+      font-size: 0.9rem;
+      color: var(--gray-400);
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gray-100);
+      margin-bottom: 7px;
+      letter-spacing: 0.02em;
+    }
+    .form-group input[type="text"],
+    .form-group input[type="tel"] {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-group input:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(0,212,255,0.1);
+    }
+    .form-group input::placeholder { color: var(--gray-600); }
+
+    .consent-group { margin-bottom: 28px; }
+    .consent-label {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      cursor: pointer;
+    }
+    .consent-label input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      accent-color: var(--cyan);
+      cursor: pointer;
+    }
+    .consent-text {
+      font-size: 0.82rem;
+      color: var(--gray-400);
+      line-height: 1.6;
+    }
+    .consent-text a { color: var(--cyan); text-decoration: none; }
+    .consent-text a:hover { text-decoration: underline; }
+
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--cyan) 0%, var(--purple) 100%);
+      color: var(--white);
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 14px 24px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s, opacity 0.2s;
+      box-shadow: 0 4px 24px rgba(0,212,255,0.2);
+    }
+    .btn-submit:hover { transform: translateY(-1px); box-shadow: 0 8px 32px rgba(0,212,255,0.35); }
+    .btn-submit:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    .form-success .success-icon { font-size: 3rem; margin-bottom: 16px; }
+    .form-success h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--white); margin-bottom: 10px; }
+    .form-success p { font-size: 0.95rem; color: var(--gray-400); line-height: 1.7; }
+
+    /* Sample message */
+    .sample-message {
+      background: rgba(0,0,0,0.3);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: var(--radius-sm);
+      padding: 20px 24px;
+      margin-bottom: 32px;
+    }
+    .sample-message .sample-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray-600);
+      margin-bottom: 12px;
+    }
+    .message-bubble {
+      background: rgba(0,212,255,0.08);
+      border: 1px solid rgba(0,212,255,0.15);
+      border-radius: 12px 12px 12px 2px;
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      color: var(--gray-100);
+      line-height: 1.55;
+      margin-bottom: 10px;
+      max-width: 90%;
+    }
+    .message-bubble:last-child { margin-bottom: 0; }
+
+    /* Info boxes */
+    .info-box {
+      background: rgba(0,212,255,0.04);
+      border: 1px solid rgba(0,212,255,0.15);
+      border-radius: var(--radius-sm);
+      padding: 18px 20px;
+      margin-bottom: 20px;
+      font-size: 0.87rem;
+      color: var(--gray-400);
+      line-height: 1.6;
+    }
+    .info-box strong { color: var(--gray-100); }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 28px 24px; text-align: center;
+      font-size: 0.8rem; color: var(--gray-600);
+    }
+    footer a { color: var(--gray-400); text-decoration: none; margin: 0 12px; }
+    footer a:hover { color: var(--white); }
+
+    @media (max-width: 600px) {
+      .how-strip { grid-template-columns: 1fr; }
+      .form-card { padding: 28px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="/logo-mark.jpg" alt="Synprism" />
+      Synprism<span style="background:linear-gradient(135deg,#7b2fff,#ff00cc);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">.io</span>
+    </a>
+    <a href="/" class="nav-back">- Back to Home</a>
+  </div>
+</nav>
+
+<div class="page-header">
+  <div class="page-tag">SynPrism Sale Alerts</div>
+  <h1 class="page-title">Get a text when you make a sale.</h1>
+  <p class="page-subtitle">Sign up below to receive an instant SMS notification every time an item from your online store sells.</p>
+</div>
+
+<div class="content">
+
+  <div class="how-strip">
+    <div class="how-item">
+      <span class="how-icon">📝</span>
+      <div class="how-title">Sign up below</div>
+      <div class="how-desc">Enter your name and mobile number and check the consent box.</div>
+    </div>
+    <div class="how-item">
+      <span class="how-icon">✅</span>
+      <div class="how-title">We approve it</div>
+      <div class="how-desc">A Synprism team member links your number to your store and activates alerts.</div>
+    </div>
+    <div class="how-item">
+      <span class="how-icon">📱</span>
+      <div class="how-title">You get a text</div>
+      <div class="how-desc">Every time something sells, your phone buzzes with the details.</div>
+    </div>
+  </div>
+
+  <div class="sample-message">
+    <div class="sample-label">Example messages you'll receive</div>
+    <div class="message-bubble">Brood &amp; Co sold on Whatnot! Ironstone Flow Blue Willow &amp; White Porcelain Egg Holder with Cups. Sold for $65.00. Ship it within the required timeline.</div>
+    <div class="message-bubble">SynPrism Sale Alerts: you're subscribed to Brood &amp; Co sale notifications. Msg frequency varies. Msg &amp; data rates may apply. Reply HELP for help, STOP to cancel.</div>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-card">
+    <h2>Sign up for sale alerts</h2>
+    <p class="form-intro">Takes 30 seconds. You'll get a confirmation text once your number is approved.</p>
+
+    <form id="smsForm" action="APPS_SCRIPT_URL_HERE" method="POST">
+      <input type="hidden" name="formType" value="sms-alerts-optin" />
+
+      <div class="form-group">
+        <label for="ownerName">Your name <span style="color:var(--cyan)">*</span></label>
+        <input type="text" id="ownerName" name="ownerName" placeholder="Jane Smith" required autocomplete="name" />
+      </div>
+
+      <div class="form-group">
+        <label for="storeName">Store or business name <span style="color:var(--cyan)">*</span></label>
+        <input type="text" id="storeName" name="storeName" placeholder="Brood &amp; Co." required />
+      </div>
+
+      <div class="form-group">
+        <label for="mobile">Mobile number <span style="color:var(--cyan)">*</span></label>
+        <input type="tel" id="mobile" name="mobile" placeholder="(555) 000-0000" required autocomplete="tel" />
+      </div>
+
+      <div class="consent-group">
+        <label class="consent-label">
+          <input type="checkbox" id="consent" name="consent" required />
+          <span class="consent-text">
+            By checking this box, I consent to receive transactional SMS notifications from <strong>SynPrism Sale Alerts</strong> when items from my online store sell. Message frequency varies based on sales activity. Msg &amp; data rates may apply. Reply <strong>STOP</strong> to cancel at any time. Reply <strong>HELP</strong> for help. I have read and agree to the <a href="/privacy.html#sms" target="_blank">Privacy Policy</a> and <a href="/terms.html#sms" target="_blank">Terms of Service</a>.
+          </span>
+        </label>
+      </div>
+
+      <button type="submit" class="btn-submit" id="submitBtn">
+        Sign Me Up for Sale Alerts
+      </button>
+    </form>
+
+    <div class="form-success" id="formSuccess">
+      <div class="success-icon">🎉</div>
+      <h3>You're on the list!</h3>
+      <p>We'll review your submission and activate your alerts shortly. You'll receive a confirmation text once everything is set up.<br /><br />In the meantime, reply <strong>STOP</strong> to any alert at any time to cancel, or <strong>HELP</strong> for support.</p>
+    </div>
+  </div>
+
+  <div class="info-box">
+    <strong>Transactional alerts only.</strong> We will never send marketing or promotional messages through this service. Every text you receive is a sale notification for your store - nothing else.
+  </div>
+
+  <div class="info-box">
+    <strong>Msg &amp; data rates may apply.</strong> Message frequency varies based on your store's sales activity. Reply <strong>STOP</strong> to cancel, <strong>HELP</strong> for help. Questions? Email <a href="mailto:info@synprism.io" style="color:var(--cyan);">info@synprism.io</a>.
+  </div>
+
+</div>
+
+<footer>
+  <a href="/">Home</a>
+  <a href="/privacy.html#sms">Privacy Policy</a>
+  <a href="/terms.html#sms">Terms of Service</a>
+  <br /><br />
+  &copy; 2025 Synprism. All rights reserved. &nbsp;&middot;&nbsp; Tennessee, USA
+</footer>
+
+<script>
+  const form = document.getElementById('smsForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const formSuccess = document.getElementById('formSuccess');
+
+  // Format phone number as user types
+  document.getElementById('mobile').addEventListener('input', function(e) {
+    let val = e.target.value.replace(/\D/g, '').substring(0, 10);
+    if (val.length >= 6) {
+      val = '(' + val.substring(0,3) + ') ' + val.substring(3,6) + '-' + val.substring(6);
+    } else if (val.length >= 3) {
+      val = '(' + val.substring(0,3) + ') ' + val.substring(3);
+    }
+    e.target.value = val;
+  });
+
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    // Append consent wording as a hidden field so it's logged with the record
+    const consentWording = document.querySelector('.consent-text').innerText.trim();
+    let consentField = form.querySelector('input[name="consentWording"]');
+    if (!consentField) {
+      consentField = document.createElement('input');
+      consentField.type = 'hidden';
+      consentField.name = 'consentWording';
+      form.appendChild(consentField);
+    }
+    consentField.value = consentWording;
+
+    // Append timestamp
+    let tsField = form.querySelector('input[name="timestamp"]');
+    if (!tsField) {
+      tsField = document.createElement('input');
+      tsField.type = 'hidden';
+      tsField.name = 'timestamp';
+      form.appendChild(tsField);
+    }
+    tsField.value = new Date().toISOString();
+
+    submitBtn.textContent = 'Submitting...';
+    submitBtn.disabled = true;
+
+    try {
+      const data = new FormData(form);
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: data
+      });
+
+      // Apps Script returns 200 on success
+      if (res.ok) {
+        form.style.display = 'none';
+        formSuccess.style.display = 'block';
+      } else {
+        throw new Error('Non-OK response');
+      }
+    } catch (err) {
+      submitBtn.textContent = 'Something went wrong - please try again';
+      submitBtn.disabled = false;
+    }
+  });
+</script>
+
+<!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "cb467e41d6564261840e66b176d356a9"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>
